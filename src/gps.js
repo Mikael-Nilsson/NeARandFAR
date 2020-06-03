@@ -1,9 +1,9 @@
 var x = document.getElementById("loc");
 let position = {};
-async function getLocation() {
+function getLocation() {
     console.log('searching position');
     if (navigator.geolocation) {
-        await navigator.geolocation.getCurrentPosition(showPosition, errorFn);
+        navigator.geolocation.getCurrentPosition(showPosition, errorFn);
         console.log('i getLocation', position);
         return position;
     } else {
