@@ -1,15 +1,24 @@
 var x = document.getElementById("loc");
-function getLocation() {
+let position = {};
+async function getLocation() {
     console.log('searching position');
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
+        await navigator.geolocation.getCurrentPosition(showPosition, errorFn);
+        console.log('i getLocation', position);
+        return position;
     } else {
         x.innerHTML = "Geolocation is not supported by this browser.";
     }
 }
 
-function showPosition(position) {
-    console.log(position);
-    x.innerHTML = "Latitude: " + position.coords.latitude +
-    "<br>Longitude: " + position.coords.longitude;
+function showPosition(pos) {
+    console.log('i showPosition', pos);
+    position = pos;
+    x.innerHTML = "Latitude: " + pos.coords.latitude +
+    "<br>Longitude: " + pos.coords.longitude;
+}
+
+function errorFn(err) {
+    console.error('an error occurred', err);
+    x.innerHTML = `CHAOS! ${err}`;
 }
