@@ -10,42 +10,10 @@
         <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
     </head>
     <body style="margin: 0; overflow: hidden;" onload="getLocation()">
-        <div id="loc">
-        </div>
-
-        <script>
-            var x = document.getElementById("loc");
-            function getLocation() {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(showPosition);
-                } else {
-                    x.innerHTML = "Geolocation is not supported by this browser.";
-                }
-            }
-
-            function showPosition(position) {
-                console.log(position);
-                // x.innerHTML = "Latitude: " + position.coords.latitude +
-                // "<br>Longitude: " + position.coords.longitude;
-            }
-        </script>
-
-        <a-scene
-        vr-mode-ui="enabled: false"
-        embedded
-        arjs="sourceType: webcam; debugUIEnabled: false;"
-        >
-            <a-text
-            value="This content will always face you."
-            look-at="[camera]"
-            scale="60 60 60"
-            gps-entity-place="latitude: 59.2926; longitude: 18.0505;"
-            ></a-text>
-
-            <a-text value="Syns det här?" look-at="[camera]" scale="1000 1000 1000" gps-entity-place="latitude: 59.236988; longitude: 17.978851;"></a-text>
-            <a-text value="Hej Tommy!" look-at="[camera]" scale="100 100 100" gps-entity-place="latitude: 59.188992; longitude: 17.609069;"></a-text>
-            <a-camera gps-camera rotation-reader> </a-camera>
-        </a-scene>
+        
+        <script src="src/gps.js" type="text/javascript"></script>
+        
+        <div id="app"></div>
     </body>
     <script src="src/app.js" type="text/javascript"></script>
 </html>
