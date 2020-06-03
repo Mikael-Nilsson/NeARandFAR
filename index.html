@@ -1,10 +1,16 @@
 <html>
     <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js"></script>
-        <script src="https://raw.githack.com/AR-js-org/AR.js/3.1.0/aframe/build/aframe-ar-nft.js"></script>
+        <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
     </head>
-    <body>
+    <body style="margin: 0; overflow: hidden;" onload="getLocation()">
+        <div id="loc">
+        </div>
+
         <script>
             var x = document.getElementById("loc");
             function getLocation() {
@@ -16,11 +22,24 @@
             }
 
             function showPosition(position) {
-                x.innerHTML = "Latitude: " + position.coords.latitude +
-                "<br>Longitude: " + position.coords.longitude;
+                console.log(position);
+                // x.innerHTML = "Latitude: " + position.coords.latitude +
+                // "<br>Longitude: " + position.coords.longitude;
             }
         </script>
-        <div id="loc">
-        </div>
+
+        <a-scene
+        vr-mode-ui="enabled: false"
+        embedded
+        arjs="sourceType: webcam; debugUIEnabled: false;"
+        >
+        <a-text
+        value="This content will always face you."
+        look-at="[gps-camera]"
+        scale="120 120 120"
+        gps-entity-place="latitude: 59.29; longitude: 18.05;"
+        ></a-text>
+        <a-camera gps-camera rotation-reader> </a-camera>
+        </a-scene>
     </body>
 </html>
