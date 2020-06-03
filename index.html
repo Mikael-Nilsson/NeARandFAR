@@ -2,6 +2,8 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
         <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js"></script>
         <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
@@ -33,16 +35,17 @@
         embedded
         arjs="sourceType: webcam; debugUIEnabled: false;"
         >
-        <a-text
-        value="This content will always face you."
-        look-at="[camera]"
-        scale="60 60 60"
-        gps-entity-place="latitude: 59.2926; longitude: 18.0505;"
-        ></a-text>
+            <a-text
+            value="This content will always face you."
+            look-at="[camera]"
+            scale="60 60 60"
+            gps-entity-place="latitude: 59.2926; longitude: 18.0505;"
+            ></a-text>
 
-        <a-text value="Syns det här?" look-at="[camera]" scale="10000 10000 10000" gps-entity-place="latitude: 59.193966; longitude: 17.752730;"></a-text>
-        <a-text value="Hej Tommy!" look-at="[camera]" scale="100 100 100" gps-entity-place="latitude: 59.188992; longitude: 17.609069;"></a-text>
-        <a-camera gps-camera rotation-reader> </a-camera>
+            <a-text value="Syns det här?" look-at="[camera]" scale="1000 1000 1000" gps-entity-place="latitude: 59.236988; longitude: 17.978851;"></a-text>
+            <a-text value="Hej Tommy!" look-at="[camera]" scale="100 100 100" gps-entity-place="latitude: 59.188992; longitude: 17.609069;"></a-text>
+            <a-camera gps-camera rotation-reader> </a-camera>
         </a-scene>
     </body>
+    <script src="src/app.js" type="text/javascript"></script>
 </html>
