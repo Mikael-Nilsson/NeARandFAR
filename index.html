@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/AR.js/3.1.0/aframe/build/aframe-ar-nft.js"></script>
+    </head>
+    <body>
+        <script>
+            var x = document.getElementById("loc");
+            function getLocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                } else {
+                    x.innerHTML = "Geolocation is not supported by this browser.";
+                }
+            }
+
+            function showPosition(position) {
+                x.innerHTML = "Latitude: " + position.coords.latitude +
+                "<br>Longitude: " + position.coords.longitude;
+            }
+        </script>
+        <div id="loc">
+        </div>
+    </body>
+</html>
