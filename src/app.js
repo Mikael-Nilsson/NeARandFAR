@@ -5,7 +5,7 @@ var app = new Vue({
             <a-scene vr-mode-ui="enabled: false" embedded arjs="sourceType: webcam; debugUIEnabled: false;">
                 <camview></camview>
             </a-scene>
-            <div id="loc"></div>
+            <dashboard></dashboard>
         </div>
     `,
     data: () => {

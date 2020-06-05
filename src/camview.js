@@ -3,7 +3,8 @@ Vue.component('camview', async (resolve, reject) => {
 
     
     const position = await getLocation();
-    console.log('5. position on new site: ', pos);
+
+    console.log('4. position on new site: ', position);
     
     resolve({
         template: `

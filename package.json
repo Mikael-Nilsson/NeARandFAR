@@ -1,0 +1,35 @@
+{
+  "name": "nearandfar",
+  "version": "1.0.0",
+  "description": "Trying out AR with A-Frame",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cross-env NODE_ENV=production webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grisner/NeARandFAR.git"
+  },
+  "author": "Mikael Nilsson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/grisner/NeARandFAR/issues"
+  },
+  "homepage": "https://github.com/grisner/NeARandFAR#readme",
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/preset-env": "^7.10.2",
+    "babel-loader": "^8.1.0",
+    "cross-env": "^7.0.2",
+    "css-loader": "^3.5.3",
+    "html-webpack-plugin": "^4.3.0",
+    "node-sass": "^4.14.1",
+    "node-sass-magic-importer": "^5.3.2",
+    "sass-loader": "^8.0.2",
+    "vue-loader": "^15.9.2",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  }
+}
