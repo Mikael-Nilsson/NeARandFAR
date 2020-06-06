@@ -6,9 +6,11 @@ const nodeSassMagicImporter = require('node-sass-magic-importer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const env = process.env.NODE_ENV;
+const sourceMap = env === 'development';
 
 const config = {
-  entry: path.join(__dirname, 'src', 'main.js'),
+  entry: path.join(__dirname, 'src', 'index.js'),
+  devtool: sourceMap ? 'cheap-module-eval-source-map' : undefined,
   mode: env,
   output: {
     publicPath: '/',
@@ -49,6 +51,13 @@ const config = {
             loader: 'sass-loader',
             options: {
               importer: nodeSassMagicImporter(),
+              sourceMap,
+            },
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap,
             },
           },
         ],
