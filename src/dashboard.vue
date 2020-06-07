@@ -1,5 +1,5 @@
 <template>
-    <div id='dashboard'>
+    <div>
         DASHBOARD
         <div id='loc'>p</div>
     </div>
@@ -7,6 +7,6 @@
 
 <script>
     export default {
-        
+        name: 'dashboard'
     }
 </script>
