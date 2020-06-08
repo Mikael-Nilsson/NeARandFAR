@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import 'aframe';
 
 import app from './app.vue'
 

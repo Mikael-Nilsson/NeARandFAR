@@ -1,6 +1,6 @@
 <template>
     <div>
-        <a-scene> <!-- vr-mode-ui="enabled: false" embedded arjs="sourceType: webcam; debugUIEnabled: false;">-->
+        <a-scene vr-mode-ui="enabled: false" embedded arjs="sourceType: webcam; debugUIEnabled: false;">
             <camview></camview>
         </a-scene>
         <dashboard></dashboard>
@@ -8,8 +8,8 @@
 </template>
 
 <script>
-    // import aframe from 'aframe';
-    import camview from './camview.vue';
+    import 'aframe';
+    import camview from './views/camview.view.vue';
     import dashboard from './dashboard.vue';
 
     export default {
