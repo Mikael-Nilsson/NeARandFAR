@@ -12,11 +12,12 @@
     <a-camera gps-camera rotation-reader></a-camera>
   </div>
 </template>
-
+<script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+<script src="https://raw.githack.com/AR-js-org/AR.js/3.1.0/aframe/build/aframe-ar-nft.js"></script>
 <!-- <script src="../components/camview.component.js"></script>-->
 
 <script>
-    import 'aframe';
+  import * as aframe from 'aframe';
     import * as gps from "../models/gps.js";
 
     export default {

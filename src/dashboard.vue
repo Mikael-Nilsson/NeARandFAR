@@ -6,6 +6,9 @@
 </template>
 
 <script>
+
+    import 'aframe';
+
     export default {
         name: 'dashboard'
     }
