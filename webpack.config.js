@@ -9,7 +9,7 @@ const env = process.env.NODE_ENV;
 const sourceMap = env === 'development';
 
 const config = {
-  entry: path.join(__dirname, 'src', 'index.js'),
+  entry: path.join(__dirname, 'src', 'main.js'),
   devtool: sourceMap ? 'cheap-module-eval-source-map' : undefined,
   mode: env,
   output: {

@@ -7,15 +7,15 @@ export const getLocation = () => {
         return new Promise((resolve, reject) => {
             navigator.geolocation.getCurrentPosition((pos) => {
                 console.log('3. i showPosition', pos);
-                var x = document.getElementById("loc");
-                x.innerHTML = "Latitude: " + pos.coords.latitude +
-                "<br>Longitude: " + pos.coords.longitude;
+                // var x = document.getElementById("loc");
+                // x.innerHTML = "Latitude: " + pos.coords.latitude +
+                // "<br>Longitude: " + pos.coords.longitude;
 
                 resolve(pos);
             }, (err) => {
                 console.error('an error occurred', err);
-                var x = document.getElementById("loc");
-                x.innerHTML = `CHAOS! ${err}`;
+                // var x = document.getElementById("loc");
+                // x.innerHTML = `CHAOS! ${err}`;
             
                 reject(err);
             });

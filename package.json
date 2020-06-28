@@ -39,6 +39,8 @@
   },
   "dependencies": {
     "aframe": "^1.0.4",
+    "aframe-ar": "^0.2.1-a",
+    "aframe-look-at-component": "0.8.0",
     "vue": "^2.6.11",
     "vue-cli": "^2.9.6"
   }
