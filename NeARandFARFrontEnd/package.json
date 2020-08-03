@@ -1,0 +1,24 @@
+{
+  "name": "nearandfar",
+  "version": "1.0.0",
+  "description": "Trying out AR with A-Frame",
+  "main": "index.js",
+  "scripts": {
+    "s": "node index.js",
+    "start": "npm run s"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grisner/NeARandFAR.git"
+  },
+  "author": "Mikael Nilsson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/grisner/NeARandFAR/issues"
+  },
+  "homepage": "https://github.com/grisner/NeARandFAR#readme",
+  
+  "dependencies": {
+    "express": "4.17.1"
+  }
+}

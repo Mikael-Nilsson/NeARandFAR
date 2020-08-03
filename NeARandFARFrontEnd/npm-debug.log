@@ -1,0 +1,1408 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/data/data/io.tempage.dorynode/files/bin/node',
+1 verbose cli   '/data/user/0/io.tempage.dorynode/files/npm/bin/npm-cli.js',
+1 verbose cli   'i',
+1 verbose cli   'aframe' ]
+2 info using npm@3.10.10
+3 info using node@v10.15.1
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly fetchPackageMetaData aframe@^1.0.4
+8 silly fetchNamedPackageData aframe
+9 silly mapToRegistry name aframe
+10 silly mapToRegistry using default registry
+11 silly mapToRegistry registry https://registry.npmjs.org/
+12 silly mapToRegistry data Result {
+12 silly mapToRegistry   raw: 'aframe',
+12 silly mapToRegistry   scope: null,
+12 silly mapToRegistry   escapedName: 'aframe',
+12 silly mapToRegistry   name: 'aframe',
+12 silly mapToRegistry   rawSpec: '',
+12 silly mapToRegistry   spec: 'latest',
+12 silly mapToRegistry   type: 'tag' }
+13 silly mapToRegistry uri https://registry.npmjs.org/aframe
+14 verbose request uri https://registry.npmjs.org/aframe
+15 verbose request no auth needed
+16 info attempt registry request try #1 at 11:15:08 GMT+0200 (CEST)
+17 verbose request id b848e45c27c6c42d
+18 verbose etag W/"dab718fe1cfbe9c315aada19a5492297"
+19 verbose lastModified Wed, 05 Feb 2020 02:19:13 GMT
+20 http request GET https://registry.npmjs.org/aframe
+21 http 304 https://registry.npmjs.org/aframe
+22 verbose headers { date: 'Mon, 22 Jun 2020 09:15:09 GMT',
+22 verbose headers   connection: 'keep-alive',
+22 verbose headers   'set-cookie':
+22 verbose headers    [ '__cfduid=d4d8d701d75442e0a19102e40e2ec2a421592817309; expires=Wed, 22-Jul-20 09:15:09 GMT; path=/; domain=.npmjs.org; HttpOnly; SameSite=Lax' ],
+22 verbose headers   'cf-ray': '5a74dcf86d4b0d52-ARN',
+22 verbose headers   age: '109',
+22 verbose headers   'cache-control': 'public, max-age=300',
+22 verbose headers   etag: '"dab718fe1cfbe9c315aada19a5492297"',
+22 verbose headers   'last-modified': 'Wed, 05 Feb 2020 02:19:13 GMT',
+22 verbose headers   vary: 'Accept-Encoding',
+22 verbose headers   'cf-cache-status': 'HIT',
+22 verbose headers   'cf-request-id': '037ce86f4200000d52e8936200000001',
+22 verbose headers   'expect-ct':
+22 verbose headers    'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+22 verbose headers   server: 'cloudflare' }
+23 silly get cb [ 304,
+23 silly get   { date: 'Mon, 22 Jun 2020 09:15:09 GMT',
+23 silly get     connection: 'keep-alive',
+23 silly get     'set-cookie':
+23 silly get      [ '__cfduid=d4d8d701d75442e0a19102e40e2ec2a421592817309; expires=Wed, 22-Jul-20 09:15:09 GMT; path=/; domain=.npmjs.org; HttpOnly; SameSite=Lax' ],
+23 silly get     'cf-ray': '5a74dcf86d4b0d52-ARN',
+23 silly get     age: '109',
+23 silly get     'cache-control': 'public, max-age=300',
+23 silly get     etag: '"dab718fe1cfbe9c315aada19a5492297"',
+23 silly get     'last-modified': 'Wed, 05 Feb 2020 02:19:13 GMT',
+23 silly get     vary: 'Accept-Encoding',
+23 silly get     'cf-cache-status': 'HIT',
+23 silly get     'cf-request-id': '037ce86f4200000d52e8936200000001',
+23 silly get     'expect-ct':
+23 silly get      'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+23 silly get     server: 'cloudflare' } ]
+24 verbose etag https://registry.npmjs.org/aframe from cache
+25 verbose get saving aframe to /data/user/0/io.tempage.dorynode/files/.npm/registry.npmjs.org/aframe/.cache.json
+26 verbose correctMkdir /data/user/0/io.tempage.dorynode/files/.npm correctMkdir not in flight; initializing
+27 silly install normalizeTree
+28 silly loadCurrentTree Finishing
+29 silly loadIdealTree Starting
+30 silly install loadIdealTree
+31 silly cloneCurrentTree Starting
+32 silly install cloneCurrentTreeToIdealTree
+33 silly cloneCurrentTree Finishing
+34 silly loadShrinkwrap Starting
+35 silly install loadShrinkwrap
+36 silly loadShrinkwrap Finishing
+37 silly loadAllDepsIntoIdealTree Starting
+38 silly install loadAllDepsIntoIdealTree
+39 silly resolveWithNewModule aframe@1.0.4 checking installable status
+40 silly cache add args [ 'aframe@^1.0.4', null ]
+41 verbose cache add spec aframe@^1.0.4
+42 silly cache add parsed spec Result {
+42 silly cache add   raw: 'aframe@^1.0.4',
+42 silly cache add   scope: null,
+42 silly cache add   escapedName: 'aframe',
+42 silly cache add   name: 'aframe',
+42 silly cache add   rawSpec: '^1.0.4',
+42 silly cache add   spec: '>=1.0.4 <2.0.0',
+42 silly cache add   type: 'range' }
+43 silly addNamed aframe@>=1.0.4 <2.0.0
+44 verbose addNamed ">=1.0.4 <2.0.0" is a valid semver range for aframe
+45 silly addNameRange { name: 'aframe', range: '>=1.0.4 <2.0.0', hasData: false }
+46 silly mapToRegistry name aframe
+47 silly mapToRegistry using default registry
+48 silly mapToRegistry registry https://registry.npmjs.org/
+49 silly mapToRegistry data Result {
+49 silly mapToRegistry   raw: 'aframe',
+49 silly mapToRegistry   scope: null,
+49 silly mapToRegistry   escapedName: 'aframe',
+49 silly mapToRegistry   name: 'aframe',
+49 silly mapToRegistry   rawSpec: '',
+49 silly mapToRegistry   spec: 'latest',
+49 silly mapToRegistry   type: 'tag' }
+50 silly mapToRegistry uri https://registry.npmjs.org/aframe
+51 verbose addNameRange registry:https://registry.npmjs.org/aframe not in flight; fetching
+52 verbose get https://registry.npmjs.org/aframe not expired, no request
+53 silly addNameRange number 2 { name: 'aframe', range: '>=1.0.4 <2.0.0', hasData: true }
+54 silly addNameRange versions [ 'aframe',
+54 silly addNameRange   [ '0.0.0',
+54 silly addNameRange     '0.0.9',
+54 silly addNameRange     '0.1.0',
+54 silly addNameRange     '0.1.1',
+54 silly addNameRange     '0.1.2',
+54 silly addNameRange     '0.1.3',
+54 silly addNameRange     '0.2.0-rc1',
+54 silly addNameRange     '0.2.0',
+54 silly addNameRange     '0.3.0',
+54 silly addNameRange     '0.3.1',
+54 silly addNameRange     '0.3.2',
+54 silly addNameRange     '0.4.0',
+54 silly addNameRange     '0.4.1',
+54 silly addNameRange     '0.5.0',
+54 silly addNameRange     '0.6.0',
+54 silly addNameRange     '0.6.1',
+54 silly addNameRange     '0.7.0',
+54 silly addNameRange     '0.7.1',
+54 silly addNameRange     '0.8.0',
+54 silly addNameRange     '0.8.1',
+54 silly addNameRange     '0.8.2',
+54 silly addNameRange     '0.9.0',
+54 silly addNameRange     '0.9.1',
+54 silly addNameRange     '0.9.2',
+54 silly addNameRange     '1.0.0',
+54 silly addNameRange     '1.0.1',
+54 silly addNameRange     '1.0.2',
+54 silly addNameRange     '1.0.3',
+54 silly addNameRange     '1.0.4' ] ]
+55 silly addNamed aframe@1.0.4
+56 verbose addNamed "1.0.4" is a plain semver version for aframe
+57 silly cache afterAdd aframe@1.0.4
+58 verbose afterAdd /data/user/0/io.tempage.dorynode/files/.npm/aframe/1.0.4/package/package.json not in flight; writing
+59 verbose correctMkdir /data/user/0/io.tempage.dorynode/files/.npm correctMkdir not in flight; initializing
+60 verbose afterAdd /data/user/0/io.tempage.dorynode/files/.npm/aframe/1.0.4/package/package.json written
+61 silly fetchNamedPackageData custom-event-polyfill
+62 silly mapToRegistry name custom-event-polyfill
+63 silly mapToRegistry using default registry
+64 silly mapToRegistry registry https://registry.npmjs.org/
+65 silly mapToRegistry data Result {
+65 silly mapToRegistry   raw: 'custom-event-polyfill',
+65 silly mapToRegistry   scope: null,
+65 silly mapToRegistry   escapedName: 'custom-event-polyfill',
+65 silly mapToRegistry   name: 'custom-event-polyfill',
+65 silly mapToRegistry   rawSpec: '',
+65 silly mapToRegistry   spec: 'latest',
+65 silly mapToRegistry   type: 'tag' }
+66 silly mapToRegistry uri https://registry.npmjs.org/custom-event-polyfill
+67 silly fetchNamedPackageData deep-assign
+68 silly mapToRegistry name deep-assign
+69 silly mapToRegistry using default registry
+70 silly mapToRegistry registry https://registry.npmjs.org/
+71 silly mapToRegistry data Result {
+71 silly mapToRegistry   raw: 'deep-assign',
+71 silly mapToRegistry   scope: null,
+71 silly mapToRegistry   escapedName: 'deep-assign',
+71 silly mapToRegistry   name: 'deep-assign',
+71 silly mapToRegistry   rawSpec: '',
+71 silly mapToRegistry   spec: 'latest',
+71 silly mapToRegistry   type: 'tag' }
+72 silly mapToRegistry uri https://registry.npmjs.org/deep-assign
+73 silly fetchNamedPackageData load-bmfont
+74 silly mapToRegistry name load-bmfont
+75 silly mapToRegistry using default registry
+76 silly mapToRegistry registry https://registry.npmjs.org/
+77 silly mapToRegistry data Result {
+77 silly mapToRegistry   raw: 'load-bmfont',
+77 silly mapToRegistry   scope: null,
+77 silly mapToRegistry   escapedName: 'load-bmfont',
+77 silly mapToRegistry   name: 'load-bmfont',
+77 silly mapToRegistry   rawSpec: '',
+77 silly mapToRegistry   spec: 'latest',
+77 silly mapToRegistry   type: 'tag' }
+78 silly mapToRegistry uri https://registry.npmjs.org/load-bmfont
+79 silly fetchNamedPackageData present
+80 silly mapToRegistry name present
+81 silly mapToRegistry using default registry
+82 silly mapToRegistry registry https://registry.npmjs.org/
+83 silly mapToRegistry data Result {
+83 silly mapToRegistry   raw: 'present',
+83 silly mapToRegistry   scope: null,
+83 silly mapToRegistry   escapedName: 'present',
+83 silly mapToRegistry   name: 'present',
+83 silly mapToRegistry   rawSpec: '',
+83 silly mapToRegistry   spec: 'latest',
+83 silly mapToRegistry   type: 'tag' }
+84 silly mapToRegistry uri https://registry.npmjs.org/present
+85 silly fetchNamedPackageData promise-polyfill
+86 silly mapToRegistry name promise-polyfill
+87 silly mapToRegistry using default registry
+88 silly mapToRegistry registry https://registry.npmjs.org/
+89 silly mapToRegistry data Result {
+89 silly mapToRegistry   raw: 'promise-polyfill',
+89 silly mapToRegistry   scope: null,
+89 silly mapToRegistry   escapedName: 'promise-polyfill',
+89 silly mapToRegistry   name: 'promise-polyfill',
+89 silly mapToRegistry   rawSpec: '',
+89 silly mapToRegistry   spec: 'latest',
+89 silly mapToRegistry   type: 'tag' }
+90 silly mapToRegistry uri https://registry.npmjs.org/promise-polyfill
+91 silly fetchNamedPackageData super-animejs
+92 silly mapToRegistry name super-animejs
+93 silly mapToRegistry using default registry
+94 silly mapToRegistry registry https://registry.npmjs.org/
+95 silly mapToRegistry data Result {
+95 silly mapToRegistry   raw: 'super-animejs',
+95 silly mapToRegistry   scope: null,
+95 silly mapToRegistry   escapedName: 'super-animejs',
+95 silly mapToRegistry   name: 'super-animejs',
+95 silly mapToRegistry   rawSpec: '',
+95 silly mapToRegistry   spec: 'latest',
+95 silly mapToRegistry   type: 'tag' }
+96 silly mapToRegistry uri https://registry.npmjs.org/super-animejs
+97 silly fetchNamedPackageData super-three
+98 silly mapToRegistry name super-three
+99 silly mapToRegistry using default registry
+100 silly mapToRegistry registry https://registry.npmjs.org/
+101 silly mapToRegistry data Result {
+101 silly mapToRegistry   raw: 'super-three',
+101 silly mapToRegistry   scope: null,
+101 silly mapToRegistry   escapedName: 'super-three',
+101 silly mapToRegistry   name: 'super-three',
+101 silly mapToRegistry   rawSpec: '',
+101 silly mapToRegistry   spec: 'latest',
+101 silly mapToRegistry   type: 'tag' }
+102 silly mapToRegistry uri https://registry.npmjs.org/super-three
+103 silly fetchNamedPackageData webvr-polyfill
+104 silly mapToRegistry name webvr-polyfill
+105 silly mapToRegistry using default registry
+106 silly mapToRegistry registry https://registry.npmjs.org/
+107 silly mapToRegistry data Result {
+107 silly mapToRegistry   raw: 'webvr-polyfill',
+107 silly mapToRegistry   scope: null,
+107 silly mapToRegistry   escapedName: 'webvr-polyfill',
+107 silly mapToRegistry   name: 'webvr-polyfill',
+107 silly mapToRegistry   rawSpec: '',
+107 silly mapToRegistry   spec: 'latest',
+107 silly mapToRegistry   type: 'tag' }
+108 silly mapToRegistry uri https://registry.npmjs.org/webvr-polyfill
+109 silly fetchOtherPackageData debug@github:ngokevin/debug#noTimestamp
+110 silly cache add args [ 'debug@github:ngokevin/debug#noTimestamp', null ]
+111 verbose cache add spec debug@github:ngokevin/debug#noTimestamp
+112 silly fetchOtherPackageData document-register-element@github:dmarcos/document-register-element#8ccc532b7f3744be954574caf3072a5fd260ca90
+113 silly cache add args [ 'document-register-element@github:dmarcos/document-register-element#8ccc532b7f3744be954574caf3072a5fd260ca90',
+113 silly cache add   null ]
+114 verbose cache add spec document-register-element@github:dmarcos/document-register-element#8ccc532b7f3744be954574caf3072a5fd260ca90
+115 silly fetchOtherPackageData three-bmfont-text@github:dmarcos/three-bmfont-text#1babdf8507c731a18f8af3b807292e2b9740955e
+116 silly cache add args [ 'three-bmfont-text@github:dmarcos/three-bmfont-text#1babdf8507c731a18f8af3b807292e2b9740955e',
+116 silly cache add   null ]
+117 verbose cache add spec three-bmfont-text@github:dmarcos/three-bmfont-text#1babdf8507c731a18f8af3b807292e2b9740955e
+118 silly cache add parsed spec Result {
+118 silly cache add   raw: 'debug@github:ngokevin/debug#noTimestamp',
+118 silly cache add   scope: null,
+118 silly cache add   escapedName: 'debug',
+118 silly cache add   name: 'debug',
+118 silly cache add   rawSpec: 'github:ngokevin/debug#noTimestamp',
+118 silly cache add   spec: 'github:ngokevin/debug#noTimestamp',
+118 silly cache add   type: 'hosted',
+118 silly cache add   hosted:
+118 silly cache add    { type: 'github',
+118 silly cache add      ssh: 'git@github.com:ngokevin/debug.git#noTimestamp',
+118 silly cache add      sshUrl: 'git+ssh://git@github.com/ngokevin/debug.git#noTimestamp',
+118 silly cache add      httpsUrl: 'git+https://github.com/ngokevin/debug.git#noTimestamp',
+118 silly cache add      gitUrl: 'git://github.com/ngokevin/debug.git#noTimestamp',
+118 silly cache add      shortcut: 'github:ngokevin/debug#noTimestamp',
+118 silly cache add      directUrl:
+118 silly cache add       'https://raw.githubusercontent.com/ngokevin/debug/noTimestamp/package.json' } }
+119 verbose addRemoteGit caching github:ngokevin/debug#noTimestamp
+120 verbose addRemoteGit ngokevin/debug#noTimestamp is a repository hosted by github
+121 silly tryGitProto attempting to clone git://github.com/ngokevin/debug.git#noTimestamp
+122 silly tryClone cloning ngokevin/debug#noTimestamp via git://github.com/ngokevin/debug.git#noTimestamp
+123 verbose tryClone git-github-com-ngokevin-debug-git-noTimestamp-6ab3b0cc not in flight; caching
+124 verbose correctMkdir /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes correctMkdir not in flight; initializing
+125 silly cache add parsed spec Result {
+125 silly cache add   raw:
+125 silly cache add    'document-register-element@github:dmarcos/document-register-element#8ccc532b7f3744be954574caf3072a5fd260ca90',
+125 silly cache add   scope: null,
+125 silly cache add   escapedName: 'document-register-element',
+125 silly cache add   name: 'document-register-element',
+125 silly cache add   rawSpec:
+125 silly cache add    'github:dmarcos/document-register-element#8ccc532b7f3744be954574caf3072a5fd260ca90',
+125 silly cache add   spec:
+125 silly cache add    'github:dmarcos/document-register-element#8ccc532b7f3744be954574caf3072a5fd260ca90',
+125 silly cache add   type: 'hosted',
+125 silly cache add   hosted:
+125 silly cache add    { type: 'github',
+125 silly cache add      ssh:
+125 silly cache add       'git@github.com:dmarcos/document-register-element.git#8ccc532b7f3744be954574caf3072a5fd260ca90',
+125 silly cache add      sshUrl:
+125 silly cache add       'git+ssh://git@github.com/dmarcos/document-register-element.git#8ccc532b7f3744be954574caf3072a5fd260ca90',
+125 silly cache add      httpsUrl:
+125 silly cache add       'git+https://github.com/dmarcos/document-register-element.git#8ccc532b7f3744be954574caf3072a5fd260ca90',
+125 silly cache add      gitUrl:
+125 silly cache add       'git://github.com/dmarcos/document-register-element.git#8ccc532b7f3744be954574caf3072a5fd260ca90',
+125 silly cache add      shortcut:
+125 silly cache add       'github:dmarcos/document-register-element#8ccc532b7f3744be954574caf3072a5fd260ca90',
+125 silly cache add      directUrl:
+125 silly cache add       'https://raw.githubusercontent.com/dmarcos/document-register-element/8ccc532b7f3744be954574caf3072a5fd260ca90/package.json' } }
+126 verbose addRemoteGit caching github:dmarcos/document-register-element#8ccc532b7f3744be954574caf3072a5fd260ca90
+127 verbose addRemoteGit dmarcos/document-register-element#8ccc532b7f3744be954574caf3072a5fd260ca90 is a repository hosted by github
+128 silly tryGitProto attempting to clone git://github.com/dmarcos/document-register-element.git#8ccc532b7f3744be954574caf3072a5fd260ca90
+129 silly tryClone cloning dmarcos/document-register-element#8ccc532b7f3744be954574caf3072a5fd260ca90 via git://github.com/dmarcos/document-register-element.git#8ccc532b7f3744be954574caf3072a5fd260ca90
+130 verbose tryClone git-github-com-dmarcos-document-register-element-git-8ccc532b7f3744be954574caf3072a5fd260ca90-4e079fcb not in flight; caching
+131 verbose correctMkdir /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes correctMkdir already in flight; waiting
+132 silly cache add parsed spec Result {
+132 silly cache add   raw:
+132 silly cache add    'three-bmfont-text@github:dmarcos/three-bmfont-text#1babdf8507c731a18f8af3b807292e2b9740955e',
+132 silly cache add   scope: null,
+132 silly cache add   escapedName: 'three-bmfont-text',
+132 silly cache add   name: 'three-bmfont-text',
+132 silly cache add   rawSpec:
+132 silly cache add    'github:dmarcos/three-bmfont-text#1babdf8507c731a18f8af3b807292e2b9740955e',
+132 silly cache add   spec:
+132 silly cache add    'github:dmarcos/three-bmfont-text#1babdf8507c731a18f8af3b807292e2b9740955e',
+132 silly cache add   type: 'hosted',
+132 silly cache add   hosted:
+132 silly cache add    { type: 'github',
+132 silly cache add      ssh:
+132 silly cache add       'git@github.com:dmarcos/three-bmfont-text.git#1babdf8507c731a18f8af3b807292e2b9740955e',
+132 silly cache add      sshUrl:
+132 silly cache add       'git+ssh://git@github.com/dmarcos/three-bmfont-text.git#1babdf8507c731a18f8af3b807292e2b9740955e',
+132 silly cache add      httpsUrl:
+132 silly cache add       'git+https://github.com/dmarcos/three-bmfont-text.git#1babdf8507c731a18f8af3b807292e2b9740955e',
+132 silly cache add      gitUrl:
+132 silly cache add       'git://github.com/dmarcos/three-bmfont-text.git#1babdf8507c731a18f8af3b807292e2b9740955e',
+132 silly cache add      shortcut:
+132 silly cache add       'github:dmarcos/three-bmfont-text#1babdf8507c731a18f8af3b807292e2b9740955e',
+132 silly cache add      directUrl:
+132 silly cache add       'https://raw.githubusercontent.com/dmarcos/three-bmfont-text/1babdf8507c731a18f8af3b807292e2b9740955e/package.json' } }
+133 verbose addRemoteGit caching github:dmarcos/three-bmfont-text#1babdf8507c731a18f8af3b807292e2b9740955e
+134 verbose addRemoteGit dmarcos/three-bmfont-text#1babdf8507c731a18f8af3b807292e2b9740955e is a repository hosted by github
+135 silly tryGitProto attempting to clone git://github.com/dmarcos/three-bmfont-text.git#1babdf8507c731a18f8af3b807292e2b9740955e
+136 silly tryClone cloning dmarcos/three-bmfont-text#1babdf8507c731a18f8af3b807292e2b9740955e via git://github.com/dmarcos/three-bmfont-text.git#1babdf8507c731a18f8af3b807292e2b9740955e
+137 verbose tryClone git-github-com-dmarcos-three-bmfont-text-git-1babdf8507c731a18f8af3b807292e2b9740955e-6fbfbcd5 not in flight; caching
+138 verbose correctMkdir /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes correctMkdir already in flight; waiting
+139 verbose request uri https://registry.npmjs.org/deep-assign
+140 verbose request no auth needed
+141 info attempt registry request try #1 at 11:15:15 GMT+0200 (CEST)
+142 verbose etag W/"b8a957ded2484b41518f97c806062787"
+143 verbose lastModified Wed, 02 Jan 2019 20:17:51 GMT
+144 http request GET https://registry.npmjs.org/deep-assign
+145 verbose request uri https://registry.npmjs.org/present
+146 verbose request no auth needed
+147 info attempt registry request try #1 at 11:15:15 GMT+0200 (CEST)
+148 verbose etag W/"c3711efa44baacc52e86df31586075aa"
+149 verbose lastModified Sun, 27 May 2018 12:45:58 GMT
+150 http request GET https://registry.npmjs.org/present
+151 verbose request uri https://registry.npmjs.org/custom-event-polyfill
+152 verbose request no auth needed
+153 info attempt registry request try #1 at 11:15:15 GMT+0200 (CEST)
+154 verbose etag W/"4ea4d522410302c9efed61633594291e"
+155 verbose lastModified Mon, 08 Apr 2019 13:29:46 GMT
+156 http request GET https://registry.npmjs.org/custom-event-polyfill
+157 verbose request uri https://registry.npmjs.org/load-bmfont
+158 verbose request no auth needed
+159 info attempt registry request try #1 at 11:15:15 GMT+0200 (CEST)
+160 verbose etag W/"d586d773483af2109384de43c0f39c2f"
+161 verbose lastModified Fri, 04 Jan 2019 16:14:58 GMT
+162 http request GET https://registry.npmjs.org/load-bmfont
+163 verbose request uri https://registry.npmjs.org/super-animejs
+164 verbose request no auth needed
+165 info attempt registry request try #1 at 11:15:15 GMT+0200 (CEST)
+166 verbose etag W/"811c3bec6ff8c9a17336f6594931bab2"
+167 verbose lastModified Tue, 07 May 2019 23:10:22 GMT
+168 http request GET https://registry.npmjs.org/super-animejs
+169 verbose request uri https://registry.npmjs.org/promise-polyfill
+170 verbose request no auth needed
+171 info attempt registry request try #1 at 11:15:15 GMT+0200 (CEST)
+172 verbose etag W/"997bf1fd4cfaf25c989b1e3a5b26ff4d"
+173 verbose lastModified Sun, 16 Jun 2019 21:50:40 GMT
+174 http request GET https://registry.npmjs.org/promise-polyfill
+175 verbose request uri https://registry.npmjs.org/super-three
+176 verbose request no auth needed
+177 info attempt registry request try #1 at 11:15:15 GMT+0200 (CEST)
+178 verbose etag W/"c276bde972e8fef84bedb34b5dff462d"
+179 verbose lastModified Wed, 13 May 2020 20:16:57 GMT
+180 http request GET https://registry.npmjs.org/super-three
+181 verbose request uri https://registry.npmjs.org/webvr-polyfill
+182 verbose request no auth needed
+183 info attempt registry request try #1 at 11:15:15 GMT+0200 (CEST)
+184 verbose etag W/"d99e592313b8a3b42042f61cf1bf8537"
+185 verbose lastModified Wed, 13 May 2020 19:32:17 GMT
+186 http request GET https://registry.npmjs.org/webvr-polyfill
+187 warn addRemoteGit Error: not found: git
+187 warn addRemoteGit     at getNotFoundError (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:14:12)
+187 warn addRemoteGit     at F (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:69:19)
+187 warn addRemoteGit     at E (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:81:29)
+187 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:90:16
+187 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/index.js:44:5
+187 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/access.js:8:5
+187 warn addRemoteGit     at FSReqWrap.oncomplete (fs.js:141:20)
+187 warn addRemoteGit  ngokevin/debug#noTimestamp resetting remote /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-ngokevin-debug-git-noTimestamp-6ab3b0cc because of error: { Error: not found: git
+187 warn addRemoteGit     at getNotFoundError (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:14:12)
+187 warn addRemoteGit     at F (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:69:19)
+187 warn addRemoteGit     at E (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:81:29)
+187 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:90:16
+187 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/index.js:44:5
+187 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/access.js:8:5
+187 warn addRemoteGit     at FSReqWrap.oncomplete (fs.js:141:20) code: 'ENOGIT' }
+188 info resetRemote resetting /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-ngokevin-debug-git-noTimestamp-6ab3b0cc for ngokevin/debug#noTimestamp
+189 silly gentlyRm /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-ngokevin-debug-git-noTimestamp-6ab3b0cc is being purged
+190 verbose gentlyRm don't care about contents; nuking /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-ngokevin-debug-git-noTimestamp-6ab3b0cc
+191 warn addRemoteGit Error: not found: git
+191 warn addRemoteGit     at getNotFoundError (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:14:12)
+191 warn addRemoteGit     at F (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:69:19)
+191 warn addRemoteGit     at E (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:81:29)
+191 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:90:16
+191 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/index.js:44:5
+191 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/access.js:8:5
+191 warn addRemoteGit     at FSReqWrap.oncomplete (fs.js:141:20)
+191 warn addRemoteGit  dmarcos/three-bmfont-text#1babdf8507c731a18f8af3b807292e2b9740955e resetting remote /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-dmarcos-three-bmfont-text-git-1babdf8507c731a18f8af3b807292e2b9740955e-6fbfbcd5 because of error: { Error: not found: git
+191 warn addRemoteGit     at getNotFoundError (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:14:12)
+191 warn addRemoteGit     at F (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:69:19)
+191 warn addRemoteGit     at E (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:81:29)
+191 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:90:16
+191 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/index.js:44:5
+191 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/access.js:8:5
+191 warn addRemoteGit     at FSReqWrap.oncomplete (fs.js:141:20) code: 'ENOGIT' }
+192 info resetRemote resetting /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-dmarcos-three-bmfont-text-git-1babdf8507c731a18f8af3b807292e2b9740955e-6fbfbcd5 for dmarcos/three-bmfont-text#1babdf8507c731a18f8af3b807292e2b9740955e
+193 silly gentlyRm /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-dmarcos-three-bmfont-text-git-1babdf8507c731a18f8af3b807292e2b9740955e-6fbfbcd5 is being purged
+194 verbose gentlyRm don't care about contents; nuking /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-dmarcos-three-bmfont-text-git-1babdf8507c731a18f8af3b807292e2b9740955e-6fbfbcd5
+195 warn addRemoteGit Error: not found: git
+195 warn addRemoteGit     at getNotFoundError (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:14:12)
+195 warn addRemoteGit     at F (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:69:19)
+195 warn addRemoteGit     at E (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:81:29)
+195 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:90:16
+195 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/index.js:44:5
+195 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/access.js:8:5
+195 warn addRemoteGit     at FSReqWrap.oncomplete (fs.js:141:20)
+195 warn addRemoteGit  dmarcos/document-register-element#8ccc532b7f3744be954574caf3072a5fd260ca90 resetting remote /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-dmarcos-document-register-element-git-8ccc532b7f3744be954574caf3072a5fd260ca90-4e079fcb because of error: { Error: not found: git
+195 warn addRemoteGit     at getNotFoundError (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:14:12)
+195 warn addRemoteGit     at F (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:69:19)
+195 warn addRemoteGit     at E (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:81:29)
+195 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:90:16
+195 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/index.js:44:5
+195 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/access.js:8:5
+195 warn addRemoteGit     at FSReqWrap.oncomplete (fs.js:141:20) code: 'ENOGIT' }
+196 info resetRemote resetting /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-dmarcos-document-register-element-git-8ccc532b7f3744be954574caf3072a5fd260ca90-4e079fcb for dmarcos/document-register-element#8ccc532b7f3744be954574caf3072a5fd260ca90
+197 silly gentlyRm /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-dmarcos-document-register-element-git-8ccc532b7f3744be954574caf3072a5fd260ca90-4e079fcb is being purged
+198 verbose gentlyRm don't care about contents; nuking /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-dmarcos-document-register-element-git-8ccc532b7f3744be954574caf3072a5fd260ca90-4e079fcb
+199 silly vacuum-fs purging /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-ngokevin-debug-git-noTimestamp-6ab3b0cc
+200 silly vacuum-fs purging /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-dmarcos-three-bmfont-text-git-1babdf8507c731a18f8af3b807292e2b9740955e-6fbfbcd5
+201 silly vacuum-fs purging /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-dmarcos-document-register-element-git-8ccc532b7f3744be954574caf3072a5fd260ca90-4e079fcb
+202 http 304 https://registry.npmjs.org/deep-assign
+203 verbose headers { date: 'Mon, 22 Jun 2020 09:15:15 GMT',
+203 verbose headers   connection: 'keep-alive',
+203 verbose headers   'set-cookie':
+203 verbose headers    [ '__cfduid=dc93f93cfb6e31739f8348a31fa7ea26c1592817315; expires=Wed, 22-Jul-20 09:15:15 GMT; path=/; domain=.npmjs.org; HttpOnly; SameSite=Lax' ],
+203 verbose headers   'cf-ray': '5a74dd1cdcdb0d52-ARN',
+203 verbose headers   age: '742',
+203 verbose headers   'cache-control': 'public, max-age=300',
+203 verbose headers   etag: '"b8a957ded2484b41518f97c806062787"',
+203 verbose headers   'last-modified': 'Wed, 02 Jan 2019 20:17:51 GMT',
+203 verbose headers   vary: 'Accept-Encoding',
+203 verbose headers   'cf-cache-status': 'HIT',
+203 verbose headers   'cf-request-id': '037ce8860a00000d52e8a98200000001',
+203 verbose headers   'expect-ct':
+203 verbose headers    'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+203 verbose headers   server: 'cloudflare' }
+204 silly get cb [ 304,
+204 silly get   { date: 'Mon, 22 Jun 2020 09:15:15 GMT',
+204 silly get     connection: 'keep-alive',
+204 silly get     'set-cookie':
+204 silly get      [ '__cfduid=dc93f93cfb6e31739f8348a31fa7ea26c1592817315; expires=Wed, 22-Jul-20 09:15:15 GMT; path=/; domain=.npmjs.org; HttpOnly; SameSite=Lax' ],
+204 silly get     'cf-ray': '5a74dd1cdcdb0d52-ARN',
+204 silly get     age: '742',
+204 silly get     'cache-control': 'public, max-age=300',
+204 silly get     etag: '"b8a957ded2484b41518f97c806062787"',
+204 silly get     'last-modified': 'Wed, 02 Jan 2019 20:17:51 GMT',
+204 silly get     vary: 'Accept-Encoding',
+204 silly get     'cf-cache-status': 'HIT',
+204 silly get     'cf-request-id': '037ce8860a00000d52e8a98200000001',
+204 silly get     'expect-ct':
+204 silly get      'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+204 silly get     server: 'cloudflare' } ]
+205 verbose etag https://registry.npmjs.org/deep-assign from cache
+206 verbose get saving deep-assign to /data/user/0/io.tempage.dorynode/files/.npm/registry.npmjs.org/deep-assign/.cache.json
+207 verbose correctMkdir /data/user/0/io.tempage.dorynode/files/.npm correctMkdir not in flight; initializing
+208 silly vacuum-fs quitting because other entries in /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes
+209 silly vacuum-fs quitting because other entries in /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes
+210 silly vacuum-fs quitting because other entries in /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes
+211 silly resolveWithNewModule deep-assign@2.0.0 checking installable status
+212 silly cache add args [ 'deep-assign@^2.0.0', null ]
+213 verbose cache add spec deep-assign@^2.0.0
+214 silly cache add parsed spec Result {
+214 silly cache add   raw: 'deep-assign@^2.0.0',
+214 silly cache add   scope: null,
+214 silly cache add   escapedName: 'deep-assign',
+214 silly cache add   name: 'deep-assign',
+214 silly cache add   rawSpec: '^2.0.0',
+214 silly cache add   spec: '>=2.0.0 <3.0.0',
+214 silly cache add   type: 'range' }
+215 silly addNamed deep-assign@>=2.0.0 <3.0.0
+216 verbose addNamed ">=2.0.0 <3.0.0" is a valid semver range for deep-assign
+217 silly addNameRange { name: 'deep-assign', range: '>=2.0.0 <3.0.0', hasData: false }
+218 silly mapToRegistry name deep-assign
+219 silly mapToRegistry using default registry
+220 silly mapToRegistry registry https://registry.npmjs.org/
+221 silly mapToRegistry data Result {
+221 silly mapToRegistry   raw: 'deep-assign',
+221 silly mapToRegistry   scope: null,
+221 silly mapToRegistry   escapedName: 'deep-assign',
+221 silly mapToRegistry   name: 'deep-assign',
+221 silly mapToRegistry   rawSpec: '',
+221 silly mapToRegistry   spec: 'latest',
+221 silly mapToRegistry   type: 'tag' }
+222 silly mapToRegistry uri https://registry.npmjs.org/deep-assign
+223 verbose addNameRange registry:https://registry.npmjs.org/deep-assign not in flight; fetching
+224 error git clone --template=/data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/_templates --mirror git://github.com/ngokevin/debug.git /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-ngokevin-debug-git-noTimestamp-6ab3b0cc: undefined
+224 error git clone --template=/data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/_templates --mirror git://github.com/ngokevin/debug.git /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-ngokevin-debug-git-noTimestamp-6ab3b0cc: undefined
+225 silly tryHTTPS attempting to clone git+https://github.com/ngokevin/debug.git#noTimestamp
+226 silly tryClone cloning ngokevin/debug#noTimestamp via git+https://github.com/ngokevin/debug.git#noTimestamp
+227 verbose tryClone git-https-github-com-ngokevin-debug-git-noTimestamp-cd137d3f not in flight; caching
+228 verbose correctMkdir /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes correctMkdir not in flight; initializing
+229 error git clone --template=/data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/_templates --mirror git://github.com/dmarcos/document-register-element.git /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-dmarcos-document-register-element-git-8ccc532b7f3744be954574caf3072a5fd260ca90-4e079fcb: undefined
+229 error git clone --template=/data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/_templates --mirror git://github.com/dmarcos/document-register-element.git /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-dmarcos-document-register-element-git-8ccc532b7f3744be954574caf3072a5fd260ca90-4e079fcb: undefined
+230 silly tryHTTPS attempting to clone git+https://github.com/dmarcos/document-register-element.git#8ccc532b7f3744be954574caf3072a5fd260ca90
+231 silly tryClone cloning dmarcos/document-register-element#8ccc532b7f3744be954574caf3072a5fd260ca90 via git+https://github.com/dmarcos/document-register-element.git#8ccc532b7f3744be954574caf3072a5fd260ca90
+232 verbose tryClone git-https-github-com-dmarcos-document-register-element-git-8ccc532b7f3744be954574caf3072a5fd260ca90-5231fc59 not in flight; caching
+233 verbose correctMkdir /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes correctMkdir not in flight; initializing
+234 error git clone --template=/data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/_templates --mirror git://github.com/dmarcos/three-bmfont-text.git /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-dmarcos-three-bmfont-text-git-1babdf8507c731a18f8af3b807292e2b9740955e-6fbfbcd5: undefined
+234 error git clone --template=/data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/_templates --mirror git://github.com/dmarcos/three-bmfont-text.git /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-dmarcos-three-bmfont-text-git-1babdf8507c731a18f8af3b807292e2b9740955e-6fbfbcd5: undefined
+235 silly tryHTTPS attempting to clone git+https://github.com/dmarcos/three-bmfont-text.git#1babdf8507c731a18f8af3b807292e2b9740955e
+236 silly tryClone cloning dmarcos/three-bmfont-text#1babdf8507c731a18f8af3b807292e2b9740955e via git+https://github.com/dmarcos/three-bmfont-text.git#1babdf8507c731a18f8af3b807292e2b9740955e
+237 verbose tryClone git-https-github-com-dmarcos-three-bmfont-text-git-1babdf8507c731a18f8af3b807292e2b9740955e-0d083263 not in flight; caching
+238 verbose correctMkdir /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes correctMkdir not in flight; initializing
+239 verbose get https://registry.npmjs.org/deep-assign not expired, no request
+240 silly addNameRange number 2 { name: 'deep-assign', range: '>=2.0.0 <3.0.0', hasData: true }
+241 silly addNameRange versions [ 'deep-assign', [ '1.0.0', '2.0.0', '3.0.0' ] ]
+242 silly addNamed deep-assign@2.0.0
+243 verbose addNamed "2.0.0" is a plain semver version for deep-assign
+244 warn addRemoteGit Error: not found: git
+244 warn addRemoteGit     at getNotFoundError (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:14:12)
+244 warn addRemoteGit     at F (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:69:19)
+244 warn addRemoteGit     at E (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:81:29)
+244 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:90:16
+244 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/index.js:44:5
+244 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/access.js:8:5
+244 warn addRemoteGit     at FSReqWrap.oncomplete (fs.js:141:20)
+244 warn addRemoteGit  ngokevin/debug#noTimestamp resetting remote /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-https-github-com-ngokevin-debug-git-noTimestamp-cd137d3f because of error: { Error: not found: git
+244 warn addRemoteGit     at getNotFoundError (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:14:12)
+244 warn addRemoteGit     at F (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:69:19)
+244 warn addRemoteGit     at E (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:81:29)
+244 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:90:16
+244 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/index.js:44:5
+244 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/access.js:8:5
+244 warn addRemoteGit     at FSReqWrap.oncomplete (fs.js:141:20) code: 'ENOGIT' }
+245 info resetRemote resetting /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-https-github-com-ngokevin-debug-git-noTimestamp-cd137d3f for ngokevin/debug#noTimestamp
+246 silly gentlyRm /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-https-github-com-ngokevin-debug-git-noTimestamp-cd137d3f is being purged
+247 verbose gentlyRm don't care about contents; nuking /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-https-github-com-ngokevin-debug-git-noTimestamp-cd137d3f
+248 silly vacuum-fs purging /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-https-github-com-ngokevin-debug-git-noTimestamp-cd137d3f
+249 warn addRemoteGit Error: not found: git
+249 warn addRemoteGit     at getNotFoundError (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:14:12)
+249 warn addRemoteGit     at F (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:69:19)
+249 warn addRemoteGit     at E (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:81:29)
+249 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:90:16
+249 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/index.js:44:5
+249 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/access.js:8:5
+249 warn addRemoteGit     at FSReqWrap.oncomplete (fs.js:141:20)
+249 warn addRemoteGit  dmarcos/document-register-element#8ccc532b7f3744be954574caf3072a5fd260ca90 resetting remote /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-https-github-com-dmarcos-document-register-element-git-8ccc532b7f3744be954574caf3072a5fd260ca90-5231fc59 because of error: { Error: not found: git
+249 warn addRemoteGit     at getNotFoundError (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:14:12)
+249 warn addRemoteGit     at F (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:69:19)
+249 warn addRemoteGit     at E (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:81:29)
+249 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:90:16
+249 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/index.js:44:5
+249 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/access.js:8:5
+249 warn addRemoteGit     at FSReqWrap.oncomplete (fs.js:141:20) code: 'ENOGIT' }
+250 info resetRemote resetting /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-https-github-com-dmarcos-document-register-element-git-8ccc532b7f3744be954574caf3072a5fd260ca90-5231fc59 for dmarcos/document-register-element#8ccc532b7f3744be954574caf3072a5fd260ca90
+251 silly gentlyRm /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-https-github-com-dmarcos-document-register-element-git-8ccc532b7f3744be954574caf3072a5fd260ca90-5231fc59 is being purged
+252 verbose gentlyRm don't care about contents; nuking /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-https-github-com-dmarcos-document-register-element-git-8ccc532b7f3744be954574caf3072a5fd260ca90-5231fc59
+253 warn addRemoteGit Error: not found: git
+253 warn addRemoteGit     at getNotFoundError (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:14:12)
+253 warn addRemoteGit     at F (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:69:19)
+253 warn addRemoteGit     at E (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:81:29)
+253 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:90:16
+253 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/index.js:44:5
+253 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/access.js:8:5
+253 warn addRemoteGit     at FSReqWrap.oncomplete (fs.js:141:20)
+253 warn addRemoteGit  dmarcos/three-bmfont-text#1babdf8507c731a18f8af3b807292e2b9740955e resetting remote /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-https-github-com-dmarcos-three-bmfont-text-git-1babdf8507c731a18f8af3b807292e2b9740955e-0d083263 because of error: { Error: not found: git
+253 warn addRemoteGit     at getNotFoundError (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:14:12)
+253 warn addRemoteGit     at F (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:69:19)
+253 warn addRemoteGit     at E (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:81:29)
+253 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:90:16
+253 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/index.js:44:5
+253 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/access.js:8:5
+253 warn addRemoteGit     at FSReqWrap.oncomplete (fs.js:141:20) code: 'ENOGIT' }
+254 info resetRemote resetting /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-https-github-com-dmarcos-three-bmfont-text-git-1babdf8507c731a18f8af3b807292e2b9740955e-0d083263 for dmarcos/three-bmfont-text#1babdf8507c731a18f8af3b807292e2b9740955e
+255 silly gentlyRm /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-https-github-com-dmarcos-three-bmfont-text-git-1babdf8507c731a18f8af3b807292e2b9740955e-0d083263 is being purged
+256 verbose gentlyRm don't care about contents; nuking /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-https-github-com-dmarcos-three-bmfont-text-git-1babdf8507c731a18f8af3b807292e2b9740955e-0d083263
+257 silly vacuum-fs purging /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-https-github-com-dmarcos-document-register-element-git-8ccc532b7f3744be954574caf3072a5fd260ca90-5231fc59
+258 silly vacuum-fs purging /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-https-github-com-dmarcos-three-bmfont-text-git-1babdf8507c731a18f8af3b807292e2b9740955e-0d083263
+259 silly cache afterAdd deep-assign@2.0.0
+260 verbose afterAdd /data/user/0/io.tempage.dorynode/files/.npm/deep-assign/2.0.0/package/package.json not in flight; writing
+261 verbose correctMkdir /data/user/0/io.tempage.dorynode/files/.npm correctMkdir not in flight; initializing
+262 silly vacuum-fs quitting because other entries in /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes
+263 silly vacuum-fs quitting because other entries in /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes
+264 silly vacuum-fs quitting because other entries in /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes
+265 verbose afterAdd /data/user/0/io.tempage.dorynode/files/.npm/deep-assign/2.0.0/package/package.json written
+266 error git clone --template=/data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/_templates --mirror https://github.com/ngokevin/debug.git /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-https-github-com-ngokevin-debug-git-noTimestamp-cd137d3f: undefined
+266 error git clone --template=/data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/_templates --mirror https://github.com/ngokevin/debug.git /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-https-github-com-ngokevin-debug-git-noTimestamp-cd137d3f: undefined
+267 silly trySSH attempting to clone git@github.com:ngokevin/debug.git#noTimestamp
+268 silly tryClone cloning ngokevin/debug#noTimestamp via git@github.com:ngokevin/debug.git#noTimestamp
+269 verbose tryClone git-github-com-ngokevin-debug-git-noTimestamp-f6604ee3 not in flight; caching
+270 verbose correctMkdir /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes correctMkdir not in flight; initializing
+271 error git clone --template=/data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/_templates --mirror https://github.com/dmarcos/three-bmfont-text.git /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-https-github-com-dmarcos-three-bmfont-text-git-1babdf8507c731a18f8af3b807292e2b9740955e-0d083263: undefined
+271 error git clone --template=/data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/_templates --mirror https://github.com/dmarcos/three-bmfont-text.git /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-https-github-com-dmarcos-three-bmfont-text-git-1babdf8507c731a18f8af3b807292e2b9740955e-0d083263: undefined
+272 silly trySSH attempting to clone git@github.com:dmarcos/three-bmfont-text.git#1babdf8507c731a18f8af3b807292e2b9740955e
+273 silly tryClone cloning dmarcos/three-bmfont-text#1babdf8507c731a18f8af3b807292e2b9740955e via git@github.com:dmarcos/three-bmfont-text.git#1babdf8507c731a18f8af3b807292e2b9740955e
+274 verbose tryClone git-github-com-dmarcos-three-bmfont-text-git-1babdf8507c731a18f8af3b807292e2b9740955e-b35f4d9c not in flight; caching
+275 verbose correctMkdir /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes correctMkdir not in flight; initializing
+276 error git clone --template=/data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/_templates --mirror https://github.com/dmarcos/document-register-element.git /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-https-github-com-dmarcos-document-register-element-git-8ccc532b7f3744be954574caf3072a5fd260ca90-5231fc59: undefined
+276 error git clone --template=/data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/_templates --mirror https://github.com/dmarcos/document-register-element.git /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-https-github-com-dmarcos-document-register-element-git-8ccc532b7f3744be954574caf3072a5fd260ca90-5231fc59: undefined
+277 silly trySSH attempting to clone git@github.com:dmarcos/document-register-element.git#8ccc532b7f3744be954574caf3072a5fd260ca90
+278 silly tryClone cloning dmarcos/document-register-element#8ccc532b7f3744be954574caf3072a5fd260ca90 via git@github.com:dmarcos/document-register-element.git#8ccc532b7f3744be954574caf3072a5fd260ca90
+279 verbose tryClone git-github-com-dmarcos-document-register-element-git-8ccc532b7f3744be954574caf3072a5fd260ca90-96b06473 not in flight; caching
+280 verbose correctMkdir /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes correctMkdir not in flight; initializing
+281 warn addRemoteGit Error: not found: git
+281 warn addRemoteGit     at getNotFoundError (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:14:12)
+281 warn addRemoteGit     at F (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:69:19)
+281 warn addRemoteGit     at E (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:81:29)
+281 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:90:16
+281 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/index.js:44:5
+281 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/access.js:8:5
+281 warn addRemoteGit     at FSReqWrap.oncomplete (fs.js:141:20)
+281 warn addRemoteGit  ngokevin/debug#noTimestamp resetting remote /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-ngokevin-debug-git-noTimestamp-f6604ee3 because of error: { Error: not found: git
+281 warn addRemoteGit     at getNotFoundError (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:14:12)
+281 warn addRemoteGit     at F (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:69:19)
+281 warn addRemoteGit     at E (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:81:29)
+281 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:90:16
+281 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/index.js:44:5
+281 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/access.js:8:5
+281 warn addRemoteGit     at FSReqWrap.oncomplete (fs.js:141:20) code: 'ENOGIT' }
+282 info resetRemote resetting /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-ngokevin-debug-git-noTimestamp-f6604ee3 for ngokevin/debug#noTimestamp
+283 silly gentlyRm /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-ngokevin-debug-git-noTimestamp-f6604ee3 is being purged
+284 verbose gentlyRm don't care about contents; nuking /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-ngokevin-debug-git-noTimestamp-f6604ee3
+285 silly vacuum-fs purging /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-ngokevin-debug-git-noTimestamp-f6604ee3
+286 warn addRemoteGit Error: not found: git
+286 warn addRemoteGit     at getNotFoundError (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:14:12)
+286 warn addRemoteGit     at F (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:69:19)
+286 warn addRemoteGit     at E (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:81:29)
+286 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:90:16
+286 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/index.js:44:5
+286 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/access.js:8:5
+286 warn addRemoteGit     at FSReqWrap.oncomplete (fs.js:141:20)
+286 warn addRemoteGit  dmarcos/three-bmfont-text#1babdf8507c731a18f8af3b807292e2b9740955e resetting remote /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-dmarcos-three-bmfont-text-git-1babdf8507c731a18f8af3b807292e2b9740955e-b35f4d9c because of error: { Error: not found: git
+286 warn addRemoteGit     at getNotFoundError (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:14:12)
+286 warn addRemoteGit     at F (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:69:19)
+286 warn addRemoteGit     at E (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:81:29)
+286 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:90:16
+286 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/index.js:44:5
+286 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/access.js:8:5
+286 warn addRemoteGit     at FSReqWrap.oncomplete (fs.js:141:20) code: 'ENOGIT' }
+287 info resetRemote resetting /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-dmarcos-three-bmfont-text-git-1babdf8507c731a18f8af3b807292e2b9740955e-b35f4d9c for dmarcos/three-bmfont-text#1babdf8507c731a18f8af3b807292e2b9740955e
+288 silly gentlyRm /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-dmarcos-three-bmfont-text-git-1babdf8507c731a18f8af3b807292e2b9740955e-b35f4d9c is being purged
+289 verbose gentlyRm don't care about contents; nuking /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-dmarcos-three-bmfont-text-git-1babdf8507c731a18f8af3b807292e2b9740955e-b35f4d9c
+290 warn addRemoteGit Error: not found: git
+290 warn addRemoteGit     at getNotFoundError (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:14:12)
+290 warn addRemoteGit     at F (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:69:19)
+290 warn addRemoteGit     at E (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:81:29)
+290 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:90:16
+290 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/index.js:44:5
+290 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/access.js:8:5
+290 warn addRemoteGit     at FSReqWrap.oncomplete (fs.js:141:20)
+290 warn addRemoteGit  dmarcos/document-register-element#8ccc532b7f3744be954574caf3072a5fd260ca90 resetting remote /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-dmarcos-document-register-element-git-8ccc532b7f3744be954574caf3072a5fd260ca90-96b06473 because of error: { Error: not found: git
+290 warn addRemoteGit     at getNotFoundError (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:14:12)
+290 warn addRemoteGit     at F (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:69:19)
+290 warn addRemoteGit     at E (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:81:29)
+290 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:90:16
+290 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/index.js:44:5
+290 warn addRemoteGit     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/access.js:8:5
+290 warn addRemoteGit     at FSReqWrap.oncomplete (fs.js:141:20) code: 'ENOGIT' }
+291 info resetRemote resetting /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-dmarcos-document-register-element-git-8ccc532b7f3744be954574caf3072a5fd260ca90-96b06473 for dmarcos/document-register-element#8ccc532b7f3744be954574caf3072a5fd260ca90
+292 silly gentlyRm /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-dmarcos-document-register-element-git-8ccc532b7f3744be954574caf3072a5fd260ca90-96b06473 is being purged
+293 verbose gentlyRm don't care about contents; nuking /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-dmarcos-document-register-element-git-8ccc532b7f3744be954574caf3072a5fd260ca90-96b06473
+294 silly vacuum-fs purging /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-dmarcos-three-bmfont-text-git-1babdf8507c731a18f8af3b807292e2b9740955e-b35f4d9c
+295 silly vacuum-fs purging /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-dmarcos-document-register-element-git-8ccc532b7f3744be954574caf3072a5fd260ca90-96b06473
+296 silly vacuum-fs quitting because other entries in /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes
+297 silly vacuum-fs quitting because other entries in /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes
+298 silly vacuum-fs quitting because other entries in /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes
+299 error git clone --template=/data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/_templates --mirror git@github.com:ngokevin/debug.git /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-ngokevin-debug-git-noTimestamp-f6604ee3: undefined
+299 error git clone --template=/data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/_templates --mirror git@github.com:ngokevin/debug.git /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-ngokevin-debug-git-noTimestamp-f6604ee3: undefined
+300 silly fetchPackageMetaData Error: not found: git
+300 silly fetchPackageMetaData     at getNotFoundError (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:14:12)
+300 silly fetchPackageMetaData     at F (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:69:19)
+300 silly fetchPackageMetaData     at E (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:81:29)
+300 silly fetchPackageMetaData     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:90:16
+300 silly fetchPackageMetaData     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/index.js:44:5
+300 silly fetchPackageMetaData     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/access.js:8:5
+300 silly fetchPackageMetaData     at FSReqWrap.oncomplete (fs.js:141:20)
+300 silly fetchPackageMetaData  error for debug@github:ngokevin/debug#noTimestamp { Error: not found: git
+300 silly fetchPackageMetaData     at getNotFoundError (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:14:12)
+300 silly fetchPackageMetaData     at F (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:69:19)
+300 silly fetchPackageMetaData     at E (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:81:29)
+300 silly fetchPackageMetaData     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:90:16
+300 silly fetchPackageMetaData     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/index.js:44:5
+300 silly fetchPackageMetaData     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/access.js:8:5
+300 silly fetchPackageMetaData     at FSReqWrap.oncomplete (fs.js:141:20) code: 'ENOGIT' }
+301 error git clone --template=/data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/_templates --mirror git@github.com:dmarcos/three-bmfont-text.git /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-dmarcos-three-bmfont-text-git-1babdf8507c731a18f8af3b807292e2b9740955e-b35f4d9c: undefined
+301 error git clone --template=/data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/_templates --mirror git@github.com:dmarcos/three-bmfont-text.git /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-dmarcos-three-bmfont-text-git-1babdf8507c731a18f8af3b807292e2b9740955e-b35f4d9c: undefined
+302 silly fetchPackageMetaData Error: not found: git
+302 silly fetchPackageMetaData     at getNotFoundError (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:14:12)
+302 silly fetchPackageMetaData     at F (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:69:19)
+302 silly fetchPackageMetaData     at E (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:81:29)
+302 silly fetchPackageMetaData     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:90:16
+302 silly fetchPackageMetaData     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/index.js:44:5
+302 silly fetchPackageMetaData     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/access.js:8:5
+302 silly fetchPackageMetaData     at FSReqWrap.oncomplete (fs.js:141:20)
+302 silly fetchPackageMetaData  error for three-bmfont-text@github:dmarcos/three-bmfont-text#1babdf8507c731a18f8af3b807292e2b9740955e { Error: not found: git
+302 silly fetchPackageMetaData     at getNotFoundError (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:14:12)
+302 silly fetchPackageMetaData     at F (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:69:19)
+302 silly fetchPackageMetaData     at E (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:81:29)
+302 silly fetchPackageMetaData     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:90:16
+302 silly fetchPackageMetaData     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/index.js:44:5
+302 silly fetchPackageMetaData     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/access.js:8:5
+302 silly fetchPackageMetaData     at FSReqWrap.oncomplete (fs.js:141:20) code: 'ENOGIT' }
+303 error git clone --template=/data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/_templates --mirror git@github.com:dmarcos/document-register-element.git /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-dmarcos-document-register-element-git-8ccc532b7f3744be954574caf3072a5fd260ca90-96b06473: undefined
+303 error git clone --template=/data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/_templates --mirror git@github.com:dmarcos/document-register-element.git /data/user/0/io.tempage.dorynode/files/.npm/_git-remotes/git-github-com-dmarcos-document-register-element-git-8ccc532b7f3744be954574caf3072a5fd260ca90-96b06473: undefined
+304 silly fetchPackageMetaData Error: not found: git
+304 silly fetchPackageMetaData     at getNotFoundError (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:14:12)
+304 silly fetchPackageMetaData     at F (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:69:19)
+304 silly fetchPackageMetaData     at E (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:81:29)
+304 silly fetchPackageMetaData     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:90:16
+304 silly fetchPackageMetaData     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/index.js:44:5
+304 silly fetchPackageMetaData     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/access.js:8:5
+304 silly fetchPackageMetaData     at FSReqWrap.oncomplete (fs.js:141:20)
+304 silly fetchPackageMetaData  error for document-register-element@github:dmarcos/document-register-element#8ccc532b7f3744be954574caf3072a5fd260ca90 { Error: not found: git
+304 silly fetchPackageMetaData     at getNotFoundError (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:14:12)
+304 silly fetchPackageMetaData     at F (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:69:19)
+304 silly fetchPackageMetaData     at E (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:81:29)
+304 silly fetchPackageMetaData     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:90:16
+304 silly fetchPackageMetaData     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/index.js:44:5
+304 silly fetchPackageMetaData     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/access.js:8:5
+304 silly fetchPackageMetaData     at FSReqWrap.oncomplete (fs.js:141:20) code: 'ENOGIT' }
+305 http 304 https://registry.npmjs.org/present
+306 verbose headers { date: 'Mon, 22 Jun 2020 09:15:15 GMT',
+306 verbose headers   connection: 'keep-alive',
+306 verbose headers   'set-cookie':
+306 verbose headers    [ '__cfduid=df4f296c7517ab80dca7347211bb320751592817315; expires=Wed, 22-Jul-20 09:15:15 GMT; path=/; domain=.npmjs.org; HttpOnly; SameSite=Lax' ],
+306 verbose headers   'cf-ray': '5a74dd1d6f9ddac0-ARN',
+306 verbose headers   age: '47',
+306 verbose headers   'cache-control': 'public, max-age=300',
+306 verbose headers   etag: '"c3711efa44baacc52e86df31586075aa"',
+306 verbose headers   'last-modified': 'Sun, 27 May 2018 12:45:58 GMT',
+306 verbose headers   vary: 'Accept-Encoding',
+306 verbose headers   'cf-cache-status': 'HIT',
+306 verbose headers   'cf-request-id': '037ce886640000dac056bad200000001',
+306 verbose headers   'expect-ct':
+306 verbose headers    'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+306 verbose headers   server: 'cloudflare' }
+307 silly get cb [ 304,
+307 silly get   { date: 'Mon, 22 Jun 2020 09:15:15 GMT',
+307 silly get     connection: 'keep-alive',
+307 silly get     'set-cookie':
+307 silly get      [ '__cfduid=df4f296c7517ab80dca7347211bb320751592817315; expires=Wed, 22-Jul-20 09:15:15 GMT; path=/; domain=.npmjs.org; HttpOnly; SameSite=Lax' ],
+307 silly get     'cf-ray': '5a74dd1d6f9ddac0-ARN',
+307 silly get     age: '47',
+307 silly get     'cache-control': 'public, max-age=300',
+307 silly get     etag: '"c3711efa44baacc52e86df31586075aa"',
+307 silly get     'last-modified': 'Sun, 27 May 2018 12:45:58 GMT',
+307 silly get     vary: 'Accept-Encoding',
+307 silly get     'cf-cache-status': 'HIT',
+307 silly get     'cf-request-id': '037ce886640000dac056bad200000001',
+307 silly get     'expect-ct':
+307 silly get      'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+307 silly get     server: 'cloudflare' } ]
+308 verbose etag https://registry.npmjs.org/present from cache
+309 verbose get saving present to /data/user/0/io.tempage.dorynode/files/.npm/registry.npmjs.org/present/.cache.json
+310 verbose correctMkdir /data/user/0/io.tempage.dorynode/files/.npm correctMkdir not in flight; initializing
+311 silly resolveWithNewModule present@0.0.6 checking installable status
+312 silly cache add args [ 'present@0.0.6', null ]
+313 verbose cache add spec present@0.0.6
+314 silly cache add parsed spec Result {
+314 silly cache add   raw: 'present@0.0.6',
+314 silly cache add   scope: null,
+314 silly cache add   escapedName: 'present',
+314 silly cache add   name: 'present',
+314 silly cache add   rawSpec: '0.0.6',
+314 silly cache add   spec: '0.0.6',
+314 silly cache add   type: 'version' }
+315 silly addNamed present@0.0.6
+316 verbose addNamed "0.0.6" is a plain semver version for present
+317 silly mapToRegistry name present
+318 silly mapToRegistry using default registry
+319 silly mapToRegistry registry https://registry.npmjs.org/
+320 silly mapToRegistry data Result {
+320 silly mapToRegistry   raw: 'present',
+320 silly mapToRegistry   scope: null,
+320 silly mapToRegistry   escapedName: 'present',
+320 silly mapToRegistry   name: 'present',
+320 silly mapToRegistry   rawSpec: '',
+320 silly mapToRegistry   spec: 'latest',
+320 silly mapToRegistry   type: 'tag' }
+321 silly mapToRegistry uri https://registry.npmjs.org/present
+322 verbose addNameVersion registry:https://registry.npmjs.org/present not in flight; fetching
+323 verbose get https://registry.npmjs.org/present not expired, no request
+324 silly cache afterAdd present@0.0.6
+325 verbose afterAdd /data/user/0/io.tempage.dorynode/files/.npm/present/0.0.6/package/package.json not in flight; writing
+326 verbose correctMkdir /data/user/0/io.tempage.dorynode/files/.npm correctMkdir not in flight; initializing
+327 verbose afterAdd /data/user/0/io.tempage.dorynode/files/.npm/present/0.0.6/package/package.json written
+328 http 304 https://registry.npmjs.org/custom-event-polyfill
+329 verbose headers { date: 'Mon, 22 Jun 2020 09:15:15 GMT',
+329 verbose headers   connection: 'keep-alive',
+329 verbose headers   'set-cookie':
+329 verbose headers    [ '__cfduid=dde366d6088127236b41285c907db0f3c1592817315; expires=Wed, 22-Jul-20 09:15:15 GMT; path=/; domain=.npmjs.org; HttpOnly; SameSite=Lax' ],
+329 verbose headers   'cf-ray': '5a74dd1d8ee90000-ARN',
+329 verbose headers   age: '4214',
+329 verbose headers   'cache-control': 'public, max-age=300',
+329 verbose headers   etag: '"4ea4d522410302c9efed61633594291e"',
+329 verbose headers   'last-modified': 'Mon, 08 Apr 2019 13:29:46 GMT',
+329 verbose headers   vary: 'Accept-Encoding',
+329 verbose headers   'cf-cache-status': 'HIT',
+329 verbose headers   'cf-request-id': '037ce886760001006239132200000001',
+329 verbose headers   'expect-ct':
+329 verbose headers    'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+329 verbose headers   server: 'cloudflare' }
+330 silly get cb [ 304,
+330 silly get   { date: 'Mon, 22 Jun 2020 09:15:15 GMT',
+330 silly get     connection: 'keep-alive',
+330 silly get     'set-cookie':
+330 silly get      [ '__cfduid=dde366d6088127236b41285c907db0f3c1592817315; expires=Wed, 22-Jul-20 09:15:15 GMT; path=/; domain=.npmjs.org; HttpOnly; SameSite=Lax' ],
+330 silly get     'cf-ray': '5a74dd1d8ee90000-ARN',
+330 silly get     age: '4214',
+330 silly get     'cache-control': 'public, max-age=300',
+330 silly get     etag: '"4ea4d522410302c9efed61633594291e"',
+330 silly get     'last-modified': 'Mon, 08 Apr 2019 13:29:46 GMT',
+330 silly get     vary: 'Accept-Encoding',
+330 silly get     'cf-cache-status': 'HIT',
+330 silly get     'cf-request-id': '037ce886760001006239132200000001',
+330 silly get     'expect-ct':
+330 silly get      'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+330 silly get     server: 'cloudflare' } ]
+331 verbose etag https://registry.npmjs.org/custom-event-polyfill from cache
+332 verbose get saving custom-event-polyfill to /data/user/0/io.tempage.dorynode/files/.npm/registry.npmjs.org/custom-event-polyfill/.cache.json
+333 verbose correctMkdir /data/user/0/io.tempage.dorynode/files/.npm correctMkdir not in flight; initializing
+334 http 304 https://registry.npmjs.org/load-bmfont
+335 verbose headers { date: 'Mon, 22 Jun 2020 09:15:15 GMT',
+335 verbose headers   connection: 'keep-alive',
+335 verbose headers   'set-cookie':
+335 verbose headers    [ '__cfduid=ddfc694db867ffa6f402b60a33f85e7501592817315; expires=Wed, 22-Jul-20 09:15:15 GMT; path=/; domain=.npmjs.org; HttpOnly; SameSite=Lax' ],
+335 verbose headers   'cf-ray': '5a74dd1d9efff14e-ARN',
+335 verbose headers   age: '6804',
+335 verbose headers   'cache-control': 'public, max-age=300',
+335 verbose headers   etag: '"d586d773483af2109384de43c0f39c2f"',
+335 verbose headers   'last-modified': 'Fri, 04 Jan 2019 16:14:58 GMT',
+335 verbose headers   vary: 'Accept-Encoding',
+335 verbose headers   'cf-cache-status': 'HIT',
+335 verbose headers   'cf-request-id': '037ce8867d0000f14eafa8c200000001',
+335 verbose headers   'expect-ct':
+335 verbose headers    'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+335 verbose headers   server: 'cloudflare' }
+336 silly get cb [ 304,
+336 silly get   { date: 'Mon, 22 Jun 2020 09:15:15 GMT',
+336 silly get     connection: 'keep-alive',
+336 silly get     'set-cookie':
+336 silly get      [ '__cfduid=ddfc694db867ffa6f402b60a33f85e7501592817315; expires=Wed, 22-Jul-20 09:15:15 GMT; path=/; domain=.npmjs.org; HttpOnly; SameSite=Lax' ],
+336 silly get     'cf-ray': '5a74dd1d9efff14e-ARN',
+336 silly get     age: '6804',
+336 silly get     'cache-control': 'public, max-age=300',
+336 silly get     etag: '"d586d773483af2109384de43c0f39c2f"',
+336 silly get     'last-modified': 'Fri, 04 Jan 2019 16:14:58 GMT',
+336 silly get     vary: 'Accept-Encoding',
+336 silly get     'cf-cache-status': 'HIT',
+336 silly get     'cf-request-id': '037ce8867d0000f14eafa8c200000001',
+336 silly get     'expect-ct':
+336 silly get      'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+336 silly get     server: 'cloudflare' } ]
+337 verbose etag https://registry.npmjs.org/load-bmfont from cache
+338 verbose get saving load-bmfont to /data/user/0/io.tempage.dorynode/files/.npm/registry.npmjs.org/load-bmfont/.cache.json
+339 verbose correctMkdir /data/user/0/io.tempage.dorynode/files/.npm correctMkdir not in flight; initializing
+340 silly resolveWithNewModule custom-event-polyfill@1.0.7 checking installable status
+341 silly cache add args [ 'custom-event-polyfill@^1.0.6', null ]
+342 verbose cache add spec custom-event-polyfill@^1.0.6
+343 silly cache add parsed spec Result {
+343 silly cache add   raw: 'custom-event-polyfill@^1.0.6',
+343 silly cache add   scope: null,
+343 silly cache add   escapedName: 'custom-event-polyfill',
+343 silly cache add   name: 'custom-event-polyfill',
+343 silly cache add   rawSpec: '^1.0.6',
+343 silly cache add   spec: '>=1.0.6 <2.0.0',
+343 silly cache add   type: 'range' }
+344 silly addNamed custom-event-polyfill@>=1.0.6 <2.0.0
+345 verbose addNamed ">=1.0.6 <2.0.0" is a valid semver range for custom-event-polyfill
+346 silly addNameRange { name: 'custom-event-polyfill',
+346 silly addNameRange   range: '>=1.0.6 <2.0.0',
+346 silly addNameRange   hasData: false }
+347 silly mapToRegistry name custom-event-polyfill
+348 silly mapToRegistry using default registry
+349 silly mapToRegistry registry https://registry.npmjs.org/
+350 silly mapToRegistry data Result {
+350 silly mapToRegistry   raw: 'custom-event-polyfill',
+350 silly mapToRegistry   scope: null,
+350 silly mapToRegistry   escapedName: 'custom-event-polyfill',
+350 silly mapToRegistry   name: 'custom-event-polyfill',
+350 silly mapToRegistry   rawSpec: '',
+350 silly mapToRegistry   spec: 'latest',
+350 silly mapToRegistry   type: 'tag' }
+351 silly mapToRegistry uri https://registry.npmjs.org/custom-event-polyfill
+352 verbose addNameRange registry:https://registry.npmjs.org/custom-event-polyfill not in flight; fetching
+353 silly resolveWithNewModule load-bmfont@1.4.0 checking installable status
+354 silly cache add args [ 'load-bmfont@^1.2.3', null ]
+355 verbose cache add spec load-bmfont@^1.2.3
+356 silly cache add parsed spec Result {
+356 silly cache add   raw: 'load-bmfont@^1.2.3',
+356 silly cache add   scope: null,
+356 silly cache add   escapedName: 'load-bmfont',
+356 silly cache add   name: 'load-bmfont',
+356 silly cache add   rawSpec: '^1.2.3',
+356 silly cache add   spec: '>=1.2.3 <2.0.0',
+356 silly cache add   type: 'range' }
+357 silly addNamed load-bmfont@>=1.2.3 <2.0.0
+358 verbose addNamed ">=1.2.3 <2.0.0" is a valid semver range for load-bmfont
+359 silly addNameRange { name: 'load-bmfont', range: '>=1.2.3 <2.0.0', hasData: false }
+360 silly mapToRegistry name load-bmfont
+361 silly mapToRegistry using default registry
+362 silly mapToRegistry registry https://registry.npmjs.org/
+363 silly mapToRegistry data Result {
+363 silly mapToRegistry   raw: 'load-bmfont',
+363 silly mapToRegistry   scope: null,
+363 silly mapToRegistry   escapedName: 'load-bmfont',
+363 silly mapToRegistry   name: 'load-bmfont',
+363 silly mapToRegistry   rawSpec: '',
+363 silly mapToRegistry   spec: 'latest',
+363 silly mapToRegistry   type: 'tag' }
+364 silly mapToRegistry uri https://registry.npmjs.org/load-bmfont
+365 verbose addNameRange registry:https://registry.npmjs.org/load-bmfont not in flight; fetching
+366 verbose get https://registry.npmjs.org/custom-event-polyfill not expired, no request
+367 silly addNameRange number 2 { name: 'custom-event-polyfill',
+367 silly addNameRange   range: '>=1.0.6 <2.0.0',
+367 silly addNameRange   hasData: true }
+368 silly addNameRange versions [ 'custom-event-polyfill',
+368 silly addNameRange   [ '0.1.0',
+368 silly addNameRange     '0.1.1',
+368 silly addNameRange     '0.1.2',
+368 silly addNameRange     '0.2.1',
+368 silly addNameRange     '0.2.2',
+368 silly addNameRange     '0.3.0',
+368 silly addNameRange     '1.0.0',
+368 silly addNameRange     '1.0.1',
+368 silly addNameRange     '1.0.2',
+368 silly addNameRange     '1.0.6',
+368 silly addNameRange     '1.0.7' ] ]
+369 silly addNamed custom-event-polyfill@1.0.7
+370 verbose addNamed "1.0.7" is a plain semver version for custom-event-polyfill
+371 verbose get https://registry.npmjs.org/load-bmfont not expired, no request
+372 silly addNameRange number 2 { name: 'load-bmfont', range: '>=1.2.3 <2.0.0', hasData: true }
+373 silly addNameRange versions [ 'load-bmfont',
+373 silly addNameRange   [ '1.0.0',
+373 silly addNameRange     '1.1.0',
+373 silly addNameRange     '1.2.0',
+373 silly addNameRange     '1.2.1',
+373 silly addNameRange     '1.2.2',
+373 silly addNameRange     '1.2.3',
+373 silly addNameRange     '1.2.4',
+373 silly addNameRange     '1.2.5',
+373 silly addNameRange     '1.3.0',
+373 silly addNameRange     '1.3.1',
+373 silly addNameRange     '1.4.0' ] ]
+374 silly addNamed load-bmfont@1.4.0
+375 verbose addNamed "1.4.0" is a plain semver version for load-bmfont
+376 silly cache afterAdd custom-event-polyfill@1.0.7
+377 verbose afterAdd /data/user/0/io.tempage.dorynode/files/.npm/custom-event-polyfill/1.0.7/package/package.json not in flight; writing
+378 verbose correctMkdir /data/user/0/io.tempage.dorynode/files/.npm correctMkdir not in flight; initializing
+379 silly cache afterAdd load-bmfont@1.4.0
+380 verbose afterAdd /data/user/0/io.tempage.dorynode/files/.npm/load-bmfont/1.4.0/package/package.json not in flight; writing
+381 verbose correctMkdir /data/user/0/io.tempage.dorynode/files/.npm correctMkdir not in flight; initializing
+382 verbose afterAdd /data/user/0/io.tempage.dorynode/files/.npm/custom-event-polyfill/1.0.7/package/package.json written
+383 verbose afterAdd /data/user/0/io.tempage.dorynode/files/.npm/load-bmfont/1.4.0/package/package.json written
+384 http 304 https://registry.npmjs.org/promise-polyfill
+385 verbose headers { date: 'Mon, 22 Jun 2020 09:15:16 GMT',
+385 verbose headers   connection: 'keep-alive',
+385 verbose headers   'set-cookie':
+385 verbose headers    [ '__cfduid=d0988ddf05b6e7d9bef80ead20bae90f11592817315; expires=Wed, 22-Jul-20 09:15:15 GMT; path=/; domain=.npmjs.org; HttpOnly; SameSite=Lax' ],
+385 verbose headers   'cf-ray': '5a74dd1d8ef40000-ARN',
+385 verbose headers   'cache-control': 'public, max-age=300',
+385 verbose headers   etag: '"997bf1fd4cfaf25c989b1e3a5b26ff4d"',
+385 verbose headers   'last-modified': 'Sun, 16 Jun 2019 21:50:40 GMT',
+385 verbose headers   vary: 'Accept-Encoding',
+385 verbose headers   'cf-cache-status': 'REVALIDATED',
+385 verbose headers   'cf-request-id': '037ce88678000100460300c200000001',
+385 verbose headers   'expect-ct':
+385 verbose headers    'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+385 verbose headers   server: 'cloudflare' }
+386 silly get cb [ 304,
+386 silly get   { date: 'Mon, 22 Jun 2020 09:15:16 GMT',
+386 silly get     connection: 'keep-alive',
+386 silly get     'set-cookie':
+386 silly get      [ '__cfduid=d0988ddf05b6e7d9bef80ead20bae90f11592817315; expires=Wed, 22-Jul-20 09:15:15 GMT; path=/; domain=.npmjs.org; HttpOnly; SameSite=Lax' ],
+386 silly get     'cf-ray': '5a74dd1d8ef40000-ARN',
+386 silly get     'cache-control': 'public, max-age=300',
+386 silly get     etag: '"997bf1fd4cfaf25c989b1e3a5b26ff4d"',
+386 silly get     'last-modified': 'Sun, 16 Jun 2019 21:50:40 GMT',
+386 silly get     vary: 'Accept-Encoding',
+386 silly get     'cf-cache-status': 'REVALIDATED',
+386 silly get     'cf-request-id': '037ce88678000100460300c200000001',
+386 silly get     'expect-ct':
+386 silly get      'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+386 silly get     server: 'cloudflare' } ]
+387 verbose etag https://registry.npmjs.org/promise-polyfill from cache
+388 verbose get saving promise-polyfill to /data/user/0/io.tempage.dorynode/files/.npm/registry.npmjs.org/promise-polyfill/.cache.json
+389 verbose correctMkdir /data/user/0/io.tempage.dorynode/files/.npm correctMkdir not in flight; initializing
+390 silly resolveWithNewModule promise-polyfill@3.1.0 checking installable status
+391 silly cache add args [ 'promise-polyfill@^3.1.0', null ]
+392 verbose cache add spec promise-polyfill@^3.1.0
+393 silly cache add parsed spec Result {
+393 silly cache add   raw: 'promise-polyfill@^3.1.0',
+393 silly cache add   scope: null,
+393 silly cache add   escapedName: 'promise-polyfill',
+393 silly cache add   name: 'promise-polyfill',
+393 silly cache add   rawSpec: '^3.1.0',
+393 silly cache add   spec: '>=3.1.0 <4.0.0',
+393 silly cache add   type: 'range' }
+394 silly addNamed promise-polyfill@>=3.1.0 <4.0.0
+395 verbose addNamed ">=3.1.0 <4.0.0" is a valid semver range for promise-polyfill
+396 silly addNameRange { name: 'promise-polyfill',
+396 silly addNameRange   range: '>=3.1.0 <4.0.0',
+396 silly addNameRange   hasData: false }
+397 silly mapToRegistry name promise-polyfill
+398 silly mapToRegistry using default registry
+399 silly mapToRegistry registry https://registry.npmjs.org/
+400 silly mapToRegistry data Result {
+400 silly mapToRegistry   raw: 'promise-polyfill',
+400 silly mapToRegistry   scope: null,
+400 silly mapToRegistry   escapedName: 'promise-polyfill',
+400 silly mapToRegistry   name: 'promise-polyfill',
+400 silly mapToRegistry   rawSpec: '',
+400 silly mapToRegistry   spec: 'latest',
+400 silly mapToRegistry   type: 'tag' }
+401 silly mapToRegistry uri https://registry.npmjs.org/promise-polyfill
+402 verbose addNameRange registry:https://registry.npmjs.org/promise-polyfill not in flight; fetching
+403 verbose get https://registry.npmjs.org/promise-polyfill not expired, no request
+404 silly addNameRange number 2 { name: 'promise-polyfill',
+404 silly addNameRange   range: '>=3.1.0 <4.0.0',
+404 silly addNameRange   hasData: true }
+405 silly addNameRange versions [ 'promise-polyfill',
+405 silly addNameRange   [ '1.0.1',
+405 silly addNameRange     '1.0.5',
+405 silly addNameRange     '1.0.6',
+405 silly addNameRange     '1.1.0',
+405 silly addNameRange     '1.1.2',
+405 silly addNameRange     '1.1.3',
+405 silly addNameRange     '1.1.5',
+405 silly addNameRange     '1.1.6',
+405 silly addNameRange     '2.0.0',
+405 silly addNameRange     '2.0.1',
+405 silly addNameRange     '2.0.2',
+405 silly addNameRange     '2.1.0',
+405 silly addNameRange     '2.1.1',
+405 silly addNameRange     '2.1.2',
+405 silly addNameRange     '2.1.3',
+405 silly addNameRange     '2.1.4',
+405 silly addNameRange     '3.0.0',
+405 silly addNameRange     '3.1.0',
+405 silly addNameRange     '4.0.1',
+405 silly addNameRange     '4.0.2',
+405 silly addNameRange     '4.0.3',
+405 silly addNameRange     '4.0.4',
+405 silly addNameRange     '5.0.0',
+405 silly addNameRange     '5.1.0',
+405 silly addNameRange     '5.2.0',
+405 silly addNameRange     '5.2.1',
+405 silly addNameRange     '6.0.0',
+405 silly addNameRange     '6.0.1',
+405 silly addNameRange     '6.0.2',
+405 silly addNameRange     '6.1.0',
+405 silly addNameRange     '7.0.0',
+405 silly addNameRange     '7.0.1',
+405 silly addNameRange     '7.0.2',
+405 silly addNameRange     '7.1.0',
+405 silly addNameRange     '7.1.1',
+405 silly addNameRange     '7.1.2',
+405 silly addNameRange     '8.0.0',
+405 silly addNameRange     '8.1.0',
+405 silly addNameRange     '8.1.1',
+405 silly addNameRange     '8.1.2',
+405 silly addNameRange     '8.1.3' ] ]
+406 silly addNamed promise-polyfill@3.1.0
+407 verbose addNamed "3.1.0" is a plain semver version for promise-polyfill
+408 http 304 https://registry.npmjs.org/super-three
+409 verbose headers { date: 'Mon, 22 Jun 2020 09:15:16 GMT',
+409 verbose headers   connection: 'keep-alive',
+409 verbose headers   'set-cookie':
+409 verbose headers    [ '__cfduid=d64edea825d871c003a7d9b4fd95871c31592817315; expires=Wed, 22-Jul-20 09:15:15 GMT; path=/; domain=.npmjs.org; HttpOnly; SameSite=Lax' ],
+409 verbose headers   'cf-ray': '5a74dd1d9eb3f166-ARN',
+409 verbose headers   'cache-control': 'public, max-age=300',
+409 verbose headers   etag: '"c276bde972e8fef84bedb34b5dff462d"',
+409 verbose headers   'last-modified': 'Wed, 13 May 2020 20:16:57 GMT',
+409 verbose headers   vary: 'Accept-Encoding',
+409 verbose headers   'cf-cache-status': 'MISS',
+409 verbose headers   'cf-request-id': '037ce8867e0000f166d4902200000001',
+409 verbose headers   'expect-ct':
+409 verbose headers    'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+409 verbose headers   server: 'cloudflare' }
+410 silly get cb [ 304,
+410 silly get   { date: 'Mon, 22 Jun 2020 09:15:16 GMT',
+410 silly get     connection: 'keep-alive',
+410 silly get     'set-cookie':
+410 silly get      [ '__cfduid=d64edea825d871c003a7d9b4fd95871c31592817315; expires=Wed, 22-Jul-20 09:15:15 GMT; path=/; domain=.npmjs.org; HttpOnly; SameSite=Lax' ],
+410 silly get     'cf-ray': '5a74dd1d9eb3f166-ARN',
+410 silly get     'cache-control': 'public, max-age=300',
+410 silly get     etag: '"c276bde972e8fef84bedb34b5dff462d"',
+410 silly get     'last-modified': 'Wed, 13 May 2020 20:16:57 GMT',
+410 silly get     vary: 'Accept-Encoding',
+410 silly get     'cf-cache-status': 'MISS',
+410 silly get     'cf-request-id': '037ce8867e0000f166d4902200000001',
+410 silly get     'expect-ct':
+410 silly get      'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+410 silly get     server: 'cloudflare' } ]
+411 verbose etag https://registry.npmjs.org/super-three from cache
+412 verbose get saving super-three to /data/user/0/io.tempage.dorynode/files/.npm/registry.npmjs.org/super-three/.cache.json
+413 verbose correctMkdir /data/user/0/io.tempage.dorynode/files/.npm correctMkdir not in flight; initializing
+414 http 304 https://registry.npmjs.org/super-animejs
+415 verbose headers { date: 'Mon, 22 Jun 2020 09:15:16 GMT',
+415 verbose headers   connection: 'keep-alive',
+415 verbose headers   'set-cookie':
+415 verbose headers    [ '__cfduid=df8978de5714022fe401844b3005398f31592817315; expires=Wed, 22-Jul-20 09:15:15 GMT; path=/; domain=.npmjs.org; HttpOnly; SameSite=Lax' ],
+415 verbose headers   'cf-ray': '5a74dd1d9f8df13e-ARN',
+415 verbose headers   'cache-control': 'public, max-age=300',
+415 verbose headers   etag: '"811c3bec6ff8c9a17336f6594931bab2"',
+415 verbose headers   'last-modified': 'Tue, 07 May 2019 23:10:22 GMT',
+415 verbose headers   vary: 'Accept-Encoding',
+415 verbose headers   'cf-cache-status': 'MISS',
+415 verbose headers   'cf-request-id': '037ce8867d0000f13e32a56200000001',
+415 verbose headers   'expect-ct':
+415 verbose headers    'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+415 verbose headers   server: 'cloudflare' }
+416 silly get cb [ 304,
+416 silly get   { date: 'Mon, 22 Jun 2020 09:15:16 GMT',
+416 silly get     connection: 'keep-alive',
+416 silly get     'set-cookie':
+416 silly get      [ '__cfduid=df8978de5714022fe401844b3005398f31592817315; expires=Wed, 22-Jul-20 09:15:15 GMT; path=/; domain=.npmjs.org; HttpOnly; SameSite=Lax' ],
+416 silly get     'cf-ray': '5a74dd1d9f8df13e-ARN',
+416 silly get     'cache-control': 'public, max-age=300',
+416 silly get     etag: '"811c3bec6ff8c9a17336f6594931bab2"',
+416 silly get     'last-modified': 'Tue, 07 May 2019 23:10:22 GMT',
+416 silly get     vary: 'Accept-Encoding',
+416 silly get     'cf-cache-status': 'MISS',
+416 silly get     'cf-request-id': '037ce8867d0000f13e32a56200000001',
+416 silly get     'expect-ct':
+416 silly get      'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+416 silly get     server: 'cloudflare' } ]
+417 verbose etag https://registry.npmjs.org/super-animejs from cache
+418 verbose get saving super-animejs to /data/user/0/io.tempage.dorynode/files/.npm/registry.npmjs.org/super-animejs/.cache.json
+419 verbose correctMkdir /data/user/0/io.tempage.dorynode/files/.npm correctMkdir not in flight; initializing
+420 silly resolveWithNewModule super-three@0.111.6 checking installable status
+421 silly cache add args [ 'super-three@^0.111.6', null ]
+422 verbose cache add spec super-three@^0.111.6
+423 silly cache add parsed spec Result {
+423 silly cache add   raw: 'super-three@^0.111.6',
+423 silly cache add   scope: null,
+423 silly cache add   escapedName: 'super-three',
+423 silly cache add   name: 'super-three',
+423 silly cache add   rawSpec: '^0.111.6',
+423 silly cache add   spec: '>=0.111.6 <0.112.0',
+423 silly cache add   type: 'range' }
+424 silly addNamed super-three@>=0.111.6 <0.112.0
+425 verbose addNamed ">=0.111.6 <0.112.0" is a valid semver range for super-three
+426 silly addNameRange { name: 'super-three',
+426 silly addNameRange   range: '>=0.111.6 <0.112.0',
+426 silly addNameRange   hasData: false }
+427 silly mapToRegistry name super-three
+428 silly mapToRegistry using default registry
+429 silly mapToRegistry registry https://registry.npmjs.org/
+430 silly mapToRegistry data Result {
+430 silly mapToRegistry   raw: 'super-three',
+430 silly mapToRegistry   scope: null,
+430 silly mapToRegistry   escapedName: 'super-three',
+430 silly mapToRegistry   name: 'super-three',
+430 silly mapToRegistry   rawSpec: '',
+430 silly mapToRegistry   spec: 'latest',
+430 silly mapToRegistry   type: 'tag' }
+431 silly mapToRegistry uri https://registry.npmjs.org/super-three
+432 verbose addNameRange registry:https://registry.npmjs.org/super-three not in flight; fetching
+433 silly resolveWithNewModule super-animejs@3.1.0 checking installable status
+434 silly cache add args [ 'super-animejs@^3.1.0', null ]
+435 verbose cache add spec super-animejs@^3.1.0
+436 silly cache add parsed spec Result {
+436 silly cache add   raw: 'super-animejs@^3.1.0',
+436 silly cache add   scope: null,
+436 silly cache add   escapedName: 'super-animejs',
+436 silly cache add   name: 'super-animejs',
+436 silly cache add   rawSpec: '^3.1.0',
+436 silly cache add   spec: '>=3.1.0 <4.0.0',
+436 silly cache add   type: 'range' }
+437 silly addNamed super-animejs@>=3.1.0 <4.0.0
+438 verbose addNamed ">=3.1.0 <4.0.0" is a valid semver range for super-animejs
+439 silly addNameRange { name: 'super-animejs',
+439 silly addNameRange   range: '>=3.1.0 <4.0.0',
+439 silly addNameRange   hasData: false }
+440 silly mapToRegistry name super-animejs
+441 silly mapToRegistry using default registry
+442 silly mapToRegistry registry https://registry.npmjs.org/
+443 silly mapToRegistry data Result {
+443 silly mapToRegistry   raw: 'super-animejs',
+443 silly mapToRegistry   scope: null,
+443 silly mapToRegistry   escapedName: 'super-animejs',
+443 silly mapToRegistry   name: 'super-animejs',
+443 silly mapToRegistry   rawSpec: '',
+443 silly mapToRegistry   spec: 'latest',
+443 silly mapToRegistry   type: 'tag' }
+444 silly mapToRegistry uri https://registry.npmjs.org/super-animejs
+445 verbose addNameRange registry:https://registry.npmjs.org/super-animejs not in flight; fetching
+446 verbose get https://registry.npmjs.org/super-animejs not expired, no request
+447 silly addNameRange number 2 { name: 'super-animejs', range: '>=3.1.0 <4.0.0', hasData: true }
+448 silly addNameRange versions [ 'super-animejs', [ '3.0.0', '3.1.0' ] ]
+449 silly addNamed super-animejs@3.1.0
+450 verbose addNamed "3.1.0" is a plain semver version for super-animejs
+451 silly cache afterAdd promise-polyfill@3.1.0
+452 verbose afterAdd /data/user/0/io.tempage.dorynode/files/.npm/promise-polyfill/3.1.0/package/package.json not in flight; writing
+453 verbose correctMkdir /data/user/0/io.tempage.dorynode/files/.npm correctMkdir not in flight; initializing
+454 verbose get https://registry.npmjs.org/super-three not expired, no request
+455 silly addNameRange number 2 { name: 'super-three',
+455 silly addNameRange   range: '>=0.111.6 <0.112.0',
+455 silly addNameRange   hasData: true }
+456 silly addNameRange versions [ 'super-three',
+456 silly addNameRange   [ '0.100.0',
+456 silly addNameRange     '0.101.0',
+456 silly addNameRange     '0.102.1',
+456 silly addNameRange     '0.102.2',
+456 silly addNameRange     '0.105.1',
+456 silly addNameRange     '0.105.2',
+456 silly addNameRange     '0.108.0',
+456 silly addNameRange     '0.109.0',
+456 silly addNameRange     '0.111.0',
+456 silly addNameRange     '0.111.1',
+456 silly addNameRange     '0.111.2',
+456 silly addNameRange     '0.111.3',
+456 silly addNameRange     '0.111.4',
+456 silly addNameRange     '0.111.5',
+456 silly addNameRange     '0.112.0',
+456 silly addNameRange     '0.111.6',
+456 silly addNameRange     '0.113.0',
+456 silly addNameRange     '0.115.0',
+456 silly addNameRange     '0.115.1',
+456 silly addNameRange     '0.116.0' ] ]
+457 silly addNamed super-three@0.111.6
+458 verbose addNamed "0.111.6" is a plain semver version for super-three
+459 verbose afterAdd /data/user/0/io.tempage.dorynode/files/.npm/promise-polyfill/3.1.0/package/package.json written
+460 http 304 https://registry.npmjs.org/webvr-polyfill
+461 verbose headers { date: 'Mon, 22 Jun 2020 09:15:16 GMT',
+461 verbose headers   connection: 'keep-alive',
+461 verbose headers   'set-cookie':
+461 verbose headers    [ '__cfduid=d0c02c102eb343cc0f02e385aeb7e51fc1592817315; expires=Wed, 22-Jul-20 09:15:15 GMT; path=/; domain=.npmjs.org; HttpOnly; SameSite=Lax' ],
+461 verbose headers   'cf-ray': '5a74dd1dae2c0d2e-ARN',
+461 verbose headers   'cache-control': 'public, max-age=300',
+461 verbose headers   etag: '"d99e592313b8a3b42042f61cf1bf8537"',
+461 verbose headers   'last-modified': 'Wed, 13 May 2020 19:32:17 GMT',
+461 verbose headers   vary: 'Accept-Encoding',
+461 verbose headers   'cf-cache-status': 'REVALIDATED',
+461 verbose headers   'cf-request-id': '037ce8868c00000d2e3483d200000001',
+461 verbose headers   'expect-ct':
+461 verbose headers    'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+461 verbose headers   server: 'cloudflare' }
+462 silly get cb [ 304,
+462 silly get   { date: 'Mon, 22 Jun 2020 09:15:16 GMT',
+462 silly get     connection: 'keep-alive',
+462 silly get     'set-cookie':
+462 silly get      [ '__cfduid=d0c02c102eb343cc0f02e385aeb7e51fc1592817315; expires=Wed, 22-Jul-20 09:15:15 GMT; path=/; domain=.npmjs.org; HttpOnly; SameSite=Lax' ],
+462 silly get     'cf-ray': '5a74dd1dae2c0d2e-ARN',
+462 silly get     'cache-control': 'public, max-age=300',
+462 silly get     etag: '"d99e592313b8a3b42042f61cf1bf8537"',
+462 silly get     'last-modified': 'Wed, 13 May 2020 19:32:17 GMT',
+462 silly get     vary: 'Accept-Encoding',
+462 silly get     'cf-cache-status': 'REVALIDATED',
+462 silly get     'cf-request-id': '037ce8868c00000d2e3483d200000001',
+462 silly get     'expect-ct':
+462 silly get      'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+462 silly get     server: 'cloudflare' } ]
+463 verbose etag https://registry.npmjs.org/webvr-polyfill from cache
+464 verbose get saving webvr-polyfill to /data/user/0/io.tempage.dorynode/files/.npm/registry.npmjs.org/webvr-polyfill/.cache.json
+465 verbose correctMkdir /data/user/0/io.tempage.dorynode/files/.npm correctMkdir not in flight; initializing
+466 silly resolveWithNewModule webvr-polyfill@0.10.12 checking installable status
+467 silly cache add args [ 'webvr-polyfill@^0.10.10', null ]
+468 verbose cache add spec webvr-polyfill@^0.10.10
+469 silly cache add parsed spec Result {
+469 silly cache add   raw: 'webvr-polyfill@^0.10.10',
+469 silly cache add   scope: null,
+469 silly cache add   escapedName: 'webvr-polyfill',
+469 silly cache add   name: 'webvr-polyfill',
+469 silly cache add   rawSpec: '^0.10.10',
+469 silly cache add   spec: '>=0.10.10 <0.11.0',
+469 silly cache add   type: 'range' }
+470 silly addNamed webvr-polyfill@>=0.10.10 <0.11.0
+471 verbose addNamed ">=0.10.10 <0.11.0" is a valid semver range for webvr-polyfill
+472 silly addNameRange { name: 'webvr-polyfill',
+472 silly addNameRange   range: '>=0.10.10 <0.11.0',
+472 silly addNameRange   hasData: false }
+473 silly mapToRegistry name webvr-polyfill
+474 silly mapToRegistry using default registry
+475 silly mapToRegistry registry https://registry.npmjs.org/
+476 silly mapToRegistry data Result {
+476 silly mapToRegistry   raw: 'webvr-polyfill',
+476 silly mapToRegistry   scope: null,
+476 silly mapToRegistry   escapedName: 'webvr-polyfill',
+476 silly mapToRegistry   name: 'webvr-polyfill',
+476 silly mapToRegistry   rawSpec: '',
+476 silly mapToRegistry   spec: 'latest',
+476 silly mapToRegistry   type: 'tag' }
+477 silly mapToRegistry uri https://registry.npmjs.org/webvr-polyfill
+478 verbose addNameRange registry:https://registry.npmjs.org/webvr-polyfill not in flight; fetching
+479 silly cache afterAdd super-animejs@3.1.0
+480 verbose afterAdd /data/user/0/io.tempage.dorynode/files/.npm/super-animejs/3.1.0/package/package.json not in flight; writing
+481 verbose correctMkdir /data/user/0/io.tempage.dorynode/files/.npm correctMkdir not in flight; initializing
+482 silly cache afterAdd super-three@0.111.6
+483 verbose afterAdd /data/user/0/io.tempage.dorynode/files/.npm/super-three/0.111.6/package/package.json not in flight; writing
+484 verbose correctMkdir /data/user/0/io.tempage.dorynode/files/.npm correctMkdir not in flight; initializing
+485 verbose afterAdd /data/user/0/io.tempage.dorynode/files/.npm/super-animejs/3.1.0/package/package.json written
+486 verbose afterAdd /data/user/0/io.tempage.dorynode/files/.npm/super-three/0.111.6/package/package.json written
+487 verbose get https://registry.npmjs.org/webvr-polyfill not expired, no request
+488 silly addNameRange number 2 { name: 'webvr-polyfill',
+488 silly addNameRange   range: '>=0.10.10 <0.11.0',
+488 silly addNameRange   hasData: true }
+489 silly addNameRange versions [ 'webvr-polyfill',
+489 silly addNameRange   [ '0.0.1',
+489 silly addNameRange     '0.2.4',
+489 silly addNameRange     '0.2.5',
+489 silly addNameRange     '0.2.6',
+489 silly addNameRange     '0.2.7',
+489 silly addNameRange     '0.9.0',
+489 silly addNameRange     '0.9.1',
+489 silly addNameRange     '0.9.2',
+489 silly addNameRange     '0.9.4',
+489 silly addNameRange     '0.9.5',
+489 silly addNameRange     '0.9.6',
+489 silly addNameRange     '0.9.7',
+489 silly addNameRange     '0.9.8',
+489 silly addNameRange     '0.9.9',
+489 silly addNameRange     '0.9.10',
+489 silly addNameRange     '0.9.11',
+489 silly addNameRange     '0.9.12',
+489 silly addNameRange     '0.9.13',
+489 silly addNameRange     '0.9.14',
+489 silly addNameRange     '0.9.15',
+489 silly addNameRange     '0.9.16',
+489 silly addNameRange     '0.9.17',
+489 silly addNameRange     '0.9.18',
+489 silly addNameRange     '0.9.19',
+489 silly addNameRange     '0.9.20',
+489 silly addNameRange     '0.9.21',
+489 silly addNameRange     '0.9.3',
+489 silly addNameRange     '0.9.22',
+489 silly addNameRange     '0.9.23',
+489 silly addNameRange     '0.9.24',
+489 silly addNameRange     '0.9.25',
+489 silly addNameRange     '0.9.26',
+489 silly addNameRange     '0.9.27',
+489 silly addNameRange     '0.9.28',
+489 silly addNameRange     '0.9.29',
+489 silly addNameRange     '0.9.30',
+489 silly addNameRange     '0.9.32',
+489 silly addNameRange     '0.9.33',
+489 silly addNameRange     '0.9.34',
+489 silly addNameRange     '0.9.35',
+489 silly addNameRange     '0.9.36',
+489 silly addNameRange     '0.9.37',
+489 silly addNameRange     '0.9.38',
+489 silly addNameRange     '0.9.39',
+489 silly addNameRange     '0.9.40',
+489 silly addNameRange     '0.9.41',
+489 silly addNameRange     '0.10.0',
+489 silly addNameRange     '0.10.1',
+489 silly addNameRange     '0.10.2',
+489 silly addNameRange     '0.10.3',
+489 silly addNameRange     '0.10.4',
+489 silly addNameRange     '0.10.5',
+489 silly addNameRange     '0.10.6',
+489 silly addNameRange     '0.10.7',
+489 silly addNameRange     '0.10.8',
+489 silly addNameRange     '0.10.9',
+489 silly addNameRange     '0.10.10',
+489 silly addNameRange     '0.10.11',
+489 silly addNameRange     '0.10.12' ] ]
+490 silly addNamed webvr-polyfill@0.10.12
+491 verbose addNamed "0.10.12" is a plain semver version for webvr-polyfill
+492 silly cache afterAdd webvr-polyfill@0.10.12
+493 verbose afterAdd /data/user/0/io.tempage.dorynode/files/.npm/webvr-polyfill/0.10.12/package/package.json not in flight; writing
+494 verbose correctMkdir /data/user/0/io.tempage.dorynode/files/.npm correctMkdir not in flight; initializing
+495 verbose afterAdd /data/user/0/io.tempage.dorynode/files/.npm/webvr-polyfill/0.10.12/package/package.json written
+496 silly rollbackFailedOptional Starting
+497 silly rollbackFailedOptional Finishing
+498 silly runTopLevelLifecycles Finishing
+499 silly install printInstalled
+500 verbose stack Error: not found: git
+500 verbose stack     at getNotFoundError (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:14:12)
+500 verbose stack     at F (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:69:19)
+500 verbose stack     at E (/data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:81:29)
+500 verbose stack     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/which.js:90:16
+500 verbose stack     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/index.js:44:5
+500 verbose stack     at /data/data/io.tempage.dorynode/files/npm/node_modules/which/node_modules/isexe/access.js:8:5
+500 verbose stack     at FSReqWrap.oncomplete (fs.js:141:20)
+501 verbose cwd /storage/emulated/0/Documents/source/NeARandFAR
+502 error Linux 4.9.179-perf+
+503 error argv "/data/data/io.tempage.dorynode/files/bin/node" "/data/user/0/io.tempage.dorynode/files/npm/bin/npm-cli.js" "i" "aframe"
+504 error node v10.15.1
+505 error npm  v3.10.10
+506 error code ENOGIT
+507 error not found: git
+508 error Failed using git.
+508 error This is most likely not a problem with npm itself.
+508 error Please check if you have git installed and in your PATH.
+509 verbose exit [ 1, true ]
