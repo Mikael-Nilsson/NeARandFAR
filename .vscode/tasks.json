@@ -6,13 +6,26 @@
 			"command": "dotnet",
 			"type": "process",
 			"args": [
-				"lambda","package",
-				"-pl","d:\\source\\NeARandFAR\\NeARandFARBackEnd",
-				"--configuration","Release",
-				"--framework","netcoreapp3.1",
-				// "--msbuild-parameters","\"d:\\source\\NeARandFARBackEnd\\NeARandFARBackEnd.sln\"",
-				"--output-package","bin/Release/netcoreapp3.1/nearandfarbackend.zip"
+				"lambda",
+				"package",
+				"-pl",
+				"${workspaceFolder}\\NeARandFARBackEnd",
+				"--configuration",
+				"Release",
+				"--framework",
+				"netcoreapp3.1",
+				"--output-package",
+				"bin/Release/netcoreapp3.1/nearandfarbackend.zip"
 			]
+		},
+		{
+			"label": "deploy",
+			"type": "shell",
+			"command": "serverless deploy",
+			"options": {
+				"cwd": "${workspaceFolder}/NeARandFARBackEnd"
+			},
+			"problemMatcher": []
 		}
 	]
 }
