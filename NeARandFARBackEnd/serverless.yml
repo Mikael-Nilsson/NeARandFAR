@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: NeARandFARBackend
+service: NeARandFARBackEnd
 # app and org for use with dashboard.serverless.com
 #app: your-app-name
 #org: your-org-name
@@ -60,17 +60,27 @@ custom:
   config:
     vpcId: vpc-5dfa5634
 
-
 package:
   individually: true
 
 functions:
-  hello:
-    handler: CsharpHandlers::AwsDotnetCsharp.Handler::Hello
+  connect:
+    handler: NeARandFARBackEnd::NeARandFARBackEnd.Mongo.MongoHandler::Connect
 
+    package:
+      artifact: bin/Release/netcoreapp3.1/mongo.zip
+
+    events:
+      - http:
+          path: connect
+          method: post
+          cors: true
+
+  hello:
+    handler: AssemblyName::SpaceWithName.HandlerClass::Hello
     # you can add packaging information here
     package:
-      artifact: bin/Release/netcoreapp3.1/hello.zip
+      artifact: bin/Release/netcoreapp3.1/mongo.zip
     #  exclude:
     #    - exclude-me.js
     #    - exclude-me-dir/**

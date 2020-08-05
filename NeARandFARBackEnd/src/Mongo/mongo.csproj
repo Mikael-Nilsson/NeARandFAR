@@ -1,10 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
-    <AssemblyName>CsharpHandlers</AssemblyName>
-    <PackageId>aws-csharp</PackageId>
+    <AssemblyName>NeARandFARBackEnd</AssemblyName>
+    <PackageId>mongo</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
