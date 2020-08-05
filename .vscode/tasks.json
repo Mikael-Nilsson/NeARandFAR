@@ -6,6 +6,15 @@
 			"command": "dotnet",
 			"type": "process",
 			"args": [
+				"build",
+				"${workspaceFolder}\\NeARandFARBackEnd"
+			]
+		},
+		{
+			"label": "package",
+			"command": "dotnet",
+			"type": "process",
+			"args": [
 				"lambda",
 				"package",
 				"-pl",
