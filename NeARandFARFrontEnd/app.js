@@ -10,16 +10,13 @@ Vue.config.ignoredElements = [
     'a-text'
 ]
 
-const routes = [
-  {path: '/', name: 'home', redirect: '/dash'},
-  {path: '/cam', name: 'cam', component: camView},
-  {path: '/dash', name: 'dash', component: dashView}
-]
+console.log('initializing app');
 
 const app = new Vue({
     router: new VueRouter({routes}),
     el: '#app',
     mounted: async function() {
+      console.log('app started:', startView.started);
       const pos = await getLocation();
       this.position = pos.coords;
       console.log('pos', JSON.stringify(this.position));
@@ -36,14 +33,18 @@ const app = new Vue({
     data: function() {
       return {
         position: {},
-        test: 'test'
+        sessionActive: false
       };
     },
     template: `
       <div>
-       <template v-if="loaded">
-          <router-view></router-view>
+        <template v-if="loaded && sessionActive">
+          <router-view name="up"></router-view>
+          <router-view name="down"></router-view>
           <!--<camview v-bind:position="position"></camview>-->
+        </template>
+        <template v-if="!sessionActive">         
+          <loginview v-on:start="sessionActive = true"></loginview>
         </template>
         <template v-if="!loaded">
           <div>loading</div>

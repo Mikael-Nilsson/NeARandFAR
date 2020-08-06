@@ -65,7 +65,6 @@ document.querySelector('iframe')
     */
     template: `
         <div>
-        <!--
             <template v-if="loading">
                 <div>loading...</div>
                 <div>{{pos}}</div>
@@ -79,18 +78,17 @@ document.querySelector('iframe')
                             <a-text v-bind:value="asset.value" look-at="[gps-camera]" v-bind:scale="asset.scale" v-bind:gps-entity-place="asset.entityPos"></a-text>
                         </template>
                     </template>
--->
+
 <!--                    
                     <a-text v-bind:value="assetArray.length" look-at="[gps-camera]" scale="40 40 40" gps-entity-place="latitude: 59.292531; longitude: 18.050466;"></a-text>
                     <a-text value="B" scale="100 100 100" gps-entity-place="latitude: 59.293000; longitude: 18.050500;"></a-text>
                     <a-text value="C" look-at="[gps-camera]" scale="2000 2000 2000" gps-entity-place="latitude: 59.292631; longitude: 18.050566;"></a-text>
 -->
-<!--                    
+
                     <a-camera gps-camera rotation-reader> </a-camera>
                 </a-scene>
             </template>
--->
-        <p>camview</p>
+
         </div>
     `
 });
