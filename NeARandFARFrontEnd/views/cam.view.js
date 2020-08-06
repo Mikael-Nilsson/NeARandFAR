@@ -1,5 +1,5 @@
 
-Vue.component('camview', {
+const camView = Vue.component('camview', {
     props: ['position'],
     created: function() {
         console.log('position in cam.view', this.position);
@@ -9,18 +9,18 @@ Vue.component('camview', {
     methods: {
         assets: async function() {
             const d = await getData();
-            console.log('data collected', d.length);
-         
             
             d.push({
               geometry: 'text',
               scale: '40 40 40',
               value: 'Am I close?',
               position: {
-                lat: this.position.latitude + 0.001,
+                lat: this.position.latitude + 0.005,
                 lon: this.position.longitude
               }
             });
+
+            console.log('data collected', d.length);
             
             this.assetArray = d.map(p => {
              return {
@@ -65,6 +65,7 @@ document.querySelector('iframe')
     */
     template: `
         <div>
+        <!--
             <template v-if="loading">
                 <div>loading...</div>
                 <div>{{pos}}</div>
@@ -78,14 +79,18 @@ document.querySelector('iframe')
                             <a-text v-bind:value="asset.value" look-at="[gps-camera]" v-bind:scale="asset.scale" v-bind:gps-entity-place="asset.entityPos"></a-text>
                         </template>
                     </template>
-
-                    <!--<a-text v-bind:value="assetArray.length" look-at="[gps-camera]" scale="40 40 40" gps-entity-place="latitude: 59.292531; longitude: 18.050466;"></a-text>
+-->
+<!--                    
+                    <a-text v-bind:value="assetArray.length" look-at="[gps-camera]" scale="40 40 40" gps-entity-place="latitude: 59.292531; longitude: 18.050466;"></a-text>
                     <a-text value="B" scale="100 100 100" gps-entity-place="latitude: 59.293000; longitude: 18.050500;"></a-text>
-                    <a-text value="C" look-at="[gps-camera]" scale="2000 2000 2000" gps-entity-place="latitude: 59.292631; longitude: 18.050566;"></a-text>-->
-                    
+                    <a-text value="C" look-at="[gps-camera]" scale="2000 2000 2000" gps-entity-place="latitude: 59.292631; longitude: 18.050566;"></a-text>
+-->
+<!--                    
                     <a-camera gps-camera rotation-reader> </a-camera>
                 </a-scene>
             </template>
+-->
+        <p>camview</p>
         </div>
     `
 });

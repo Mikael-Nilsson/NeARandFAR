@@ -10,15 +10,20 @@ Vue.config.ignoredElements = [
     'a-text'
 ]
 
+const routes = [
+  {path: '/', name: 'home', redirect: '/dash'},
+  {path: '/cam', name: 'cam', component: camView},
+  {path: '/dash', name: 'dash', component: dashView}
+]
+
 const app = new Vue({
+    router: new VueRouter({routes}),
     el: '#app',
     mounted: async function() {
       const pos = await getLocation();
       this.position = pos.coords;
       console.log('pos', JSON.stringify(this.position));
       console.log('lat', this.position.latitude);
-    },
-    components: {
     },
     computed: {
       loaded: function() {
@@ -37,7 +42,8 @@ const app = new Vue({
     template: `
       <div>
        <template v-if="loaded">
-          <camview v-bind:position="position"></camview>
+          <router-view></router-view>
+          <!--<camview v-bind:position="position"></camview>-->
         </template>
         <template v-if="!loaded">
           <div>loading</div>
