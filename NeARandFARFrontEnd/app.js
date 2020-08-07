@@ -46,7 +46,7 @@ const app = new Vue({
     template: `
       <div>
         <template v-if="loaded && sessionActive">
-          <dashview></dashview>
+          <dashview class="dashboard"></dashview>
           <router-view></router-view>
           <!--<router-view name="down"></router-view>-->
           <!--<camview v-bind:position="position"></camview>-->
