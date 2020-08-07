@@ -1,8 +1,7 @@
 
 const camView = Vue.component('camview', {
-    props: ['position'],
     created: function() {
-        console.log('position in cam.view', this.position);
+        console.log('position in cam.view', global.position);
         this.assets();
 
     },
@@ -15,8 +14,8 @@ const camView = Vue.component('camview', {
               scale: '40 40 40',
               value: 'Am I close?',
               position: {
-                lat: this.position.latitude + 0.005,
-                lon: this.position.longitude
+                lat: global.position.latitude + 0.005,
+                lon: global.position.longitude
               }
             });
 
@@ -35,13 +34,13 @@ const camView = Vue.component('camview', {
     },
     computed: {
         pos: function() {
-            console.log('position in pos', this.position);
-            const pos = `latitude: ${this.position.latitude}; longitude: ${this.position.longitude}`;
+            console.log('position in pos', global.position);
+            const pos = `latitude: ${global.position.latitude}; longitude: ${global.position.longitude}`;
             return pos;
         },
         loading: function() {
 
-            if (!this.position
+            if (!global.position
                 || this.assetArray.length === 0)
                 this.loadingState = true;
             else
@@ -56,13 +55,6 @@ const camView = Vue.component('camview', {
            assetArray: []
         }
     },
-    /*
-    Kanske skapa aframe-scenen och peta in i en iframe a la
-    <iframe></iframe>
-
-document.querySelector('iframe')
-        .contentDocument.write("<h1>Injected from parent frame</h1>")
-    */
     template: `
         <div>
             <template v-if="loading">
@@ -71,7 +63,8 @@ document.querySelector('iframe')
                 <div>{{assetArray}}</div>
             </template>
             <template v-if="!loading">
-                <a-scene ar vr-mode-ui="enabled: false" embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+                <a-scene class="aframebox">
+                <!--<a-scene ar vr-mode-ui="enabled: false" embedded arjs="sourceType: webcam; debugUIEnabled: false;">-->
 
                     <template v-for="asset in assetArray">
                         <template v-if="asset.geometry == 'text'">

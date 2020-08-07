@@ -18,33 +18,35 @@ const app = new Vue({
     mounted: async function() {
       console.log('app started:', startView.started);
       const pos = await getLocation();
-      this.position = pos.coords;
-      console.log('pos', JSON.stringify(this.position));
-      console.log('lat', this.position.latitude);
+      global.position = pos.coords;
+      this.loaded = true;
+      console.log('lat when mounted', global.position.latitude);
     },
     computed: {
-      loaded: function() {
-        const loaded = this.position.latitude ? true : false;
-        console.log('app loaded', loaded);
-        console.log('pos:', this.position);
-        return loaded;
+    },
+    methods: {
+      startSession: function() {
+        this.sessionActive = true;
+        console.log('lat when starting session', global.position.latitude, this.loaded);
+        this.$router.push({name: 'dashcam'});
       }
     },
     data: function() {
       return {
         position: {},
-        sessionActive: false
+        sessionActive: false,
+        loaded: false
       };
     },
     template: `
       <div>
         <template v-if="loaded && sessionActive">
-          <router-view name="up"></router-view>
+          <router-view name="up" style="height: 100px;"></router-view>
           <router-view name="down"></router-view>
           <!--<camview v-bind:position="position"></camview>-->
         </template>
-        <template v-if="!sessionActive">         
-          <loginview v-on:start="sessionActive = true"></loginview>
+        <template v-if="!sessionActive">
+          <loginview v-on:start="startSession()"></loginview>
         </template>
         <template v-if="!loaded">
           <div>loading</div>
