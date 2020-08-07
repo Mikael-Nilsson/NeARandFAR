@@ -6,6 +6,26 @@ const routes = [
       name: 'home'
     },
     {
+        path: '/dash',
+        name: 'dash',
+        component: dashView
+    },
+    {
+        path: '/cam',
+        name: 'cam',
+        component: camView
+    },
+    {
+        path: '/map',
+        name: 'map',
+        component: mapView
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: loginView
+    },
+    {
         path: '/dashcam',
         name: 'dashcam',
         components: {

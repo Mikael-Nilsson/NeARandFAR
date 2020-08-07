@@ -26,7 +26,7 @@ const app = new Vue({
     methods: {
       startSession: function() {
         console.log('lat when starting session', global.position.latitude, this.loaded);
-        this.$router.push({name: 'dashcam'});
+        this.$router.push({name: 'cam'});
       }
     },
     data: function() {
@@ -46,8 +46,9 @@ const app = new Vue({
     template: `
       <div>
         <template v-if="loaded && sessionActive">
-          <router-view name="up" style="height: 100px;"></router-view>
-          <router-view name="down"></router-view>
+          <dashview></dashview>
+          <router-view></router-view>
+          <!--<router-view name="down"></router-view>-->
           <!--<camview v-bind:position="position"></camview>-->
         </template>
         <template v-if="!sessionActive">
