@@ -3,8 +3,10 @@
 const loginView = Vue.component('loginview', {
     methods: {
         login: function() {
-            if(this.username === 'q' && this.password === 'q')
+            if(this.username === 'q' && this.password === 'q') {
+                localStorage.setItem('sessionActive', true);
                 this.$emit('start');
+            }
         }
     },
     data: function() {

@@ -16,7 +16,6 @@ const app = new Vue({
     router: new VueRouter({routes}),
     el: '#app',
     mounted: async function() {
-      console.log('app started:', startView.started);
       const pos = await getLocation();
       global.position = pos.coords;
       this.loaded = true;
@@ -26,7 +25,6 @@ const app = new Vue({
     },
     methods: {
       startSession: function() {
-        this.sessionActive = true;
         console.log('lat when starting session', global.position.latitude, this.loaded);
         this.$router.push({name: 'dashcam'});
       }
@@ -34,9 +32,16 @@ const app = new Vue({
     data: function() {
       return {
         position: {},
-        sessionActive: false,
         loaded: false
       };
+    },
+    computed: {
+      sessionActive: function() {
+        console.log('existing session', localStorage.getItem('sessionActive'));
+        if(localStorage.getItem('sessionActive') === 'true')
+          return true;
+        else return false;
+      }
     },
     template: `
       <div>
