@@ -23,6 +23,7 @@ service: NeARandFARBackEnd
 provider:
   name: aws
   runtime: dotnetcore3.1
+  environment: ${file(env.yml):${self:custom.stage}}
 
 # you can overwrite defaults here
 #  stage: dev
@@ -56,39 +57,74 @@ provider:
 
 custom:
   stage: ${opt:stage, self:provider.stage}
-  # Move to env.yml when this gets big
-  config:
-    vpcId: vpc-5dfa5634
+  config: ${file(env.yml):${self:custom.stage}}
 
 package:
   individually: true
 
 functions:
-  connect:
-    handler: NeARandFARBackEnd::NeARandFARBackEnd.Mongo.MongoHandler::Connect
+  
+  # connect:
+  #   handler: NeARandFARBackEnd::NeARandFARBackEnd.Mongo.MongoHandler::connect
+    
+  #   package:
+  #     artifact: bin/Release/netcoreapp3.1/mongo.zip
+      
+  #   events:
+  #     - http:
+  #       path: connect
+  #       method: post
+  #       cors: true
+          
+  getAll:
+    handler: NeARandFARBackEnd::NeARandFARBackEnd.Mongo.MongoHandler::getAll
 
     package:
-      artifact: bin/Release/netcoreapp3.1/mongo.zip
+      artifact: bin/Release/netcoreapp3.1/nearandfarbackend.zip
 
     events:
       - http:
-          path: connect
-          method: post
-          cors: true
-
-  hello:
-    handler: AssemblyName::SpaceWithName.HandlerClass::Hello
-    # you can add packaging information here
-    package:
-      artifact: bin/Release/netcoreapp3.1/mongo.zip
-    #  exclude:
-    #    - exclude-me.js
-    #    - exclude-me-dir/**
-    events:
-      - http:
-          path: hello
+          path: getAll
           method: get
           cors: true
+
+  get:
+    handler: NeARandFARBackEnd::NeARandFARBackEnd.Mongo.MongoHandler::get
+
+    package:
+      artifact: bin/Release/netcoreapp3.1/nearandfarbackend.zip
+
+    events:
+      - http:
+          path: get/{id}
+          method: get
+          cors: true
+
+  getAsset:
+    handler: NeARandFARBackEnd::NeARandFARBackEnd.Assets.AssetHandler::getAsset
+
+    package:
+      artifact: bin/Release/netcoreapp3.1/nearandfarbackend.zip
+
+    events:
+      - http:
+          path: assets/{id}
+          method: get
+          cors: true
+  
+  # hello:
+  #   handler: AssemblyName::SpaceWithName.HandlerClass::Hello
+  #   # you can add packaging information here
+  #   package:
+  #     artifact: bin/Release/netcoreapp3.1/mongo.zip
+  #     #  exclude:
+  #       #    - exclude-me.js
+  #       #    - exclude-me-dir/**
+  #   events:
+  #     - http:
+  #       path: hello
+  #       method: get
+  #       cors: true
 #      - websocket: $connect
 #      - s3: ${env:BUCKET}
 #      - schedule: rate(10 minutes)
