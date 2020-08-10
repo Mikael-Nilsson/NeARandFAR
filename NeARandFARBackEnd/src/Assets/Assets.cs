@@ -16,6 +16,8 @@ namespace NeARandFARBackEnd.Assets
         public string id {get; set;}
         public string lat {get; set;}
         public string lon {get; set;}
+
+        public string mongoConnectionString {get; set;}
     }
 
     public class AssetHandler
@@ -32,9 +34,20 @@ namespace NeARandFARBackEnd.Assets
             return input?.ToUpper();
         }
 
-        public string getAsset(AssetRequest asset, ILambdaContext context) {
+        [LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
+        public object getAsset(AssetRequest asset, ILambdaContext context) {
+            LambdaLogger.Log($"Calling {context.FunctionName}");
+            string mongoUser = Environment.GetEnvironmentVariable("mongoUser");
+            LambdaLogger.Log($"mongoUser: {mongoUser}");
 
-            return $"{asset.id} does exist, but you can't see it :P";
+            NeARandFARBackEnd.Mongo.MongoHandler mongo = new Mongo.MongoHandler();
+            NeARandFARBackEnd.Mongo.MongoRequest request = new Mongo.MongoRequest();
+
+            request.connectionString = asset.mongoConnectionString;
+
+            return new {assets = mongo.getAll(request)};
+
+            // return new { context = context };
         }
     }
 }

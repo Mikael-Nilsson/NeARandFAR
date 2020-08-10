@@ -56,24 +56,11 @@ namespace NeARandFARBackEnd.Mongo
         MongoRequest checkRequest(MongoRequest request) {
 
             // If we're already connected, we keep that connection and don't need to check that part of the input
-            if(string.IsNullOrEmpty(dbClient.ToString())) {
-                
-                // mount the connectionstring
-                string username = ""; // TODO: env var
-                if(!string.IsNullOrEmpty(request.user))
-                    username = request.user;
-
-                string password = ""; // TODO: env var
-                if(!string.IsNullOrEmpty(request.password))
-                    password = request.password;
-                
-                string connectionString = ""; // TODO: env var
-                if(!string.IsNullOrEmpty(request.connectionString))
-                    connectionString = request.connectionString;
-
-                request.connectionString = $"mongodb+srv://{username}:{password}@{connectionString}";
-
-                
+            if(dbClient == null) {
+                // if no connectionstring is provided, use env var
+                if(string.IsNullOrEmpty(request.connectionString)) {
+                    request.connectionString = Environment.GetEnvironmentVariable("mongoConnectionString");
+                }
             }
 
             return request;
@@ -81,30 +68,25 @@ namespace NeARandFARBackEnd.Mongo
 
 
         // TODO: Connect to Mongo
-        // TODO: Shouldn't be public in the future
-        Response connect(MongoRequest request) {
+        void connect(MongoRequest request) {
             // If any of the parameters are empty, check if the appropriate environment variable is there
 
-            Console.WriteLine("Contacting mongo");        
+            Console.WriteLine("Contacting mongo");      
 
-            if(string.IsNullOrEmpty(dbClient.ToString())) {
+            if(dbClient == null) {
                 dbClient = new MongoClient(request.connectionString);
             }
 
             Dictionary<string, string> result = new Dictionary<string, string> {
                 {"result", "Not Implemented"}
             };
-
-            return new Response(new List<Dictionary<string, string>>(){result});
         }
 
         // TODO: Get all docs from Mongo
         public Response getAll(MongoRequest request) {
             // I expect nothing in here
-
-            string mongoUser = Environment.GetEnvironmentVariable("mongoUser");
-            Console.WriteLine($"mongoUser: {mongoUser}");
-
+            request = checkRequest(request);
+            connect(request);
 
             Dictionary<string, string> result = new Dictionary<string, string> {
                 {"result", fakeData}
@@ -168,8 +150,6 @@ namespace NeARandFARBackEnd.Mongo
             Console.WriteLine(results.ToString());
             body = results;
             headers = null;
-            
-
         }
     }
 
