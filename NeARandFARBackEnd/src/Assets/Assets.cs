@@ -11,6 +11,13 @@ using Amazon.Lambda.Core;
 namespace NeARandFARBackEnd.Assets
 {
 
+    public class AssetRequest 
+    {
+        public string id {get; set;}
+        public string lat {get; set;}
+        public string lon {get; set;}
+    }
+
     public class AssetHandler
     {
         
@@ -25,9 +32,9 @@ namespace NeARandFARBackEnd.Assets
             return input?.ToUpper();
         }
 
-        public string getAsset(string id, ILambdaContext context) {
+        public string getAsset(AssetRequest asset, ILambdaContext context) {
 
-            return "Not implemented";
+            return $"{asset.id} does exist, but you can't see it :P";
         }
     }
 }

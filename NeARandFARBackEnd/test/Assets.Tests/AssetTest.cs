@@ -24,9 +24,12 @@ namespace NeARandFARBackEnd.Tests
         [Fact]
         public void TestGetAsset() {
             var assets = new AssetHandler();
-            string id = "0";
+
+            AssetRequest request = new AssetRequest();
+            request.id = "2";
+
             var context = new TestLambdaContext();
-            string asset = assets.getAsset(id, context);
+            string asset = assets.getAsset(request, context);
 
             Assert.NotEmpty(asset);
         }
