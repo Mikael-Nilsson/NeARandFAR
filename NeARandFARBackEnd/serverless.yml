@@ -16,6 +16,9 @@ service: NeARandFARBackEnd
 #app: your-app-name
 #org: your-org-name
 
+plugins:
+  - serverless-offline
+
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
 # frameworkVersion: "=X.X.X"
@@ -29,11 +32,11 @@ provider:
 #  stage: dev
   region: eu-north-1
 
-  vpc:
-    securityGroupIds:
-      - Ref: LambdaSecurityGroup
-    subnetIds:
-      - subnet-cb7eb3b0
+  # vpc:
+  #   securityGroupIds:
+  #     - Ref: LambdaSecurityGroup
+  #   subnetIds:
+  #     - subnet-cb7eb3b0
 
 # you can add statements to the Lambda function's IAM Role here
 #  iamRoleStatements:
@@ -63,20 +66,21 @@ package:
   individually: true
 
 functions:
-  
-  # connect:
-  #   handler: NeARandFARBackEnd::NeARandFARBackEnd.Mongo.MongoHandler::connect
-    
-  #   package:
-  #     artifact: bin/Release/netcoreapp3.1/mongo.zip
-      
-  #   events:
-  #     - http:
-  #       path: connect
-  #       method: post
-  #       cors: true
+
+  token:
+    handler: NeARandFARBackEnd::NeARandFARBackEnd.Auth.AuthHandler::token
+
+    package:
+      artifact: bin/Release/netcoreapp3.1/nearandfarbackend.zip
+
+    events:
+      - http:
+          path: token
+          method: get
+          cors: true
+
           
-  getAll:
+  mongoGetAll:
     handler: NeARandFARBackEnd::NeARandFARBackEnd.Mongo.MongoHandler::getAll
 
     package:
@@ -84,11 +88,11 @@ functions:
 
     events:
       - http:
-          path: getAll
-          method: get
+          path: mongo/getAll/{collection}
+          method: ANY
           cors: true
 
-  get:
+  mongoGet:
     handler: NeARandFARBackEnd::NeARandFARBackEnd.Mongo.MongoHandler::get
 
     package:
@@ -96,7 +100,7 @@ functions:
 
     events:
       - http:
-          path: get/{id}
+          path: mongo/get/{id}
           method: get
           cors: true
 
@@ -109,6 +113,17 @@ functions:
     events:
       - http:
           path: assets/{id}
+          method: get
+          cors: true
+
+  getAssets:
+    handler: NeARandFARBackEnd::NeARandFARBackEnd.Assets.AssetHandler::getAssets
+    package:
+      artifact: bin/Release/netcoreapp3.1/nearandfarbackend.zip
+
+    events:
+      - http:
+          path: assets
           method: get
           cors: true
   
@@ -159,14 +174,14 @@ functions:
 #      variable2: value2
 
 # you can add CloudFormation resource templates here
-resources:
-  Resources:
-    LambdaSecurityGroup:
-      Type: AWS::EC2::SecurityGroup
-      Properties:
-        GroupName: NeARandFAR-Lambda-sg-${self:custom.stage}
-        GroupDescription: Allow lambdas to do everything
-        VpcId: ${self:custom.config.vpcId}
+# resources:
+#   Resources:
+#     LambdaSecurityGroup:
+#       Type: AWS::EC2::SecurityGroup
+#       Properties:
+#         GroupName: NeARandFAR-Lambda-sg-${self:custom.stage}
+#         GroupDescription: Allow lambdas to do everything
+#         VpcId: ${self:custom.config.vpcId}
 #    NewResource:
 #      Type: AWS::S3::Bucket
 #      Properties:

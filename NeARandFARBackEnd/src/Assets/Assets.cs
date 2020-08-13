@@ -1,4 +1,5 @@
 using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -35,19 +36,36 @@ namespace NeARandFARBackEnd.Assets
         }
 
         [LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
-        public object getAsset(AssetRequest asset, ILambdaContext context) {
+        public object getAsset(AssetRequest assetRequest, ILambdaContext context = null) {
             LambdaLogger.Log($"Calling {context.FunctionName}");
-            string mongoUser = Environment.GetEnvironmentVariable("mongoUser");
-            LambdaLogger.Log($"mongoUser: {mongoUser}");
-
+            
             NeARandFARBackEnd.Mongo.MongoHandler mongo = new Mongo.MongoHandler();
-            NeARandFARBackEnd.Mongo.MongoRequest request = new Mongo.MongoRequest();
+            NeARandFARBackEnd.Mongo.MongoRequest mongoRequest = new Mongo.MongoRequest();
 
-            request.connectionString = asset.mongoConnectionString;
+            mongoRequest.connectionString = assetRequest.mongoConnectionString;
 
-            return new {assets = mongo.getAll(request)};
-
-            // return new { context = context };
+            // ! Do we need to massage the result in some way or does this suffice?
+            // TODO: Get one asset instead of all
+            // return new {assets = mongo.getAll(mongoRequest)};
+            return null;
         }
+
+        public async Task<object> getAssets(AssetRequest assetRequest = null, ILambdaContext context = null) {
+            if(context != null && context.FunctionName != null)
+                LambdaLogger.Log($"Calling {context.FunctionName}");
+            
+            NeARandFARBackEnd.Mongo.MongoHandler mongo = new Mongo.MongoHandler();
+            NeARandFARBackEnd.Mongo.MongoRequest mongoRequest = new Mongo.MongoRequest();
+
+            if(assetRequest != null && assetRequest.mongoConnectionString != null)
+                mongoRequest.connectionString = assetRequest.mongoConnectionString;
+            
+            mongoRequest.collection = "assets";
+
+            // ! Do we need to massage the result in some way or does this suffice?
+            // return new {assets = await mongo.getAll(mongoRequest, context)};
+            return null;
+        }
+
     }
 }
