@@ -19,10 +19,8 @@ namespace NeARandFARBackEnd.Mongo
     public class MongoHandler {
 
         MongoClient client;
-        NeARandFARBackEnd.RequestUtil requestUtil;
         
         public MongoHandler() {
-            requestUtil = new NeARandFARBackEnd.RequestUtil();
             client = new MongoClient();
         }
 
@@ -32,7 +30,8 @@ namespace NeARandFARBackEnd.Mongo
         public async Task<object> getAll(APIGatewayProxyRequest request, ILambdaContext context = null) {
             // I expect nothing in here
             LambdaLogger.Log(request.ToJson().ToString());
-            
+
+            NeARandFARBackEnd.RequestUtil requestUtil = new NeARandFARBackEnd.RequestUtil();
             MongoRequest mongoRequest = new MongoRequest(requestUtil.checkRequest(request, new string[1]{"collection"}));
         
 
