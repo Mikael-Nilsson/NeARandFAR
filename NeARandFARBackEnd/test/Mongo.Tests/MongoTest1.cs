@@ -10,15 +10,17 @@ using Amazon.Lambda.TestUtilities;
 
 using NeARandFARBackEnd;
 
+using MongoDB.Bson;
+
 namespace NeARandFARBackEnd.Tests
 {
 
-    public class UnitTest1 : IClassFixture<LaunchSettingsFixture>
+    public class getAllTest : IClassFixture<LaunchSettingsFixture>
     {
         private ITestOutputHelper output;
         LaunchSettingsFixture fixture;
 
-        public UnitTest1(ITestOutputHelper output, LaunchSettingsFixture fixture) {
+        public getAllTest(ITestOutputHelper output, LaunchSettingsFixture fixture) {
             this.output = output;
             this.fixture = fixture;
         }
@@ -28,9 +30,11 @@ namespace NeARandFARBackEnd.Tests
         {
             NeARandFARBackEnd.Mongo.MongoHandler handler = new NeARandFARBackEnd.Mongo.MongoHandler();
             APIGatewayProxyRequest request = new APIGatewayProxyRequest();
-            request.QueryStringParameters = new Dictionary<string, string>() {{"collection","assets"}};
-            await handler.getAll(request);
+            // request.QueryStringParameters = new Dictionary<string, string>() {{"collection","assets"}};
+            request.Body = (new Dictionary<string, string>(){{"collection", "assets"}}).ToJson().ToString();
+            object result = await handler.getAll(request);
 
+            Assert.NotNull(result);
         }
-    }
+    }       
 }
