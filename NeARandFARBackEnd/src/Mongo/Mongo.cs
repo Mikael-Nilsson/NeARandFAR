@@ -66,6 +66,7 @@ namespace NeARandFARBackEnd.Mongo
 
             // If we're already connected, we keep that connection and don't need to check that part of the input
             if(dbClient == null) {
+                // if no database is provided, use env var
                 if(string.IsNullOrEmpty(request.database)) {
                     request.database = Environment.GetEnvironmentVariable("mongoDB");
                 }

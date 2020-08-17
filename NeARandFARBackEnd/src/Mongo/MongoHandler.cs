@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Text.Json;
 
 using MongoDB.Bson;
 
@@ -18,26 +19,30 @@ namespace NeARandFARBackEnd.Mongo
     public class MongoHandler {
 
         MongoClient client;
+        NeARandFARBackEnd.RequestUtil requestUtil;
         
         public MongoHandler() {
+            requestUtil = new NeARandFARBackEnd.RequestUtil();
             client = new MongoClient();
         }
 
+
+
         // TODO: Get all docs from Mongo
-        public async Task<object> getAll(Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest request, ILambdaContext context = null) {
+        public async Task<object> getAll(APIGatewayProxyRequest request, ILambdaContext context = null) {
             // I expect nothing in here
+            LambdaLogger.Log(request.ToJson().ToString());
             
-            MongoRequest mongoRequest = new MongoRequest();
-            mongoRequest.collection = request.QueryStringParameters["collection"];
-            
+            MongoRequest mongoRequest = new MongoRequest(requestUtil.checkRequest(request, new string[1]{"collection"}));
+        
 
             List<BsonDocument> docs = await client.getAllDocuments(mongoRequest);
 
-            return new {context = context};
+            // return new {context = context};
 
-            // return new MongoResponse(new BsonDocument {
-            //     {request.collection, new BsonArray(docs)}
-            // });
+            return new MongoResponse(new BsonDocument {
+                {mongoRequest.collection, new BsonArray(docs)}
+            });
         }
 
         // TODO: Get doc from Mongo
@@ -86,6 +91,30 @@ namespace NeARandFARBackEnd.Mongo
         public string database {get; set;}
         public string user {get; set;}
         public string password {get; set;}
+
+        public MongoRequest(Dictionary<string, string> request) {
+
+            if(request.ContainsKey("id") && request["id"] != null)
+                this.id = request["id"];
+
+            if(request.ContainsKey("query") && request["query"] != null)
+                this.query = request["query"];
+                
+            if(request.ContainsKey("collection") && request["collection"] != null)
+                this.collection = request["collection"];
+                
+            if(request.ContainsKey("connectionString") && request["connectionString"] != null)
+                this.connectionString = request["connectionString"];
+                
+            if(request.ContainsKey("database") && request["database"] != null)
+                this.database = request["database"];
+                
+            if(request.ContainsKey("user") && request["user"] != null)
+                this.user = request["user"];
+                
+            if(request.ContainsKey("password") && request["password"] != null)
+                this.password = request["password"];
+        }
 
         public override string ToString() {
             string result = $"id: {this.id}, query: {this.query}, collection: {this.collection}, connectionString: {this.connectionString}, database: {this.database}";
