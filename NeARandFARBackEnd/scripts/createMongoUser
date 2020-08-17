@@ -1,0 +1,10 @@
+use NeARandFAR
+db.createUser(
+  {
+    user: "LambdaUser",
+    pwd: passwordPrompt(),  // or cleartext password
+    roles: [
+       { role: "readWrite", db: "NeARandFAR" }
+    ]
+  }
+)
