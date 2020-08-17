@@ -31,7 +31,8 @@ namespace NeARandFARBackEnd.Tests
             NeARandFARBackEnd.Mongo.MongoHandler handler = new NeARandFARBackEnd.Mongo.MongoHandler();
             APIGatewayProxyRequest request = new APIGatewayProxyRequest();
             // request.QueryStringParameters = new Dictionary<string, string>() {{"collection","assets"}};
-            request.Body = (new Dictionary<string, string>(){{"collection", "assets"}}).ToJson().ToString();
+            request.Body = "{\"collection\": \"assets\"}";
+            // (new Dictionary<string, string>(){{"collection", "assets"}}).ToJson().ToString();
             object result = await handler.getAll(request);
 
             Assert.NotNull(result);
