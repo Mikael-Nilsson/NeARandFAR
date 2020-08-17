@@ -1,21 +1,18 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
-    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
-    <!-- <AssemblyName>NeARandFARBackEnd</AssemblyName>
-    <PackageId>NeARandFARBackEnd</PackageId> -->
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <!-- <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles> -->
+    <!-- <AWSProjectType>Lambda</AWSProjectType> -->
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Amazon.Lambda.Core" Version="1.1.0" />
     <PackageReference Include="Amazon.Lambda.Serialization.SystemTextJson" Version="2.0.1" />
     <PackageReference Include="Amazon.Lambda.APIGatewayEvents" Version="2.1.0" />
-    <PackageReference Include="MongoDB.driver" Version="2.11.0" />
-
+ 
     <ProjectReference Include="..\..\src\Utilities\Utilities.csproj" />
+
   </ItemGroup>
 
 </Project>
