@@ -39,17 +39,18 @@ namespace NeARandFARBackEnd.Auth
         // TODO: Maybe make some real authorization?
 
         public async Task<object> token(APIGatewayProxyRequest request, ILambdaContext context = null) {
-            // string token = null;
+            string token = null;
 
-            // Dictionary<string ,string> params = requestUtil.checkRequest(request, new string[]{"username", "password", "token"});
+            Dictionary<string, string> checkedRequest = requestUtil.checkRequest(request, new string[]{"username", "password", "token"});
 
-            // if(params["username"] != null && params["password"] != null || params["token"] != null ) {
-            //     token ="token";
-            // }
+            if(checkedRequest["username"] != null && checkedRequest["password"] != null || checkedRequest["token"] != null ) {
+                token = Environment.GetEnvironmentVariable("apiKey");
+                // token ="token";
+            }
 
-            // return new AuthResponse(token);
+            return new AuthResponse(token);
 
-            return null;
+            // return null;
         }
     }
 }
