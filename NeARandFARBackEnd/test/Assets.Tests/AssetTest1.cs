@@ -1,18 +1,17 @@
 using System;
+using System.IO;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+
+using Microsoft.Extensions.Configuration;
 
 using Xunit;
 using Xunit.Abstractions;
 
-using Amazon.Lambda.Core;
 using Amazon.Lambda.TestUtilities;
-
-using Microsoft.Extensions.Configuration;
-using System.IO;
-using System.Collections.Generic;
+using Amazon.Lambda.APIGatewayEvents;
 
 using NeARandFARBackEnd.Assets;
-
 
 namespace NeARandFARBackEnd.Tests
 {
@@ -45,19 +44,6 @@ namespace NeARandFARBackEnd.Tests
                 Environment.SetEnvironmentVariable(c.Key, c.Value);
             }
         }
-        
-
-        [Fact]
-        public void TestToUpperFunction()
-        {
-            
-            // Invoke the lambda function and confirm the string was upper cased.
-            var assets = new AssetHandler();
-            var context = new TestLambdaContext();
-            var upperCase = assets.toUpper("hello world", context);
-
-            Assert.Equal("HELLO WORLD", upperCase);
-        }
 
         [Fact]
         public void TestGetAsset() {
@@ -75,14 +61,14 @@ namespace NeARandFARBackEnd.Tests
 
         [Fact]
         public async void TestGetAssets() {
-            var assets = new AssetHandler();
+            var handler = new AssetHandler();
 
-            AssetRequest request = new AssetRequest();
-            var context = new TestLambdaContext();
+            APIGatewayProxyRequest request = new APIGatewayProxyRequest();
 
-            object result = await assets.getAssets(request, context);
+            object result = await handler.getAssets(request);
 
-            // Assert.NotEmpty(result.ToString());
+            // TODO: Better assertion
+            Assert.NotEmpty(result.ToString());
 
 
         }
