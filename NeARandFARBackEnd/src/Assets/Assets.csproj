@@ -13,5 +13,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Mongo\Mongo.csproj" />
+    <ProjectReference Include="..\..\src\Utilities\Utilities.csproj" />
   </ItemGroup>
 </Project>

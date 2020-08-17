@@ -76,7 +76,7 @@ functions:
     events:
       - http:
           path: token
-          method: get
+          method: post
           cors: true
 
           
