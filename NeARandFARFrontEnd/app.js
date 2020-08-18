@@ -20,42 +20,50 @@ const app = new Vue({
       global.position = pos.coords;
       this.loaded = true;
       console.log('lat when mounted', global.position.latitude);
-    },
-    computed: {
+
+      this.sessionActive = localStorage.getItem('sessionActive');
+
+      if(this.sessionActive)
+      this.$router.push({path: '/cam'});
+        
     },
     methods: {
       startSession: function() {
-        console.log('lat when starting session', global.position.latitude, this.loaded);
-        this.$router.push({name: 'cam'});
+        console.log('Starting session, lat: ', global.position.latitude, this.loaded);
+        this.sessionActive = true;
+        this.$router.push({path: '/cam'});
       }
     },
     data: function() {
       return {
         position: {},
-        loaded: false
+        loaded: false,
+        sessionActive: false
       };
     },
     computed: {
-      sessionActive: function() {
-        console.log('existing session', localStorage.getItem('sessionActive'));
-        if(localStorage.getItem('sessionActive') === 'true')
-          return true;
-        else return false;
-      }
+      // sessionActive: function() {
+      //   let sess = localStorage.getItem('sessionActive');
+      //   console.log('existing session', sess);
+
+      //   if(sess === 'true')
+      //     return true;
+      //   else return false;
+      // }
     },
     template: `
       <div>
-        <template v-if="loaded && sessionActive">
-          <dashview class="dashboard"></dashview>
-          <router-view></router-view>
-          <!--<router-view name="down"></router-view>-->
-          <!--<camview v-bind:position="position"></camview>-->
-        </template>
+        
         <template v-if="!sessionActive">
           <loginview v-on:start="startSession()"></loginview>
         </template>
         <template v-if="!loaded">
           <div>loading</div>
+        </template>
+        <template v-else-if="loaded && sessionActive">
+          <dashview class="dashboard"></dashview>
+          <router-view></router-view>
+          <!--<camview v-bind:position="position"></camview>-->
         </template>
       </div>
     `

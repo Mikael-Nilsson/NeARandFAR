@@ -248,3 +248,4 @@ NeARandFARFrontEnd/certs/key.pem
 NeARandFARFrontEnd/certs/cert.pem
 NeARandFARBackEnd/keys.google/nearandfar.deploy.key.json
 NeARandFARBackEnd/keys.google/nearandfar.functionsrunner.key.json
+NeARandFARBackEnd/env.yml

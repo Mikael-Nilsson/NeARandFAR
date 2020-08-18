@@ -5,6 +5,9 @@ const camView = Vue.component('camview', {
         this.assets();
 
     },
+    mounted: function() {
+        console.log('mounting cam view');
+    },
     methods: {
         assets: async function() {
             const d = await getData();
