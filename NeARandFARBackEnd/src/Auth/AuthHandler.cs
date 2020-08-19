@@ -4,6 +4,7 @@ using Amazon.Lambda.APIGatewayEvents;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Net;
 
 namespace NeARandFARBackEnd.Auth
 {
@@ -14,17 +15,23 @@ namespace NeARandFARBackEnd.Auth
         public string token {get; set;}
     }
 
-    public class AuthResponse
-    {
-        public string body {get; set;}
-        public Dictionary<string, string> headers {get; set;}
+    // public class AuthResponse
+    // {
+    //     public string body {get; set;}
+    //     public Dictionary<string, string> headers {get; set;}
 
-        public AuthResponse(string token) {
-            Console.WriteLine(token);
-            body = token;
-            headers = null;
-        }
-    }
+    //     public int StatusCode {get; set;}
+
+    //     public AuthResponse(string token) {
+    //         Console.WriteLine(token);
+    //         body = token;
+    //         StatusCode = (int)HttpStatusCode.OK;
+    //         headers = new Dictionary<string, string> {
+    //             {"Access-Control-Allow-Origin", "*"}
+    //         };
+    //     }
+
+    // }
 
 
     public class AuthHandler
@@ -34,7 +41,6 @@ namespace NeARandFARBackEnd.Auth
         public AuthHandler() {
              requestUtil = new NeARandFARBackEnd.RequestUtil();
         }
-
 
         // TODO: Maybe make some real authorization?
 
@@ -48,7 +54,12 @@ namespace NeARandFARBackEnd.Auth
                 // token ="token";
             }
 
-            return new AuthResponse(token);
+            return new APIGatewayProxyResponse {
+                StatusCode = (int)HttpStatusCode.OK,
+                Headers = new Dictionary<string, string> {{"Access-Control-Allow-Origin", "*"}},
+                Body = token
+            };
+            
 
             // return null;
         }
