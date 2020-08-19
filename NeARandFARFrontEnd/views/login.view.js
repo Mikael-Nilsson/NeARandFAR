@@ -2,13 +2,17 @@
 
 const loginView = Vue.component('loginview', {
     methods: {
-        login: function() {
-            if(userService.login(this.username, this.password)) {
+        login: async function() {
+            const data = await userService.login(this.username, this.password);
+
+            console.log(data);
+            if(data) {
                 console.log('username checks out');
                 this.$emit('start');
             } else {
                 console.log('bad password');
             }
+             
         }
     },
     data: function() {
