@@ -1,5 +1,4 @@
 const userService = {  
-    apiKey: null,
     login: async function(username, password) {
 
         const tokenUrl = 'https://43tkyvf00i.execute-api.eu-north-1.amazonaws.com/dev/token';
@@ -9,8 +8,11 @@ const userService = {
         let token = null;
 
         token = await dataService.post(tokenUrl, body);
-        this.apiKey = token;
+        // FIXME: Seems like we're gonna need some real auth, this isn't ok. Might be no auth for readers and auth for writers.
+        // Then this app won'n need auth but the admin app will
+        localStorage.setItem('apiKey', token);
         console.log('success in userservice', token);
+        localStorage.setItem('sessionActive', true);
         return true;
 
     }
