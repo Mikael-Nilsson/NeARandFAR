@@ -1,10 +1,11 @@
 using System;
-
-using System.Collections.Generic;
-using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+
 using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
+
 using MongoDB.Bson;
 using NeARandFARBackEnd.Mongo;
 
@@ -59,25 +60,34 @@ namespace NeARandFARBackEnd.Assets
             return null;
         }
 
-        public async Task<object> getAssets(APIGatewayProxyRequest request = null, ILambdaContext context = null) {
+        public async Task<object> getAssets(APIGatewayProxyRequest request, ILambdaContext context = null) {
             if(context != null && context.FunctionName != null)
                 LambdaLogger.Log($"Calling {context.FunctionName}");
 
             Dictionary<string, string> req = new Dictionary<string, string>(){{"collection", "assets"}};
 
-            NeARandFARBackEnd.RequestUtil requestUtil = new NeARandFARBackEnd.RequestUtil();
             MongoRequest mongoRequest = new MongoRequest(req);
 
             List<BsonDocument> docs = await client.getAllDocuments(mongoRequest);
 
-            return new AssetResponse(new BsonDocument {
-                {"assets", new BsonArray(docs)}
-            });
-            
-            // ! Do we need to massage the result in some way or does this suffice?
-            // return new {assets = await mongo.getAll(mongoRequest, context)};
+            string body = docs.ToJson().ToJson().ToString();
+            LambdaLogger.Log(body);
 
-            // return null;
+            // return new AssetResponse(new BsonDocument {
+            //     {"assets", new BsonArray(docs)}
+            // });
+            
+            return new APIGatewayProxyResponse {
+                StatusCode = (int)HttpStatusCode.OK,
+                Headers = new Dictionary<string, string> {{"Access-Control-Allow-Origin", "*"}},
+                Body = body
+            };
+
+            // return new {
+            //     StatusCode = (int)HttpStatusCode.OK,
+            //     Headers = new Dictionary<string, string> {{"Access-Control-Allow-Origin", "*"}},
+            //     Body = body
+            // };
         }
 
     }
