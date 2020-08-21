@@ -1,3 +1,11 @@
+const assetService = {
+    getData: async () => {
+        // TODO: Save common url somewhere
+        const assets = await dataService.get('https://43tkyvf00i.execute-api.eu-north-1.amazonaws.com/dev/assets');
+        // console.log(assets);
+    }
+};
+
 const getData = async (id, connection) => {
     console.log('in getData');
     return [
