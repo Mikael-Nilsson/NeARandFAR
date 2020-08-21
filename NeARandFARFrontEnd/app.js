@@ -16,7 +16,7 @@ const app = new Vue({
     router: new VueRouter({routes}),
     el: '#app',
     mounted: async function() {
-      const pos = await getLocation();
+      const pos = await gpsService.getLocation();
       global.position = pos.coords;
       this.loaded = true;
       console.log('lat when mounted', global.position.latitude);
@@ -51,6 +51,7 @@ const app = new Vue({
       //   else return false;
       // }
     },
+    // TODO: Make this not show login until session is decidedly not active. Maybe a nice spinner or smth?
     template: `
       <div>
         
