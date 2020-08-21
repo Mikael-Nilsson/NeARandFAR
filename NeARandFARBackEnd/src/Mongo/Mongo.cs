@@ -64,18 +64,26 @@ namespace NeARandFARBackEnd.Mongo
 
         public MongoRequest checkRequest(MongoRequest request) {
 
+            LambdaLogger.Log($"dbClient is created: {dbClient != null}");
+            LambdaLogger.Log("checking connection settings");
+            LambdaLogger.Log($"database is empty: {string.IsNullOrEmpty(request.database).ToString()}" );
+            
+            if(string.IsNullOrEmpty(request.database)) {
+                request.database = Environment.GetEnvironmentVariable("mongoDB");
+                LambdaLogger.Log($"database: {request.database}");
+            }
+
             // If we're already connected, we keep that connection and don't need to check that part of the input
             if(dbClient == null) {
                 // if no database is provided, use env var
-                if(string.IsNullOrEmpty(request.database)) {
-                    request.database = Environment.GetEnvironmentVariable("mongoDB");
-                }
+                
+                LambdaLogger.Log($"and connstring is empty: {string.IsNullOrEmpty(request.connectionString).ToString()}");
 
                 // if no connectionstring is provided, use env var
                 if(string.IsNullOrEmpty(request.connectionString)) {
                     request.connectionString = $"{Environment.GetEnvironmentVariable("mongoConnectionString")}/{request.database}";
+                    LambdaLogger.Log($"connstring: {request.connectionString}");
                 }
-
                 
             }
 
@@ -88,13 +96,14 @@ namespace NeARandFARBackEnd.Mongo
 
         public async Task<List<BsonDocument>> getAllDocuments(MongoRequest request) {
 
-            request = checkRequest(request);
+            request = this.checkRequest(request);
             LambdaLogger.Log(request.ToString());
             connect(request);
             LambdaLogger.Log(dbClient.Cluster.Description.ToString());
 
             var collection = dbClient.GetDatabase(request.database).GetCollection<BsonDocument>(request.collection);
 
+            // TODO: Change to some other format so that calling classes don't need to have "using mongo*"
             List<BsonDocument> docs = await collection.Find(new BsonDocument()).ToListAsync();
             return docs;
         }
