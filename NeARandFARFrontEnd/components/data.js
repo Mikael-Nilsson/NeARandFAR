@@ -15,17 +15,24 @@ const dataService = {
 
             console.log(`${method}:ing ${body} to ${url}`);
             
-            let xhr = new XMLHttpRequest();
+            let request = new XMLHttpRequest();
+            const apiKey = localStorage.getItem('apiKey');
             
-            const options = {};
+            const options = {
+                headers: {
+                    'x-api-key': apiKey ? apiKey : null
+                }
+            };
+
+
             
-            xhr.open(method, url, options);
-            xhr.send([body]);
+            request.open(method, url, options);
+            request.send([body]);
             
-            xhr.onload = () => {
-                if(xhr.status == 200) {
+            request.onreadystatechange = () => {
+                if(request.readyState == 4 && request.status == 200) {
                     console.log('success!');
-                    resolve(xhr);   
+                    resolve(request.response);   
                 }
             };
             
