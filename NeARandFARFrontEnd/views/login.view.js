@@ -22,7 +22,7 @@ const loginView = Vue.component('loginview', {
         }
     },
     template: `
-    <div>
+    <div id="login">
         <input v-model="username" placeholder="username"><br />
         <input v-model="password" placeholder="password"><br />
         <button v-on:click="login()">login</button>

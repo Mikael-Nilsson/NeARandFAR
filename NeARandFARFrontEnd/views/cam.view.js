@@ -4,6 +4,12 @@ const camView = Vue.component('camview', {
         console.log('position in cam.view', gpsService.position.coords.latitude);
         this.assets();
 
+        AFRAME.registerComponent('cursor-listener', {
+            init: function() {
+                console.log('test');
+            }
+        });
+
     },
     mounted: function() {
         console.log('mounting cam view');
@@ -51,6 +57,9 @@ const camView = Vue.component('camview', {
 
             ];
         },
+        whenClick: function(el, data) {
+            console.log('activity started');
+        },
         assets: async function() {
             // TODO: Rewrite using Rxjs
             const d = await getData();
@@ -60,25 +69,16 @@ const camView = Vue.component('camview', {
             dir.forEach(element => {
                 d.push(element);
             });
-            
-            d.push({
-              geometry: 'text',
-              scale: '40 40 40',
-              value: 'Am I close?',
-              position: {
-                lat: gpsService.position.coords.latitude + 0.007,
-                lon: gpsService.position.coords.longitude
-              }
-            });
-
+           
             this.assetArray = d.map(p => {
                 return {
                     geometry: p.geometry,
                     value: p.value,
                     scale: p.scale,
                     position: p.position,
-                    entityPos: `latitude: ${p.position.lat}; longitude: ${p.position.lon};`
-                }
+                    entityPos: `latitude: ${p.position.lat}; longitude: ${p.position.lon};`,
+                    conversation: `id: ${p.conversationId}`
+                };
             });
 
             console.log('data collected', this.assetArray);
@@ -117,21 +117,30 @@ const camView = Vue.component('camview', {
             <template v-if="!loading">
                 <a-scene ar vr-mode-ui="enabled: false" embedded arjs="sourceType: webcam; debugUIEnabled: false;">
                 <!--<a-scene ar vr-mode-ui="enabled: false" embedded arjs="sourceType: webcam; debugUIEnabled: false;">-->
-            
+           
             
                     <template v-for="asset in assetArray">
                         <template v-if="asset.geometry == 'text'">
-                            <a-text v-bind:value="asset.value" look-at="[gps-camera]" v-bind:scale="asset.scale" v-bind:gps-entity-place="asset.entityPos"></a-text>
+                            <a-text v-bind:value="asset.value" look-at="[gps-camera]" v-bind:scale="asset.scale" v-bind:gps-entity-place="asset.entityPos" v-bind:start-conversation="asset.conversation"></a-text>
                         </template>
                     </template>
-            
-                    
+
+                    <a-sphere position="2 1.25 -5" radius="1.25" color="#EF2D5E" start-conversation="id: 1"></a-sphere>
+
+            <!--
+                    <a-sphere position="2 1.25 -5" radius="1.25" color="#EF2D5E" 
+                    event-set__down="_event: mousedown; color: #8FF7FF"
+                    event-set__up="_event: mouseup; color: #4CC3D9"></a-sphere>
+            -->
+
                     <a-text v-bind:value="assetArray.length" look-at="[gps-camera]" scale="40 40 40" gps-entity-place="latitude: 59.292531; longitude: 18.050466;"></a-text>
             <!--                    <a-text value="B" scale="100 100 100" gps-entity-place="latitude: 59.293000; longitude: 18.050500;"></a-text>
                     <a-text value="C" look-at="[gps-camera]" scale="2000 2000 2000" gps-entity-place="latitude: 59.292631; longitude: 18.050566;"></a-text>
             -->
             
-                    <a-camera gps-camera rotation-reader> </a-camera>
+                    <a-camera gps-camera rotation-reader>
+                        <a-cursor></a-cursor>
+                    </a-camera>
                 </a-scene>
             </template>
     

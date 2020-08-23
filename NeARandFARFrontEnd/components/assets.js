@@ -1,4 +1,5 @@
 const assetService = {
+    assets: {},
     getData: async () => {
         // TODO: Save common url somewhere
         const assets = await dataService.get('https://43tkyvf00i.execute-api.eu-north-1.amazonaws.com/dev/assets');
@@ -8,16 +9,27 @@ const assetService = {
 
 const getData = async (id, connection) => {
     console.log('in getData');
-    return [
+    assetService.assets = [
         {
             geometry: 'text',
-            value: `.59.293000; 18.050500`,
+            value: `Hi there!`,
             scale: '40 40 40',
+            conversationId: 3,
             position: {
                 lat: 59.293000,
                 lon: 18.050500
             }
-        } ,
+        },
+        {
+            geometry: 'text',
+            scale: '40 40 40',
+            value: 'Am I close?',
+            conversationId: 4,
+            position: {
+              lat: gpsService.position.coords.latitude + 0.0004,
+              lon: gpsService.position.coords.longitude + 0.005
+            },
+        },
         // {
         //     geometry: 'text',
         //     value: 'assets work!',
@@ -38,6 +50,8 @@ const getData = async (id, connection) => {
         // }
 
     ];
+
+    return assetService.assets;
 }
 
 
