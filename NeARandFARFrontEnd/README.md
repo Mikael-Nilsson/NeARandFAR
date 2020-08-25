@@ -1,2 +1,2 @@
 # NeARandFAR
-Trying out AR with A-Frame
+Trying out AR with A-Frame and Vue. It seems like there are problems using this on Firefox at the moment, but it seems to work reasonable well on Chrome.
