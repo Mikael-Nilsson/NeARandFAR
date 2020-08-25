@@ -65,12 +65,14 @@ const camView = Vue.component('camview', {
             const d = await getData();
             const assets = await assetService.getData();
 
+            // Adding compass
             const dir = this.compass();
             dir.forEach(element => {
-                d.push(element);
+                assets.push(element);
             });
            
-            this.assetArray = d.map(p => {
+            // Putting assets in object list
+            this.objectArray = assets.map(p => {
                 return {
                     geometry: p.geometry,
                     value: p.value,
@@ -81,7 +83,28 @@ const camView = Vue.component('camview', {
                 };
             });
 
-            console.log('data collected', this.assetArray);
+            const NPCs = await NPCservice.getNPCs(null, gpsService.position);
+            console.log('nearby npcs found', NPCs);
+
+            for(let i=0; i< NPCs.length; i++) {
+                const conversation = await conversationService.getConversation(NPCs[i].conversationId);
+                console.log('conversation collected', conversation);
+
+                const npcObject = {
+                    geometry: NPCs[i].geometry,
+                    value: conversation[0].line,
+                    scale: NPCs[i].scale,
+                    position: NPCs[i].position,
+                    entityPos: `latitude: ${NPCs[i].position.lat}; longitude: ${NPCs[i].position.lon}`,
+                    conversation: `id: ${NPCs[i].conversationId}`
+                };
+
+                this.objectArray.push(npcObject);
+                
+            }
+
+
+            console.log('data collected', this.objectArray);
         }
     },
     computed: {
@@ -93,7 +116,7 @@ const camView = Vue.component('camview', {
         loading: function() {
 
             if (!gpsService.position
-                || this.assetArray.length === 0)
+                || this.objectArray.length === 0)
                 this.loadingState = true;
             else
                 this.loadingState = false;
@@ -104,7 +127,7 @@ const camView = Vue.component('camview', {
     data: function() {
         return {
            loadingState: true,
-           assetArray: []
+           objectArray: []
         }
     },
     template: `
@@ -112,20 +135,21 @@ const camView = Vue.component('camview', {
             <template v-if="loading">
                 <div>loading...</div>
                 <div>{{pos}}</div>
-                <div>{{assetArray}}</div>
+                <div>{{objectArray}}</div>
             </template>
             <template v-if="!loading">
                 <a-scene ar vr-mode-ui="enabled: false" embedded arjs="sourceType: webcam; debugUIEnabled: false;">
                 <!--<a-scene ar vr-mode-ui="enabled: false" embedded arjs="sourceType: webcam; debugUIEnabled: false;">-->
            
             
-                    <template v-for="asset in assetArray">
+                    <template v-for="asset in objectArray">
                         <template v-if="asset.geometry == 'text'">
                             <a-text v-bind:value="asset.value" look-at="[gps-camera]" v-bind:scale="asset.scale" v-bind:gps-entity-place="asset.entityPos" v-bind:start-conversation="asset.conversation"></a-text>
                         </template>
+                        <template v-else-if="asset.geometry == 'sphere'">
+                            <a-sphere v-bind:gps-entity-place="asset.entityPos" v-bind:start-conversation="asset.conversation" v-bind:scale="asset.scale" color="#0ffff0"></a-sphere>
+                        </template>
                     </template>
-
-                    <a-sphere position="2 1.25 -5" radius="1.25" color="#EF2D5E" start-conversation="id: 1"></a-sphere>
 
             <!--
                     <a-sphere position="2 1.25 -5" radius="1.25" color="#EF2D5E" 
@@ -133,7 +157,7 @@ const camView = Vue.component('camview', {
                     event-set__up="_event: mouseup; color: #4CC3D9"></a-sphere>
             -->
 
-                    <a-text v-bind:value="assetArray.length" look-at="[gps-camera]" scale="40 40 40" gps-entity-place="latitude: 59.292531; longitude: 18.050466;"></a-text>
+                    <a-text v-bind:value="objectArray.length" look-at="[gps-camera]" scale="40 40 40" gps-entity-place="latitude: 59.292531; longitude: 18.050466;"></a-text>
             <!--                    <a-text value="B" scale="100 100 100" gps-entity-place="latitude: 59.293000; longitude: 18.050500;"></a-text>
                     <a-text value="C" look-at="[gps-camera]" scale="2000 2000 2000" gps-entity-place="latitude: 59.292631; longitude: 18.050566;"></a-text>
             -->

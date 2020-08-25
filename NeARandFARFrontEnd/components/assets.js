@@ -1,35 +1,33 @@
 const assetService = {
-    assets: {},
-    getData: async () => {
+    
+    getData: async function() {
         // TODO: Save common url somewhere
-        const assets = await dataService.get('https://43tkyvf00i.execute-api.eu-north-1.amazonaws.com/dev/assets');
+        // const assets = await dataService.get('https://43tkyvf00i.execute-api.eu-north-1.amazonaws.com/dev/assets');
         // console.log(assets);
-    }
-};
+        return this.assets;
+    },
 
-const getData = async (id, connection) => {
-    console.log('in getData');
-    assetService.assets = [
+    assets: [
         {
             geometry: 'text',
-            value: `Hi there!`,
+            value: `asset`,
             scale: '40 40 40',
-            conversationId: 3,
             position: {
                 lat: 59.293000,
-                lon: 18.050500
-            }
-        },
-        {
-            geometry: 'text',
-            scale: '40 40 40',
-            value: 'Am I close?',
-            conversationId: 4,
-            position: {
-              lat: gpsService.position.coords.latitude + 0.0004,
-              lon: gpsService.position.coords.longitude + 0.005
+                lon: 18.050400
             },
+            conversationId: 1
         },
+        // {
+        //     geometry: 'text',
+        //     scale: '40 40 40',
+        //     value: 'Am I close?',
+        //     conversationId: 4,
+        //     position: {
+        //       lat: gpsService.position.coords.latitude + 0.0004,
+        //       lon: gpsService.position.coords.longitude + 0.005
+        //     },
+        // },
         // {
         //     geometry: 'text',
         //     value: 'assets work!',
@@ -48,10 +46,30 @@ const getData = async (id, connection) => {
         //         lon: 18.033877
         //     }
         // }
+    ],
 
+    
+};
+
+const getData = async (id, connection) => {
+    console.log('in getData');
+    // assetService.assets = [
+       
+
+    // ];
+
+    return [
+        {
+            geometry: 'text',
+            value: `Hi there!`,
+            scale: '40 40 40',
+            conversationId: 3,
+            position: {
+                lat: 59.293000,
+                lon: 18.050500
+            }
+        }
     ];
-
-    return assetService.assets;
 }
 
 
