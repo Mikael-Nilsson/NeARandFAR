@@ -87,7 +87,7 @@ const camView = Vue.component('camview', {
             console.log('nearby npcs found', NPCs);
 
             for(let i=0; i< NPCs.length; i++) {
-                const conversation = await conversationService.getConversation(NPCs[i].conversationId);
+                const conversation = await conversationService.getConversation(NPCs[i].conversationStart);
                 console.log('conversation collected', conversation);
 
                 const npcObject = {
@@ -96,13 +96,12 @@ const camView = Vue.component('camview', {
                     scale: NPCs[i].scale,
                     position: NPCs[i].position,
                     entityPos: `latitude: ${NPCs[i].position.lat}; longitude: ${NPCs[i].position.lon}`,
-                    conversation: `id: ${NPCs[i].conversationId}`
+                    conversation: `id: ${NPCs[i].conversationStart}`
                 };
 
                 this.objectArray.push(npcObject);
                 
             }
-
 
             console.log('data collected', this.objectArray);
         }
@@ -140,6 +139,13 @@ const camView = Vue.component('camview', {
             <template v-if="!loading">
                 <a-scene ar vr-mode-ui="enabled: false" embedded arjs="sourceType: webcam; debugUIEnabled: false;">
                 <!--<a-scene ar vr-mode-ui="enabled: false" embedded arjs="sourceType: webcam; debugUIEnabled: false;">-->
+
+                <a-assets>
+                    <img id="speechBubble" src="assets/images/Speech_bubble.svg" />
+                                        
+                </a-assets>
+
+                <a-entity speech-bubble="position:1 1 -3; text:Är detta ett test av en halvlång text för att se om man kan få en pratbubbla?;"></a-entity>
            
             
                     <template v-for="asset in objectArray">
@@ -150,6 +156,13 @@ const camView = Vue.component('camview', {
                             <a-sphere v-bind:gps-entity-place="asset.entityPos" v-bind:start-conversation="asset.conversation" v-bind:scale="asset.scale" color="#0ffff0"></a-sphere>
                         </template>
                     </template>
+            
+            <!--
+                    <!-- TODO: How size the bubble? --
+                    <a-image position="0 2 -6" src="#speechBubble" height="2" width="6" >
+                        <a-text value="I'm Scrat, appointed diplomat\n of the Svedmyra rat clan" position="0 0 0" align="center"></a-text>
+                    </a-image>
+            -->
 
             <!--
                     <a-sphere position="2 1.25 -5" radius="1.25" color="#EF2D5E" 

@@ -1,61 +1,58 @@
-const conversationService = {
+let conversationService = {
   getConversation: function (id) {
     return this.nodes.filter(c => c.id === id);
   },
 
   // * This only allows for one active conversation per NPC at a time. If we need more, we will have to change this.
-  setActiveConversationNode: function(NPC, id, relationship) {
-    this.currentNodes.forEach(node => {
-      if(node.npc == NPC) {
+  updateActiveConversationNode: function(NPC, nodeId, relationship) {
+
+    let currentNode = this.currentNodes.filter(node => node.npc === NPC);
+
+    if(currentNode.length > 0) {
+      currentNode.forEach(node => {
         node.relationship = relationship;
-        node.id = id;
-      }
-    });
+        node.id = nodeId;
+      });
+    }
   },
 
   getActiveConversationNode: function() {
 
-    const currentNodeInfo = this.currentNodes.filter(n => n.NPC === this.activeNPC)[0];
-    console.log('found info about nodes', currentNodeInfo, ' for NPC ', this.activeNPC);
-    let currentNode = null;
+    // TODO: If no activeNPC, no conversation
+    if(NPCservice.getNPCs(globalState.activeNPC)) {
+      const currentNodeInfo = this.currentNodes.filter(n => n.NPC === globalState.activeNPC)[0];
+      console.log('found info about nodes', currentNodeInfo, ' for NPC ', globalState.activeNPC);
+      let currentNode = null;
 
-    if(currentNodeInfo) {
-      currentNode = this.nodes.filter(n => n.id === currentNodeInfo.id)[0];
-    } else {
-      const conversationId = 0; //  = NPCservice.getNPCs(NPC).conversationId;
-      currentNode = {
-        NPC: this.activeNPC,
-        relationship: 0,
-        id: conversationId
-      };
 
-      this.currentNodes.push(currentNode);
+      if(currentNodeInfo) {
+        currentNode = this.nodes.filter(n => n.id === currentNodeInfo.id)[0];
+      } else { 
+        // No conversation started with this NPC
+        const conversationId = 0;
+        currentNode = {
+          NPC: globalState.activeNPC,
+          relationship: 0,
+          id: NPCservice.getNPCs(globalState.activeNPC).conversationStart
+        };
+
+        this.currentNodes.push(currentNode);
+      }
+
+      // TODO: filtering out the relationship-unrelated answers
+      return currentNode;
     }
-
-    // TODO: filtering out the relationship-unrelated answers
-    return currentNode;
   },
-
-  activeNPC: 0,
-
+  
   currentNodes: [
     {
       NPC: 0,
-      relationship: -1,
-      id: 12
-    },
-    {
-      NPC: 1,
       relationship: 1,
-      id: 11
-    },
-    {
-      NPC: 2,
-      relationship: 3,
-      id: 14
+      id: 0
     }
   ],
 
+  // TODO: Move to backend
   nodes: [
     {
       id: 0,

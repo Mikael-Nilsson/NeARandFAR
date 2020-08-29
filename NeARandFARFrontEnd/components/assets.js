@@ -7,6 +7,7 @@ const assetService = {
         return this.assets;
     },
 
+    // TODO: Move to backend
     assets: [
         {
             geometry: 'text',
@@ -18,16 +19,16 @@ const assetService = {
             },
             conversationId: 1
         },
-        // {
-        //     geometry: 'text',
-        //     scale: '40 40 40',
-        //     value: 'Am I close?',
-        //     conversationId: 4,
-        //     position: {
-        //       lat: gpsService.position.coords.latitude + 0.0004,
-        //       lon: gpsService.position.coords.longitude + 0.005
-        //     },
-        // },
+        {
+            geometry: 'text',
+            scale: '40 40 40',
+            value: 'Hej hopp i trädgårn!',
+            conversationId: 4,
+            position: {
+              lat: 59.220337, 
+              lon: 17.642542
+            },
+        },
         // {
         //     geometry: 'text',
         //     value: 'assets work!',

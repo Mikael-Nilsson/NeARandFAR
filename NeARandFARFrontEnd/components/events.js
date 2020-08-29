@@ -35,8 +35,7 @@ const events = {
                 elm.addEventListener('click', function (evt) {
                     
                     console.log('starting conversation ', data.id);
-                    conversationService.activeNPC = data.id;
-                
+                    globalState.activeNPC = data.id;
                 });
             }
         });

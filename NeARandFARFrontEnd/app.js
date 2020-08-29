@@ -9,7 +9,9 @@ Vue.config.ignoredElements = [
   'a-marker-camera',
   'a-text',
   'a-cursor',
-  'a-sphere'
+  'a-sphere',
+  'a-image',
+  'speech-bubble'
 ]
 
 console.log('initializing app');
@@ -21,12 +23,15 @@ const app = new Vue({
 
   },
   mounted: async function () {
+    // registering events
     events.clickAction();
     events.startConversationEvent();
+
+
     const pos = await gpsService.getLocation();
-    global.position = pos.coords;
+    globalState.position = pos.coords;
     this.loaded = true;
-    console.log('lat when mounted', global.position.latitude);
+    console.log('lat when mounted', globalState.position.latitude);
 
     this.sessionActive = localStorage.getItem('sessionActive');
 
@@ -36,7 +41,7 @@ const app = new Vue({
   },
   methods: {
     startSession: function () {
-      console.log('Starting session, lat: ', global.position.latitude, this.loaded);
+      console.log('Starting session, lat: ', globalState.position.latitude, this.loaded);
       this.sessionActive = true;
       this.$router.push({ path: '/cam' });
     },
@@ -45,7 +50,7 @@ const app = new Vue({
     return {
       position: {},
       loaded: false,
-      sessionActive: false
+      sessionActive: false,
     };
   },
   computed: {
@@ -61,7 +66,6 @@ const app = new Vue({
   // TODO: Make this not show login until session is decidedly not active. Maybe a nice spinner or smth?
   template: `
       <div>
-        
         <template v-if="!sessionActive">
           <loginview v-on:start="startSession()"></loginview>
         </template>

@@ -11,34 +11,40 @@ const dashView = Vue.component('dashview', {
         },
         updateActiveConversation: async function() {
             this.activeConversation = await conversationService.getActiveConversationNode();
+        },
+        checkActive: function() {
+            console.log(this.shared.activeNPC);
         }
     },
     data: function() {
         return {
-            pos: gpsService.position.coords,
-            activeNPC: conversationService.activeNPC
-        };
+            private: {
+                activeConversation: {}
+            },
+            shared: globalState
+        }
+        
+    },
+    watch: {
+        'shared.activeNPC': async function() {
+            console.log('changed active NPC');
+            this.private.activeConversation = await conversationService.getActiveConversationNode();
+        }
     },
     computed: {
-        // activeNPC: function() {
-        //     return conversationService.activeNPC;
-        // },
-        activeConversation: async function() {
-            
-            const activeConversation = await conversationService.getActiveConversationNode();
-            console.log('getting current conversation with', this.activeNPC, activeConversation);
-            return activeConversation;
-        }
+        
     },
     template: `
     <div>
-        <template v-for="reply in activeConversation.replies">
-            <div>{{reply.line}}</div>
+        <template v-if="private.activeConversation">
+            <template v-for="reply in private.activeConversation.replies">
+                <button>{{reply.line}}</button>
+            </template>
         </template>
 
-        <b>{{activeNPC}}:</b>
-        <div>{{pos.latitude}}, {{pos.longitude}}</div>
+        <b>{{shared.activeNPC}}:</b>
+        <div>{{shared.position.latitude}}, {{shared.position.longitude}}</div>
         <button id="logout" v-on:click="logout()">logout</button>
-    </div>
+        </div>
     `
 });
