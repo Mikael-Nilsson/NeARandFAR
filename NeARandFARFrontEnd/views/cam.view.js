@@ -145,7 +145,7 @@ const camView = Vue.component('camview', {
                                         
                 </a-assets>
 
-                <a-entity speech-bubble="position:1 1 -3; text:Är detta ett test av en halvlång text för att se om man kan få en pratbubbla?;"></a-entity>
+                <a-entity speech-bubble="position:1 1 -3; size:3 1 0.01; text:Är detta ett test av en halvlång text för att se om man kan få en pratbubbla?;"></a-entity>
            
             
                     <template v-for="asset in objectArray">

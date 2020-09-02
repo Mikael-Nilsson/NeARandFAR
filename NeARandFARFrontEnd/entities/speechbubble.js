@@ -1,3 +1,4 @@
+
 var coordinates = AFRAME.utils.coordinates;
 AFRAME.registerComponent('speech-bubble', {
     schema: {
@@ -12,99 +13,196 @@ AFRAME.registerComponent('speech-bubble', {
         },
         size: {
             type: 'vec3',
-            default: {x: 1, y: 1, z: 0.01}
+            default: { x: 1, y: 1, z: 0.02 }
         }
     },
     update: function (oldData) {
         console.log('creating speech bubble');
-        const rowLength = 20; // TODO: parameter?
         const speechBubbleImgPath = 'assets/images/Speech_bubble.svg'; // TODO: parameter?
-        const fontPath = 'assets/adrip1.ttf'; // TODO: config?
-        var loader = new THREE.ImageBitmapLoader();
+        // const fontPath = 'assets/a_dripping_marker_Regular.json'; // TODO: config?
+        const bitmapLoader = new THREE.ImageBitmapLoader();
 
-        const position = this.data.position;
-        const rotation = this.data.rotation;
+        let group = new THREE.Group();
+        group.position.set(this.data.position.x, this.data.position.y, this.data.position.z);
+        this.el.setObject3D('speechbubble', group);
+
+        // const position = this.data.position;
+        // const rotation = this.data.rotation;
         const size = this.data.size;
-        let elm = this.el;
 
-        // Example text
-        // value = 'Detta är ett test av en halvlång text för att se hur man hanterar automatisk radbrytning';
+        let text = formatText(this.data.text);
+        const textObj = createTextObj(text, size);
+        group.add(textObj);
 
-        // splices string on first space after start value
-        String.prototype.wordSplice = function (start, delCount, newSubStr) {
-            const actualStart = this.indexOf(' ', start) + 1; // +1 as we want the split after the space in this case
-            return this.slice(0, actualStart) + newSubStr + this.slice(actualStart + Math.abs(delCount));
-        };
+        // var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
 
-        if (this.data.text.length > rowLength) {
-            const rows = parseInt(this.data.text.length / rowLength);
+        const bubble = createSpeechBubble(size);
+        group.add(bubble);
 
-            for (var i = 1; i < rows; i++) {
-                this.data.text = this.data.text.wordSplice((rowLength * i), 0, '\n');
-            }
-        }
+        // cube.position.set(0,0,-0.1);
 
-        loader.load(speechBubbleImgPath,
-            function (bitmap) {
-                var texture = new THREE.CanvasTexture(bitmap);
-                var material = new THREE.MeshBasicMaterial({ map: texture });
+        // elm.setObject3D('bubble', cube);
 
-                const geometry = new THREE.BoxBufferGeometry(size.x, size.y, size.z);
-
-                let cube = new THREE.Mesh(geometry, material);
-                cube.position.set(position.x, position.y, position.z);
-                cube.rotation.set(rotation.x, rotation.y, rotation.z);
-
-                elm.setObject3D('bubble', cube);
-
-                loader.load( fontPath, function ( json ) {
-
-					font = new THREE.Font( json );
-					createTextObj(text, position, rotation, size, font);
-
-				} );
-            },
-            undefined,
-            (err) => {
-                console.error('Error!', err);
-            });
     },
     remove: function () {
-        this.el.removeObject3D('text');
-        this.el.removeObject3D('bubble');
+        this.el.removeObject3D(group);
     }
 });
 
+const createSpeechBubble = function(size) {
+    let group = new THREE.Group();
+    const material = new THREE.MeshPhongMaterial({
+        color: 0x222222,
+        opacity: 0.5,
+        transparent: true,
+    });
 
-const createTextObj = function(text, position, rotation, size, font) {
+    const geometry = new THREE.BoxBufferGeometry(size.x, size.y, size.z);
+    geometry.computeBoundingBox();
+    geometry.computeVertexNormals();
+    let cube = new THREE.Mesh(geometry, material);
+    
+    group.add(cube);
 
-    const textGeometry = new THREE.TextBufferGeometry( text, {
 
-        font: font,
-        size: size,
+    // Calculate position of cone
+    // const segments = 32;
+    // const height = 1;
+    // const radius = 1; // ! This might be problematic as we essentially want it flat
 
-        // TODO: MAGIC NUMBERS! Config?
-        height: size/3,
-        curveSegments: 4, 
-        bevelThickness: 2,
-        bevelSize: 1.5,
-        bevelEnabled: true
+    // const coneGeo = new THREE.ConeGeometry( 1, height, segments, 1, true, 0, 0.9);
+    // // coneGeo.position.set(0, -(size.y/2), 0);
+    // var cone = new THREE.Mesh( coneGeo, material );
+    // cone.position.set(0, -(size.y/2), 0);
+    // cone.rotation.set(0,20,90);
+    // group.add(cone);
 
-    } );
+    return group;
 
-    textGeometry.computeBoundingBox();
-    textGeometry.computeVertexNormals();
+};
 
-    var centerOffset = - 0.5 * ( textGeometry.boundingBox.max.x - textGeometry.boundingBox.min.x );
+const formatText = function (text) {
+    const rowLength = 20; // TODO: parameter?
 
-    textMesh1 = new THREE.Mesh( textGeometry, material );
+    // Example text
+    // value = 'Detta är ett test av en halvlång text för att se hur man hanterar automatisk radbrytning';
 
-    textMesh1.position.x = centerOffset;
-    textMesh1.position.y = position.y;
-    textMesh1.position.z = position.z;
+    // splices string on first space after start value
+    String.prototype.wordSplice = function (start, delCount, newSubStr) {
+        const actualStart = this.indexOf(' ', start) + 1; // +1 as we want the split after the space in this case
+        return this.slice(0, actualStart) + newSubStr + this.slice(actualStart + Math.abs(delCount));
+    };
 
-    textMesh1.rotation.x = rotation.x;
-    textMesh1.rotation.y = rotation.y;
+    if (text.length > rowLength) {
+        const rows = parseInt(text.length / rowLength);
 
-    elm.setObject3D('text', textMesh1);
-}
+        for (var i = 1; i < rows; i++) {
+            text = text.wordSplice((rowLength * i), 0, '\n');
+        }
+    }
+
+    return text;a
+};
+
+let calculateFontSize = function(textArray, signSize, context, fontName) {
+    
+    const longestLine = textArray.reduce((largest, current)=> {
+        console.log(current, current.length, largest.length)
+        if(current.length > largest.length) return current;
+        else return largest;
+    });
+
+    let fontSize = 1000;
+    let done = true;
+    const maxWidth = signSize.x * 400;
+    
+    do {
+
+        font = `${fontSize}px ${fontName}`;
+
+        context.font = font;
+        width = context.measureText(longestLine).width;
+
+        if(width > maxWidth) {
+            fontSize = Math.ceil(fontSize / 2);
+            done = false;
+        } else if( width < (maxWidth - width/2 )) {
+            fontSize = Math.ceil(fontSize + fontSize/2);
+            done = false;
+        } else {
+            // We look for a smaller increase that will put us under maxWidth
+            let step = fontSize;
+            let newSize = fontSize;
+            let oldSize = fontSize;
+            let newSizeFound = false;
+            while(Math.ceil(newSize/2) > 2 && !newSizeFound) {
+                oldSize = newSize;
+                step = Math.ceil(step /2);
+                newSize = fontSize + step;
+                font = `${newSize}px ${fontName}`;
+
+                context.font = font;
+                width = context.measureText(longestLine).width;
+                if(width < maxWidth) {
+                    fontSize = newSize;
+                    done = true;
+                    newSizeFound = true;
+                }
+            }
+        }
+
+    } while(!done); // TODO: MAGIC NUMBER! config?
+
+    formattedWidth = Math.ceil(width) + "px";
+    console.log('total length:', formattedWidth, 'fontSize', fontSize);
+    
+    return fontSize;
+};
+
+const createTextObj = function (text, size) {
+
+    const signWidth = size.x;
+    const signHeight = size.y;
+    
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    context.canvas.width = size.x*400;
+    context.canvas.height = size.y*400;
+    
+    let fontName = 'arial';
+    const fontSize = calculateFontSize(text.split('\n'), size, context, fontName);
+    // const fontSize = 61; // Optimal result
+    context.font = `${fontSize}px ${fontName}`; // TODO: get font from elsewhere, eg ttf file
+
+    // Making array of multiline text
+    text = text.split('\n');
+
+    let y = fontSize;
+    context.fillStyle = 'white';
+    // context.strokeStyle = 'black';
+
+    // context.font = 'a dripping marker';
+    text.forEach(line => {
+        context.fillText(line, 0, y);
+        
+        // context.strokeText(line, 0, y);
+        y += fontSize;
+    });
+
+    // canvas contents will be used for a texture
+    const texture = new THREE.CanvasTexture(canvas);
+    var material = new THREE.MeshBasicMaterial({ map: texture });
+
+    const textGeometry = new THREE.BoxBufferGeometry(signWidth, signHeight, 0.01);
+
+    // textGeometry.computeBoundingBox();
+    // textGeometry.computeVertexNormals();
+
+    let textCube = new THREE.Mesh(textGeometry, material);
+
+    textCube.position.set(0, 0, 0);
+
+    return textCube;
+};
+
+
