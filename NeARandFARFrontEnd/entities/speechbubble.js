@@ -6,15 +6,14 @@ AFRAME.registerComponent('speech-bubble', {
             default: ''
         },
         position: {
-            type: 'vec3',
-            default: {x: 0, y: 0, z: 0}
+            type: 'vec3'
         },
         rotation: {
             type: 'vec3'
         },
         size: {
             type: 'vec3',
-            default: { x: 1, y: 1, z: 0.02 } // TODO: Set font as parameter and calculate sign size
+            default: { x: 1, y: 1, z: 0.02 }
         }
     },
     update: function (oldData) {
@@ -24,13 +23,7 @@ AFRAME.registerComponent('speech-bubble', {
         const bitmapLoader = new THREE.ImageBitmapLoader();
 
         let group = new THREE.Group();
-        try{
-            group.position.set(this.data.position.x, this.data.position.y, this.data.position.z);
-        } catch(e) {
-            console.error(e);
-            console.log(this.data);
-        }
-
+        group.position.set(this.data.position.x, this.data.position.y, this.data.position.z);
         this.el.setObject3D('speechbubble', group);
 
         // const position = this.data.position;
@@ -111,8 +104,7 @@ const formatText = function (text) {
     return text;a
 };
 
-// Returns a fontsize given the test, the size of the sign and the font
-const calculateFontSize = function(textArray, signSize, context, fontName) {
+let calculateFontSize = function(textArray, signSize, context, fontName) {
     
     const longestLine = textArray.reduce((largest, current)=> {
         console.log(current, current.length, largest.length)
