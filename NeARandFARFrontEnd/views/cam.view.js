@@ -2,7 +2,7 @@
 const camView = Vue.component('camview', {
     created: function() {
         console.log('position in cam.view', gpsService.position.coords.latitude);
-        this.assets();
+        this.getAssets();
 
         AFRAME.registerComponent('cursor-listener', {
             init: function() {
@@ -20,7 +20,7 @@ const camView = Vue.component('camview', {
             return [
                 {
                     geometry: 'text',
-                    scale: '60 60 60',
+                    scale: '20 20 20',
                     value: 'north',
                     position: {
                         lat: gpsService.position.coords.latitude + 0.001,
@@ -29,7 +29,7 @@ const camView = Vue.component('camview', {
                 },
                 {
                     geometry: 'text',
-                    scale: '60 60 60',
+                    scale: '20 20 20',
                     value: 'south',
                     position: {
                         lat: gpsService.position.coords.latitude - 0.001,
@@ -38,7 +38,7 @@ const camView = Vue.component('camview', {
                 },
                 {
                     geometry: 'text',
-                    scale: '60 60 60',
+                    scale: '20 20 20',
                     value: 'east',
                     position: {
                         lat: gpsService.position.coords.latitude,
@@ -47,7 +47,7 @@ const camView = Vue.component('camview', {
                 },
                 {
                     geometry: 'text',
-                    scale: '60 60 60',
+                    scale: '20 20 20',
                     value: 'west',
                     position: {
                         lat: gpsService.position.coords.latitude,
@@ -60,26 +60,29 @@ const camView = Vue.component('camview', {
         whenClick: function(el, data) {
             console.log('activity started');
         },
-        assets: async function() {
+        getAssets: async function() {
             // TODO: Rewrite using Rxjs
             const d = await getData();
             const assets = await assetService.getData();
+            console.log('assets', assets);
 
             // Adding compass
             const dir = this.compass();
             dir.forEach(element => {
                 assets.push(element);
             });
+
            
             // Putting assets in object list
-            this.objectArray = assets.map(p => {
+            this.private.objectArray = assets.map(p => {
                 return {
                     geometry: p.geometry,
                     value: p.value,
                     scale: p.scale,
                     position: p.position,
                     entityPos: `latitude: ${p.position.lat}; longitude: ${p.position.lon};`,
-                    conversation: `id: ${p.conversationId}`
+                    conversation: `id: ${p.conversationId}`,
+                    speechBubble: `size:2.5 1 0.01; text:${p.value};`
                 };
             });
 
@@ -92,18 +95,19 @@ const camView = Vue.component('camview', {
 
                 const npcObject = {
                     geometry: NPCs[i].geometry,
-                    value: conversation[0].line,
+                    value: conversation.line,
                     scale: NPCs[i].scale,
                     position: NPCs[i].position,
                     entityPos: `latitude: ${NPCs[i].position.lat}; longitude: ${NPCs[i].position.lon}`,
-                    conversation: `id: ${NPCs[i].conversationStart}`
+                    conversation: `id: ${NPCs[i].conversationStart}`,
+                    speechBubble: `size:2.5 1 0.01; text:${conversation.line};`
                 };
 
-                this.objectArray.push(npcObject);
+                this.private.objectArray.push(npcObject);
                 
             }
 
-            console.log('data collected', this.objectArray);
+            console.log('data collected', this.private.objectArray);
         }
     },
     computed: {
@@ -115,18 +119,24 @@ const camView = Vue.component('camview', {
         loading: function() {
 
             if (!gpsService.position
-                || this.objectArray.length === 0)
-                this.loadingState = true;
+                || this.private.objectArray.length === 0)
+                this.private.loadingState = true;
             else
-                this.loadingState = false;
+                this.private.loadingState = false;
             
-            return this.loadingState;
+            return this.private.loadingState;
         }
     },
     data: function() {
         return {
-           loadingState: true,
-           objectArray: []
+            private: {
+                loadingState: true,
+                objectArray: [],
+                compassPin: {
+                    pos: `latitude: shared.position.latitude; longitude: shared.position.latitude;`
+                }
+            },
+            shared: globalState
         }
     },
     template: `
@@ -134,21 +144,15 @@ const camView = Vue.component('camview', {
             <template v-if="loading">
                 <div>loading...</div>
                 <div>{{pos}}</div>
-                <div>{{objectArray}}</div>
+                <div>{{private.objectArray}}</div>
             </template>
             <template v-if="!loading">
-                <a-scene ar vr-mode-ui="enabled: false" embedded arjs="sourceType: webcam; debugUIEnabled: false;">
-                <!--<a-scene ar vr-mode-ui="enabled: false" embedded arjs="sourceType: webcam; debugUIEnabled: false;">-->
-
-                <a-assets>
-                    <img id="speechBubble" src="assets/images/Speech_bubble.svg" />
-                                        
-                </a-assets>
-
-                <a-entity speech-bubble="position:1 1 -3; size:3 1 0.01; text:Är detta ett test av en halvlång text för att se om man kan få en pratbubbla?;"></a-entity>
-           
+                <a-scene ar vr-mode-ui="enabled: false" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
+<!--            <a-scene ar vr-mode-ui="enabled: false" embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+-->
             
-                    <template v-for="asset in objectArray">
+                    
+                    <template v-for="asset in private.objectArray">
                         <template v-if="asset.geometry == 'text'">
                             <a-text v-bind:value="asset.value" look-at="[gps-camera]" v-bind:scale="asset.scale" v-bind:gps-entity-place="asset.entityPos" v-bind:start-conversation="asset.conversation"></a-text>
                         </template>
@@ -156,13 +160,6 @@ const camView = Vue.component('camview', {
                             <a-sphere v-bind:gps-entity-place="asset.entityPos" v-bind:start-conversation="asset.conversation" v-bind:scale="asset.scale" color="#0ffff0"></a-sphere>
                         </template>
                     </template>
-            
-            <!--
-                    <!-- TODO: How size the bubble? --
-                    <a-image position="0 2 -6" src="#speechBubble" height="2" width="6" >
-                        <a-text value="I'm Scrat, appointed diplomat\n of the Svedmyra rat clan" position="0 0 0" align="center"></a-text>
-                    </a-image>
-            -->
 
             <!--
                     <a-sphere position="2 1.25 -5" radius="1.25" color="#EF2D5E" 
@@ -170,10 +167,12 @@ const camView = Vue.component('camview', {
                     event-set__up="_event: mouseup; color: #4CC3D9"></a-sphere>
             -->
 
-                    <a-text v-bind:value="objectArray.length" look-at="[gps-camera]" scale="40 40 40" gps-entity-place="latitude: 59.292531; longitude: 18.050466;"></a-text>
-            <!--                    <a-text value="B" scale="100 100 100" gps-entity-place="latitude: 59.293000; longitude: 18.050500;"></a-text>
-                    <a-text value="C" look-at="[gps-camera]" scale="2000 2000 2000" gps-entity-place="latitude: 59.292631; longitude: 18.050566;"></a-text>
-            -->
+                    <a-text v-bind:value="private.objectArray.length" look-at="[gps-camera]" scale="40 40 40" gps-entity-place="latitude: 59.292531; longitude: 18.050466;"></a-text>
+
+                    <!--<a-cone radius-bottom="0.1" radius-top="0.01" rotation="0 0 90" />
+-->
+                    <!-- <a-box height="0.1" width="0.1" depth="20" gps-entity-place="private.compasspin.pos" />
+-->
             
                     <a-camera gps-camera rotation-reader>
                         <a-cursor></a-cursor>
