@@ -1,65 +1,33 @@
+<!DOCTYPE html>
+<html>
 
-var coordinates = AFRAME.utils.coordinates;
-AFRAME.registerComponent('speech-bubble', {
-    schema: {
-        text: {
-            default: ''
-        },
-        position: {
-            type: 'vec3',
-            default: {x: 0, y: 0, z: 0}
-        },
-        rotation: {
-            type: 'vec3'
-        },
-        size: {
-            type: 'vec3',
-            default: { x: 1, y: 1, z: 0.02 } // TODO: Set font as parameter and calculate sign size
-        }
-    },
-    update: function (oldData) {
-        console.log('creating speech bubble');
-        const speechBubbleImgPath = 'assets/images/Speech_bubble.svg'; // TODO: parameter?
-        // const fontPath = 'assets/a_dripping_marker_Regular.json'; // TODO: config?
-        const bitmapLoader = new THREE.ImageBitmapLoader();
-
-        let group = new THREE.Group();
-        try{
-            group.position.set(this.data.position.x, this.data.position.y, this.data.position.z);
-        } catch(e) {
-            console.error(e);
-            console.log(this.data);
-        }
-
-        this.el.setObject3D('speechbubble', group);
-
-        // const position = this.data.position;
-        // const rotation = this.data.rotation;
-        const size = this.data.size;
-
-        let text = formatText(this.data.text);
-        const textObj = createTextObj(text, size);
-        group.add(textObj);
-
-        // var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-
-        const bubble = createSpeechBubble(size);
-        group.add(bubble);
-
-        // cube.position.set(0,0,-0.1);
-
-        // elm.setObject3D('bubble', cube);
-
-    },
-    remove: function () {
-        this.el.removeObject3D(group);
+<head>
+  <meta charset="utf-8">
+  <title>My first three.js app</title>
+  <style>
+    body {
+      margin: 0;
     }
-});
+
+    canvas {
+      display: block;
+    }
+
+    /* @font-face {
+        font-family: 'a dripping marker';
+        src: url('./adrip1.ttf');
+      } */
+  </style>
+</head>
+
+<body>
+  <script src="three.js"></script>
+  <script>
 
 const createSpeechBubble = function(size) {
     let group = new THREE.Group();
     const material = new THREE.MeshPhongMaterial({
-        color: 0x222222,
+        color: 0x442244,
         opacity: 0.5,
         transparent: true,
     });
@@ -68,7 +36,6 @@ const createSpeechBubble = function(size) {
     geometry.computeBoundingBox();
     geometry.computeVertexNormals();
     let cube = new THREE.Mesh(geometry, material);
-    
     group.add(cube);
 
 
@@ -111,8 +78,7 @@ const formatText = function (text) {
     return text;a
 };
 
-// Returns a fontsize given the test, the size of the sign and the font
-const calculateFontSize = function(textArray, signSize, context, fontName) {
+let calculateFontSize = function(textArray, signSize, context, fontName) {
     
     const longestLine = textArray.reduce((largest, current)=> {
         console.log(current, current.length, largest.length)
@@ -203,8 +169,8 @@ const createTextObj = function (text, size) {
 
     const textGeometry = new THREE.BoxBufferGeometry(signWidth, signHeight, 0.01);
 
-    // textGeometry.computeBoundingBox();
-    // textGeometry.computeVertexNormals();
+    textGeometry.computeBoundingBox();
+    textGeometry.computeVertexNormals();
 
     let textCube = new THREE.Mesh(textGeometry, material);
 
@@ -213,4 +179,57 @@ const createTextObj = function (text, size) {
     return textCube;
 };
 
+    function animate() {
+      requestAnimationFrame(animate);
+      renderer.render(scene, camera);
+    }
+  </script>
+  <script>
 
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    scene.background = new THREE.Color( 0xffffff );
+
+    document.body.appendChild(renderer.domElement);
+
+    camera.position.z = 5;
+
+    var group = new THREE.Group();
+    group.position.set(0, 0, 0);
+    group.rotation.set(0,0,0);
+    scene.add(group);
+
+
+    // var geometry = new THREE.BoxGeometry();
+    // var material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    // var cube = new THREE.Mesh(geometry, material);
+    // group.add(cube);
+
+    let size = {x: 2.5, y: 1, z: 0.01};
+    this.data = {
+      text: 'Detta är ett test av en halvlång text för att se hur man hanterar automatisk radbrytning'
+
+    };
+
+
+    let text = formatText(this.data.text);
+    const textObj = createTextObj(text, size);
+    group.add(textObj);
+
+    // var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+
+    // const bubble = createSpeechBubble(size);
+    // group.add(bubble);
+
+
+    
+    animate();
+
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+version: "3.4"
+
+volumes:
+  mongo-data:
+  mongo-config:
+
+networks:
+  mesh:
+    driver: overlay
+
+services:
+  mongo:
+    image: mongo:4.0
+    environment:
+          MONGO_INITDB_ROOT_USERNAME: admin
+          MONGO_INITDB_ROOT_PASSWORD: SåJädraHemligtPWD!
+    deploy:
+      mode: global
+      placement:
+        constraints: [node.role == manager]
+      restart_policy:
+        condition: on-failure
+        max_attempts: 2
+    networks:
+      - mesh
+    ports:
+      - target: 27017
+        published: 27017 # access locally on this port
+        mode: ingress
+    volumes:
+      - mongo-data:/data/db
+      - mongo-config:/data/configdb
+    logging:
+      driver: json-file
+      options:
+        max-size: "200k"
+        max-file: "10"
