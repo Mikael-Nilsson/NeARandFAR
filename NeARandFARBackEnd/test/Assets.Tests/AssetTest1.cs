@@ -46,21 +46,23 @@ namespace NeARandFARBackEnd.Tests
         }
 
         [Fact]
-        public void TestGetAsset() {
+        public async void testGetAsset() {
             var assets = new AssetHandler();
 
-            AssetRequest request = new AssetRequest();
-            request.id = "2";
-            
+            APIGatewayProxyRequest request = new APIGatewayProxyRequest();
+            request.PathParameters = new Dictionary<string, string>() {
+                { "id", "10001" } 
+            };
+
             // TODO: Assert effect of not setting needed properties on request
             var context = new TestLambdaContext();
-            object asset = assets.getAsset(request, context);
+            object asset = await assets.getAssetByID(request, context);
 
-            Assert.NotEmpty(asset.ToString());
+            Assert.NotNull(asset.ToString());
         }
 
         [Fact]
-        public async void TestGetAssets() {
+        public async void testGetAllAssets() {
             var handler = new AssetHandler();
 
             APIGatewayProxyRequest request = new APIGatewayProxyRequest();
@@ -69,8 +71,20 @@ namespace NeARandFARBackEnd.Tests
 
             // TODO: Better assertion
             Assert.NotEmpty(result.ToString());
+        }
 
+        [Fact]
+        public async void testGetMultipleAssets()
+        {
+            var handler = new AssetHandler();
 
+            APIGatewayProxyRequest request = new APIGatewayProxyRequest();
+            request.Body = "{ 'position.lat': { $gt: 59.29}}";
+
+            object result = await handler.getAssets(request);
+            
+            // TODO: Better assertion
+            Assert.NotEmpty(result.ToString());
         }
     }
 }

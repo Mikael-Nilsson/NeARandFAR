@@ -15,27 +15,45 @@ using MongoDB.Bson;
 namespace NeARandFARBackEnd.Tests
 {
 
-    public class getAllTest : IClassFixture<LaunchSettingsFixture>
+    public class MongoTests : IClassFixture<LaunchSettingsFixture>
     {
         private ITestOutputHelper output;
         LaunchSettingsFixture fixture;
 
-        public getAllTest(ITestOutputHelper output, LaunchSettingsFixture fixture) {
+        public MongoTests(ITestOutputHelper output, LaunchSettingsFixture fixture) {
             this.output = output;
             this.fixture = fixture;
         }
 
         [Fact]
-        public async void Test1()
+        public async void testGetAllDocuments()
         {
-            NeARandFARBackEnd.Mongo.MongoHandler handler = new NeARandFARBackEnd.Mongo.MongoHandler();
-            APIGatewayProxyRequest request = new APIGatewayProxyRequest();
-            // request.QueryStringParameters = new Dictionary<string, string>() {{"collection","assets"}};
-            request.Body = "{\"collection\": \"assets\"}";
-            // (new Dictionary<string, string>(){{"collection", "assets"}}).ToJson().ToString();
-            object result = await handler.getAll(request);
+            Dictionary<string, string> request = new Dictionary<string, string>() {
+                { "collection", "assets"}
+            };
 
-            Assert.NotNull(result);
+            NeARandFARBackEnd.Mongo.MongoClient client = new Mongo.MongoClient();
+            NeARandFARBackEnd.Mongo.MongoRequest mongoRequest = new Mongo.MongoRequest(request);
+
+            var result = await client.getDocuments(mongoRequest);
+
+            Assert.True(result.Count > 0);
+        }
+
+        [Fact]
+        public async void testGetMultipleDocuments() {
+            Dictionary<string, string> request = new Dictionary<string, string>() {
+                { "collection", "assets"},
+                { "query", "{'position.lat': { $gt: 59.29}}" }
+            };
+
+            NeARandFARBackEnd.Mongo.MongoClient client = new Mongo.MongoClient();
+            NeARandFARBackEnd.Mongo.MongoRequest mongoRequest = new Mongo.MongoRequest(request);
+
+            var result = await client.getDocuments(mongoRequest);
+
+            Assert.True(result.Count > 0);
+
         }
     }       
 }

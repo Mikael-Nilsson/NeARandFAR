@@ -94,23 +94,86 @@ namespace NeARandFARBackEnd.Mongo
         }
 
 
-        public async Task<List<BsonDocument>> getAllDocuments(MongoRequest request) {
+        public async Task<List<BsonDocument>> getDocuments(MongoRequest request) {
 
             request = this.checkRequest(request);
             LambdaLogger.Log(request.ToString());
             connect(request);
             LambdaLogger.Log(dbClient.Cluster.Description.ToString());
+            
+            IMongoCollection<BsonDocument> collection = dbClient.GetDatabase(request.database).GetCollection<BsonDocument>(request.collection);
 
-            var collection = dbClient.GetDatabase(request.database).GetCollection<BsonDocument>(request.collection);
+            // Handle filters
+            BsonDocument query = new BsonDocument();
+            if (request.query != null) {
+                query = MongoDB.Bson.Serialization.BsonSerializer.Deserialize<BsonDocument>(request.query);
+            }
 
             // TODO: Change to some other format so that calling classes don't need to have "using mongo*"
-            List<BsonDocument> docs = await collection.Find(new BsonDocument()).ToListAsync();
+            List<BsonDocument> docs = await collection.Find(query).Project("{_id: 0}").ToListAsync();
             return docs;
         }
+    }
 
-        public async Task<List<BsonDocument>> getMultipleDocuments() {
-            return null;
+
+    // TODO: move these
+
+    // TODO: Make abstract parent class, make this child of that
+    public class MongoRequest
+    {
+        public string id { get; set; }
+
+        public List<string> documents { get; set; }
+        public string query { get; set; }
+        public string collection { get; set; }
+        public string connectionString { get; set; }
+        public string database { get; set; }
+        public string user { get; set; }
+        public string password { get; set; }
+
+        public MongoRequest(Dictionary<string, string> request)
+        {
+
+            if (request.ContainsKey("id") && request["id"] != null)
+                this.id = request["id"];
+
+            if (request.ContainsKey("query") && request["query"] != null)
+                this.query = request["query"];
+
+            if (request.ContainsKey("collection") && request["collection"] != null)
+                this.collection = request["collection"];
+
+            if (request.ContainsKey("connectionString") && request["connectionString"] != null)
+                this.connectionString = request["connectionString"];
+
+            if (request.ContainsKey("database") && request["database"] != null)
+                this.database = request["database"];
+
+            if (request.ContainsKey("user") && request["user"] != null)
+                this.user = request["user"];
+
+            if (request.ContainsKey("password") && request["password"] != null)
+                this.password = request["password"];
         }
 
+        public override string ToString()
+        {
+            string result = $"id: {this.id}, query: {this.query}, collection: {this.collection}, connectionString: {this.connectionString}, database: {this.database}";
+            return result;
+        }
     }
+
+    public class MongoResponse
+    {
+        public string body { get; set; }
+        public Dictionary<string, string> headers { get; set; }
+
+        public MongoResponse(BsonDocument results)
+        {
+            Console.WriteLine(results.ToString());
+            body = results.ToString();
+            headers = null;
+        }
+    }
+
 }

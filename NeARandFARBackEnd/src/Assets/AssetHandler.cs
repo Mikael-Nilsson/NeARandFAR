@@ -8,6 +8,7 @@ using Amazon.Lambda.Core;
 
 using MongoDB.Bson;
 using NeARandFARBackEnd.Mongo;
+using System.Collections.Immutable;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 // [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
@@ -45,49 +46,56 @@ namespace NeARandFARBackEnd.Assets
             client = new MongoClient();
         }
 
+        /// <summary>
+        /// Gets one asset by ID
+        /// </summary>
+        /// <param name="assetRequest"></param>
+        /// <param name="context"></param>
+        /// <returns></returns>
         [LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
-        public object getAsset(AssetRequest assetRequest, ILambdaContext context = null) {
-            LambdaLogger.Log($"Calling {context.FunctionName}");
-            
-            NeARandFARBackEnd.Mongo.MongoHandler mongo = new Mongo.MongoHandler();
-            // NeARandFARBackEnd.Mongo.MongoRequest mongoRequest = new Mongo.MongoRequest();
+        public async Task<object> getAssetByID(APIGatewayProxyRequest request, ILambdaContext context = null)
+        {
+            if (context != null && context.FunctionName != null)
+                LambdaLogger.Log($"Calling {context.FunctionName}");
 
-            // mongoRequest.connectionString = assetRequest.mongoConnectionString;
+            string query = "{'id': " + request.PathParameters["id"] + "}";
 
-            // ! Do we need to massage the result in some way or does this suffice?
-            // TODO: Get one asset instead of all
-            // return new {assets = mongo.getAll(mongoRequest)};
-            return null;
+            return await get(query);
         }
 
+        /// <summary>
+        /// Gets assets by filter or if none, all
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public async Task<object> getAssets(APIGatewayProxyRequest request, ILambdaContext context = null) {
             if(context != null && context.FunctionName != null)
                 LambdaLogger.Log($"Calling {context.FunctionName}");
 
-            Dictionary<string, string> req = new Dictionary<string, string>(){{"collection", "assets"}};
+            //Dictionary<string, string> req = new Dictionary<string, string>(){{"collection", "assets"}};
+            string query = request.Body;
+
+            return await get(query);
+        }
+
+        private async Task<object> get(string query) {
+            Dictionary<string, string> req = new Dictionary<string, string>() { { "collection", "assets" } };
+            req["query"] = query;
 
             MongoRequest mongoRequest = new MongoRequest(req);
 
-            List<BsonDocument> docs = await client.getAllDocuments(mongoRequest);
+            List<BsonDocument> docs = await client.getDocuments(mongoRequest);
 
-            string body = docs.ToJson().ToJson().ToString();
+            string body = docs.ToJson().ToString();
             LambdaLogger.Log(body);
 
-            // return new AssetResponse(new BsonDocument {
-            //     {"assets", new BsonArray(docs)}
-            // });
-            
-            return new APIGatewayProxyResponse {
+            return new APIGatewayProxyResponse
+            {
                 StatusCode = (int)HttpStatusCode.OK,
-                Headers = new Dictionary<string, string> {{"Access-Control-Allow-Origin", "*"}},
+                Headers = new Dictionary<string, string> { { "Access-Control-Allow-Origin", "*" } },
                 Body = body
             };
-
-            // return new {
-            //     StatusCode = (int)HttpStatusCode.OK,
-            //     Headers = new Dictionary<string, string> {{"Access-Control-Allow-Origin", "*"}},
-            //     Body = body
-            // };
         }
 
     }

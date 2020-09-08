@@ -35,7 +35,7 @@ namespace NeARandFARBackEnd.Mongo
             MongoRequest mongoRequest = new MongoRequest(requestUtil.checkRequest(request, new string[1]{"collection"}));
         
 
-            List<BsonDocument> docs = await client.getAllDocuments(mongoRequest);
+            List<BsonDocument> docs = await client.getDocuments(mongoRequest);
 
             // return new {context = context};
 
@@ -76,61 +76,5 @@ namespace NeARandFARBackEnd.Mongo
         }
 
     }
-
-    // TODO: move these
-
-    // TODO: Make abstract parent class, make this child of that
-    public class MongoRequest {
-        public string id {get; set;}
-
-        public List<string> documents {get; set;}
-        public string query {get; set;}
-        public string collection {get; set;}
-        public string connectionString {get; set;}
-        public string database {get; set;}
-        public string user {get; set;}
-        public string password {get; set;}
-
-        public MongoRequest(Dictionary<string, string> request) {
-
-            if(request.ContainsKey("id") && request["id"] != null)
-                this.id = request["id"];
-
-            if(request.ContainsKey("query") && request["query"] != null)
-                this.query = request["query"];
-                
-            if(request.ContainsKey("collection") && request["collection"] != null)
-                this.collection = request["collection"];
-                
-            if(request.ContainsKey("connectionString") && request["connectionString"] != null)
-                this.connectionString = request["connectionString"];
-                
-            if(request.ContainsKey("database") && request["database"] != null)
-                this.database = request["database"];
-                
-            if(request.ContainsKey("user") && request["user"] != null)
-                this.user = request["user"];
-                
-            if(request.ContainsKey("password") && request["password"] != null)
-                this.password = request["password"];
-        }
-
-        public override string ToString() {
-            string result = $"id: {this.id}, query: {this.query}, collection: {this.collection}, connectionString: {this.connectionString}, database: {this.database}";
-            return result;
-        }
-    }
-
-    public class MongoResponse {
-        public string body {get; set;}
-        public Dictionary<string, string> headers {get; set;}
-
-        public MongoResponse(BsonDocument results) {
-            Console.WriteLine(results.ToString());
-            body = results.ToString();
-            headers = null;
-        }
-    }
-
 
 }
