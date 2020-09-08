@@ -9,11 +9,14 @@ const dashView = Vue.component('dashview', {
             localStorage.removeItem('apiKey');
             this.$router.push({path: '/'});
         },
-        updateActiveConversation: async function() {
-            this.activeConversation = await conversationService.getActiveConversationNode();
-        },
         checkActive: function() {
             console.log(this.shared.activeNPC);
+        },
+        updateConversation: async function(reply) {
+            
+            console.log('updating active conversation with', reply);
+            conversationService.updateActiveConversationNode(this.shared.activeNPC, reply.next[0]); // TODO: add reply.relationship if any
+            console.log(conversationService.currentNodes[0]);
         }
     },
     data: function() {
@@ -27,8 +30,9 @@ const dashView = Vue.component('dashview', {
     },
     watch: {
         'shared.activeNPC': async function() {
-            console.log('changed active NPC');
-            this.private.activeConversation = await conversationService.getActiveConversationNode();
+            const currentNode = await conversationService.getCurrentConversationNode();
+            this.private.activeConversation = conversationService.getConversation(currentNode.id);
+            console.log('changed active NPC', this.private.activeConversation, currentNode);
         }
     },
     computed: {
@@ -38,7 +42,7 @@ const dashView = Vue.component('dashview', {
     <div>
         <template v-if="private.activeConversation">
             <template v-for="reply in private.activeConversation.replies">
-                <button>{{reply.line}}</button>
+                <button v-on:click="updateConversation(reply)">{{reply.line}}</button>
             </template>
         </template>
 

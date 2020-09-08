@@ -1,0 +1,19 @@
+<head>
+    <title>My A-Frame Scene</title>
+    <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script> 
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script> 
+  </head>
+   
+  <body>
+    <a-scene>
+      <a-entity id="monster" geometry="primitive: box" material="src: url(monster.png)"
+                look-at="[camera]"></a-entity>
+      <a-entity id="player" camera></a-entity>
+   
+      <a-entity id="dog" geometry="primitive: box" material="src: url(dog.png)"
+                look-at="#squirrel"></a-entity>
+      <a-entity id="squirrel">
+        <a-animation id="running" attribute="position" to="100 0 0"></a-animation>
+      </a-entity>
+    </a-scene>
+  </body>
