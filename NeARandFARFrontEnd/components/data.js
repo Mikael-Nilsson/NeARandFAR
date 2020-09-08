@@ -24,8 +24,6 @@ const dataService = {
                 }
             };
 
-
-            
             request.open(method, url, options);
             request.send([body]);
             

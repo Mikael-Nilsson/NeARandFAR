@@ -1,22 +1,39 @@
 let conversationService = {
+  
   getConversation: function (id) {
-    return this.nodes.filter(c => c.id === id);
+    
+    const node = this.nodes.filter(c => c.id === id);
+
+    if(node.length > 1) {
+      console.error('problems in conversation nodes, double id', node);
+    } else return node[0];
   },
 
   // * This only allows for one active conversation per NPC at a time. If we need more, we will have to change this.
-  updateActiveConversationNode: function(NPC, nodeId, relationship) {
-
-    let currentNode = this.currentNodes.filter(node => node.npc === NPC);
+  updateActiveConversationNode: function(NPC, nodeId) {
+    console.log('updateActiveConversationNode', NPC, nodeId);
+    return
+    let currentNode = this.activeNodes.filter(node => node.npc === NPC);
 
     if(currentNode.length > 0) {
       currentNode.forEach(node => {
         node.relationship = relationship;
         node.id = nodeId;
       });
+    } else {
+      currentNode = {
+          NPC: globalState.activeNPC,
+          relationship: 0,
+          id: NPCservice.getNPCs(globalState.activeNPC).conversationStart
+        };
+
+      this.currentNodes.push(currentNode);
     }
   },
 
-  getActiveConversationNode: function() {
+  // returns node from currentNodes belonging to active NPC
+  getCurrentConversationNode: function() {
+    console.log('getCurrentConversationNode');
 
     // TODO: If no activeNPC, no conversation
     if(NPCservice.getNPCs(globalState.activeNPC)) {
@@ -26,7 +43,7 @@ let conversationService = {
 
 
       if(currentNodeInfo) {
-        currentNode = this.nodes.filter(n => n.id === currentNodeInfo.id)[0];
+        currentNode = this.currentNodes.filter(n => n.id === currentNodeInfo.id)[0];
       } else { 
         // No conversation started with this NPC
         const conversationId = 0;
@@ -36,10 +53,11 @@ let conversationService = {
           id: NPCservice.getNPCs(globalState.activeNPC).conversationStart
         };
 
-        this.currentNodes.push(currentNode);
+        this.activeNodes.push(currentNode);
       }
 
       // TODO: filtering out the relationship-unrelated answers
+      console.log('returning node from getActiveConversationNode', currentNode);
       return currentNode;
     }
   },
