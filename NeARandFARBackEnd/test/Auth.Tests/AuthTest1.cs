@@ -23,7 +23,7 @@ namespace NeARandFARBackEnd.Tests
         }
 
         [Fact]
-        public async void testSimpleAuth() {
+        public async void Test1() {
             Auth.AuthHandler handler = new Auth.AuthHandler();
 
             APIGatewayProxyRequest request = new APIGatewayProxyRequest();

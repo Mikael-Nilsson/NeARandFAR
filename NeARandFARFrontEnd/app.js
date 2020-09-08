@@ -11,8 +11,7 @@ Vue.config.ignoredElements = [
   'a-cursor',
   'a-sphere',
   'a-image',
-  'speech-bubble',
-  'a-cone'
+  'speech-bubble'
 ]
 
 console.log('initializing app');
@@ -51,7 +50,7 @@ const app = new Vue({
     return {
       position: {},
       loaded: false,
-      sessionActive: true,
+      sessionActive: false,
     };
   },
   computed: {
@@ -67,17 +66,16 @@ const app = new Vue({
   // TODO: Make this not show login until session is decidedly not active. Maybe a nice spinner or smth?
   template: `
       <div>
-        <template v-if="!loaded">
-          <div>loading...</div>
+        <template v-if="!sessionActive">
+          <loginview v-on:start="startSession()"></loginview>
         </template>
-        <template v-else>
-          <template v-if="!sessionActive">
-            <loginview v-on:start="startSession()"></loginview>
-          </template>
-          <template v-else>
-            <dashview class="dashboard"></dashview>
-            <router-view></router-view>
-          </template>
+        <template v-if="!loaded">
+          <div>loading</div>
+        </template>
+        <template v-else-if="loaded && sessionActive">
+          <dashview class="dashboard"></dashview>
+          <router-view></router-view>
+          <!--<camview v-bind:position="position"></camview>-->
         </template>
       </div>
     `
