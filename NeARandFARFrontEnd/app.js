@@ -34,10 +34,7 @@ const app = new Vue({
     this.loaded = true;
     console.log('lat when mounted', globalState.position.latitude);
 
-    this.sessionActive = localStorage.getItem('sessionActive');
-
-    if (this.sessionActive)
-      this.$router.push({ path: '/cam' });
+    this.$router.push({ path: '/cam' });
 
   },
   methods: {
@@ -55,29 +52,17 @@ const app = new Vue({
     };
   },
   computed: {
-    // sessionActive: function() {
-    //   let sess = localStorage.getItem('sessionActive');
-    //   console.log('existing session', sess);
-
-    //   if(sess === 'true')
-    //     return true;
-    //   else return false;
-    // }
+    
   },
-  // TODO: Make this not show login until session is decidedly not active. Maybe a nice spinner or smth?
+  // TODO: Maybe a nice spinner or smth?
   template: `
       <div>
         <template v-if="!loaded">
           <div>loading...</div>
         </template>
         <template v-else>
-          <template v-if="!sessionActive">
-            <loginview v-on:start="startSession()"></loginview>
-          </template>
-          <template v-else>
-            <dashview class="dashboard"></dashview>
-            <router-view></router-view>
-          </template>
+          <dashview class="dashboard"></dashview>
+          <router-view></router-view>
         </template>
       </div>
     `
