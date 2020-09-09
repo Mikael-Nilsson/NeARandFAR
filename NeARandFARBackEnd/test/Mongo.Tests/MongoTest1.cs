@@ -29,7 +29,7 @@ namespace NeARandFARBackEnd.Tests
         public async void testGetAllDocuments()
         {
             Dictionary<string, string> request = new Dictionary<string, string>() {
-                { "collection", "assets"}
+                { "collection", "entities"}
             };
 
             NeARandFARBackEnd.Mongo.MongoClient client = new Mongo.MongoClient();
@@ -43,7 +43,7 @@ namespace NeARandFARBackEnd.Tests
         [Fact]
         public async void testGetMultipleDocuments() {
             Dictionary<string, string> request = new Dictionary<string, string>() {
-                { "collection", "assets"},
+                { "collection", "entities"},
                 { "query", "{'position.lat': { $gt: 59.29}}" }
             };
 
