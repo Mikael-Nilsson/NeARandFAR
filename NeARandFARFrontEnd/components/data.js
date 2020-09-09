@@ -16,15 +16,14 @@ const dataService = {
             console.log(`${method}:ing ${body} to ${url}`);
             
             let request = new XMLHttpRequest();
-            const apiKey = localStorage.getItem('apiKey');
-            
-            const options = {
-                headers: {
-                    'x-api-key': apiKey ? apiKey : null
-                }
-            };
 
-            request.open(method, url, options);
+            request.open(method, url);
+
+            // ! APIKey isn't needed in the read frontend. This will be needed in the edit GUI later
+            const apiKey = localStorage.getItem('apiKey');
+            request.setRequestHeader('x-api-key', apiKey);
+
+
             request.send([body]);
             
             request.onreadystatechange = () => {
