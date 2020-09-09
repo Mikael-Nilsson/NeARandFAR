@@ -11,16 +11,16 @@ using Xunit.Abstractions;
 using Amazon.Lambda.TestUtilities;
 using Amazon.Lambda.APIGatewayEvents;
 
-using NeARandFARBackEnd.Assets;
+using NeARandFARBackEnd.Entities;
 
 namespace NeARandFARBackEnd.Tests
 {
 
-    public class AssetTest : IClassFixture<LaunchSettingsFixture>
+    public class EntityTest : IClassFixture<LaunchSettingsFixture>
     {
         private ITestOutputHelper output;
         LaunchSettingsFixture fixture;
-        public AssetTest(ITestOutputHelper output, LaunchSettingsFixture fixture) {
+        public EntityTest(ITestOutputHelper output, LaunchSettingsFixture fixture) {
             this.output = output;
             this.fixture = fixture;
         }
@@ -46,8 +46,8 @@ namespace NeARandFARBackEnd.Tests
         }
 
         [Fact]
-        public async void testGetAsset() {
-            var assets = new AssetHandler();
+        public async void testGetEntity() {
+            var entities = new EntityHandler();
 
             APIGatewayProxyRequest request = new APIGatewayProxyRequest();
             request.PathParameters = new Dictionary<string, string>() {
@@ -56,32 +56,32 @@ namespace NeARandFARBackEnd.Tests
 
             // TODO: Assert effect of not setting needed properties on request
             var context = new TestLambdaContext();
-            object asset = await assets.getAssetByID(request, context);
+            object entity = await entities.getEntityByID(request, context);
 
-            Assert.NotNull(asset.ToString());
+            Assert.NotNull(entity.ToString());
         }
 
         [Fact]
-        public async void testGetAllAssets() {
-            var handler = new AssetHandler();
+        public async void testGetAllEntities() {
+            var handler = new EntityHandler();
 
             APIGatewayProxyRequest request = new APIGatewayProxyRequest();
 
-            object result = await handler.getAssets(request);
+            object result = await handler.getEntities(request);
 
             // TODO: Better assertion
             Assert.NotEmpty(result.ToString());
         }
 
         [Fact]
-        public async void testGetMultipleAssets()
+        public async void testGetMultipleEntities()
         {
-            var handler = new AssetHandler();
+            var handler = new EntityHandler();
 
             APIGatewayProxyRequest request = new APIGatewayProxyRequest();
             request.Body = "{ 'position.lat': { $gt: 59.29}}";
 
-            object result = await handler.getAssets(request);
+            object result = await handler.getEntities(request);
             
             // TODO: Better assertion
             Assert.NotEmpty(result.ToString());

@@ -25,7 +25,7 @@ namespace NeARandFARBackEnd.Mongo
             },
             new BsonDocument {
                 {"geometry", "text"},
-                {"value", "assets work!"},
+                {"value", "entities work!"},
                 {"scale", "30 30 30"},
                 {"position", new BsonDocument {
                         {"lat", "59.293010"},

@@ -1,25 +1,27 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeARandFARBackEnd", "NeARandFARBackEnd.csproj", "{46655BD8-CD6D-480F-9393-B387B615AD9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeARandFARBackEnd", "NeARandFARBackEnd.csproj", "{46655BD8-CD6D-480F-9393-B387B615AD9E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{264B5329-5A3F-491F-B6BD-CDE9741D430F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mongo", "src\Mongo\Mongo.csproj", "{9A4FAD65-C7EA-424C-910D-3CB200EBBA96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mongo", "src\Mongo\Mongo.csproj", "{9A4FAD65-C7EA-424C-910D-3CB200EBBA96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assets", "src\Assets\Assets.csproj", "{652265CC-12E6-4442-B562-2B6C6A0A6A28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "src\Entities\Entities.csproj", "{652265CC-12E6-4442-B562-2B6C6A0A6A28}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{F8CA6997-97C6-4224-8ACE-6A65D2F25D85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mongo.Tests", "test\Mongo.Tests\Mongo.Tests.csproj", "{A99FE5D6-8EDB-49DC-9E92-97EB85FD90FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mongo.Tests", "test\Mongo.Tests\Mongo.Tests.csproj", "{A99FE5D6-8EDB-49DC-9E92-97EB85FD90FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assets.Tests", "test\Assets.Tests\Assets.Tests.csproj", "{22332628-D347-4E79-B378-B33B3A9DFB4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities.Tests", "test\Entities.Tests\Entities.Tests.csproj", "{22332628-D347-4E79-B378-B33B3A9DFB4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth", "src\Auth\Auth.csproj", "{DFB6F3F6-5B32-4E97-A0B5-14EEC1B49C17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth", "src\Auth\Auth.csproj", "{DFB6F3F6-5B32-4E97-A0B5-14EEC1B49C17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "src\Utilities\Utilities.csproj", "{8159C852-8BB2-4A0A-8B97-1501E537AD48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utilities", "src\Utilities\Utilities.csproj", "{8159C852-8BB2-4A0A-8B97-1501E537AD48}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth.Tests", "test\Auth.Tests\Auth.Tests.csproj", "{F929FE49-DF0D-4CF8-BED0-5E5EC2E1C763}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,9 +31,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{46655BD8-CD6D-480F-9393-B387B615AD9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -118,6 +117,21 @@ Global
 		{8159C852-8BB2-4A0A-8B97-1501E537AD48}.Release|x64.Build.0 = Release|Any CPU
 		{8159C852-8BB2-4A0A-8B97-1501E537AD48}.Release|x86.ActiveCfg = Release|Any CPU
 		{8159C852-8BB2-4A0A-8B97-1501E537AD48}.Release|x86.Build.0 = Release|Any CPU
+		{F929FE49-DF0D-4CF8-BED0-5E5EC2E1C763}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F929FE49-DF0D-4CF8-BED0-5E5EC2E1C763}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F929FE49-DF0D-4CF8-BED0-5E5EC2E1C763}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F929FE49-DF0D-4CF8-BED0-5E5EC2E1C763}.Debug|x64.Build.0 = Debug|Any CPU
+		{F929FE49-DF0D-4CF8-BED0-5E5EC2E1C763}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F929FE49-DF0D-4CF8-BED0-5E5EC2E1C763}.Debug|x86.Build.0 = Debug|Any CPU
+		{F929FE49-DF0D-4CF8-BED0-5E5EC2E1C763}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F929FE49-DF0D-4CF8-BED0-5E5EC2E1C763}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F929FE49-DF0D-4CF8-BED0-5E5EC2E1C763}.Release|x64.ActiveCfg = Release|Any CPU
+		{F929FE49-DF0D-4CF8-BED0-5E5EC2E1C763}.Release|x64.Build.0 = Release|Any CPU
+		{F929FE49-DF0D-4CF8-BED0-5E5EC2E1C763}.Release|x86.ActiveCfg = Release|Any CPU
+		{F929FE49-DF0D-4CF8-BED0-5E5EC2E1C763}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9A4FAD65-C7EA-424C-910D-3CB200EBBA96} = {264B5329-5A3F-491F-B6BD-CDE9741D430F}
@@ -126,5 +140,8 @@ Global
 		{22332628-D347-4E79-B378-B33B3A9DFB4D} = {F8CA6997-97C6-4224-8ACE-6A65D2F25D85}
 		{DFB6F3F6-5B32-4E97-A0B5-14EEC1B49C17} = {264B5329-5A3F-491F-B6BD-CDE9741D430F}
 		{8159C852-8BB2-4A0A-8B97-1501E537AD48} = {264B5329-5A3F-491F-B6BD-CDE9741D430F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {65DFD914-C537-4071-9B6B-50362038CD28}
 	EndGlobalSection
 EndGlobal

@@ -104,26 +104,26 @@ functions:
           method: get
           cors: true
 
-  getAsset:
-    handler: NeARandFARBackEnd::NeARandFARBackEnd.Assets.AssetHandler::getAsset
+  getEntity:
+    handler: NeARandFARBackEnd::NeARandFARBackEnd.Entities.EntityHandler::getEntity
 
     package:
       artifact: bin/Release/netcoreapp3.1/nearandfarbackend.zip
 
     events:
       - http:
-          path: assets/{id}
+          path: entities/{id}
           method: get
           cors: true
 
-  getAssets:
-    handler: NeARandFARBackEnd::NeARandFARBackEnd.Assets.AssetHandler::getAssets
+  getEntities:
+    handler: NeARandFARBackEnd::NeARandFARBackEnd.Entities.EntityHandler::getEntities
     package:
       artifact: bin/Release/netcoreapp3.1/nearandfarbackend.zip
 
     events:
       - http:
-          path: assets
+          path: entities
           method: get
           cors: true
   

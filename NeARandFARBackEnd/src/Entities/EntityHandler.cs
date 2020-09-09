@@ -13,10 +13,10 @@ using System.Collections.Immutable;
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 // [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
 
-namespace NeARandFARBackEnd.Assets
+namespace NeARandFARBackEnd.Entities
 {
 
-    public class AssetRequest 
+    public class EntityRequest 
     {
         public string id {get; set;}
         public string lat {get; set;}
@@ -25,35 +25,35 @@ namespace NeARandFARBackEnd.Assets
         public string mongoConnectionString {get; set;}
     }
 
-    public class AssetResponse
+    public class EntityResponse
     {
         public string body {get; set;}
         public Dictionary<string, string> headers {get; set;}
 
-        public AssetResponse(BsonDocument results) {
+        public EntityResponse(BsonDocument results) {
             Console.WriteLine(results.ToString());
             body = results.ToString();
             headers = null;
         }
     }
 
-    public class AssetHandler
+    public class EntityHandler
     {
 
         MongoClient client;
         
-        public AssetHandler() {
+        public EntityHandler() {
             client = new MongoClient();
         }
 
         /// <summary>
-        /// Gets one asset by ID
+        /// Gets one entity by ID
         /// </summary>
-        /// <param name="assetRequest"></param>
+        /// <param name="entityRequest"></param>
         /// <param name="context"></param>
         /// <returns></returns>
         [LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
-        public async Task<object> getAssetByID(APIGatewayProxyRequest request, ILambdaContext context = null)
+        public async Task<object> getEntityByID(APIGatewayProxyRequest request, ILambdaContext context = null)
         {
             if (context != null && context.FunctionName != null)
                 LambdaLogger.Log($"Calling {context.FunctionName}");
@@ -64,23 +64,23 @@ namespace NeARandFARBackEnd.Assets
         }
 
         /// <summary>
-        /// Gets assets by filter or if none, all
+        /// Gets entities by filter or if none, all
         /// </summary>
         /// <param name="request"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        public async Task<object> getAssets(APIGatewayProxyRequest request, ILambdaContext context = null) {
+        public async Task<object> getEntities(APIGatewayProxyRequest request, ILambdaContext context = null) {
             if(context != null && context.FunctionName != null)
                 LambdaLogger.Log($"Calling {context.FunctionName}");
 
-            //Dictionary<string, string> req = new Dictionary<string, string>(){{"collection", "assets"}};
+            //Dictionary<string, string> req = new Dictionary<string, string>(){{"collection", "entities"}};
             string query = request.Body;
 
             return await get(query);
         }
 
         private async Task<object> get(string query) {
-            Dictionary<string, string> req = new Dictionary<string, string>() { { "collection", "assets" } };
+            Dictionary<string, string> req = new Dictionary<string, string>() { { "collection", "entities" } };
             req["query"] = query;
 
             MongoRequest mongoRequest = new MongoRequest(req);
