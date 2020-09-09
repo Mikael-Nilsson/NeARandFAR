@@ -25,4 +25,9 @@
     <PackageReference Include="coverlet.collector" Version="1.2.0" />
   </ItemGroup>
 
+	<ItemGroup>
+		<Content Include="config.json" CopyToOutputDirectory="Always" />
+		<Content Include="config.json" CopyToPublishDirectory="Always" />
+	</ItemGroup>
+
 </Project>
