@@ -62,17 +62,16 @@ const camView = Vue.component('camview', {
         },
         getAssets: async function() {
             // TODO: Rewrite using Rxjs
-            const d = await getData();
+            //const d = await getData();
             const assets = await assetService.getData();
             console.log('assets', assets);
 
             // Adding compass
-            const dir = this.compass();
-            dir.forEach(element => {
-                assets.push(element);
-            });
+            //const dir = this.compass();
+            //dir.forEach(element => {
+            //    assets.push(element);
+            //});
 
-           
             // Putting assets in object list
             this.private.objectArray = assets.map(p => {
                 return {
