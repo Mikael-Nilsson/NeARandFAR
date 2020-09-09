@@ -80,29 +80,29 @@ functions:
           cors: true
 
           
-  mongoGetAll:
-    handler: NeARandFARBackEnd::NeARandFARBackEnd.Mongo.MongoHandler::getAll
-
-    package:
-      artifact: bin/Release/netcoreapp3.1/nearandfarbackend.zip
-
-    events:
-      - http:
-          path: mongo/getAll/{collection}
-          method: ANY
-          cors: true
-
-  mongoGet:
-    handler: NeARandFARBackEnd::NeARandFARBackEnd.Mongo.MongoHandler::get
-
-    package:
-      artifact: bin/Release/netcoreapp3.1/nearandfarbackend.zip
-
-    events:
-      - http:
-          path: mongo/get/{id}
-          method: get
-          cors: true
+#  mongoGetAll:
+#    handler: NeARandFARBackEnd::NeARandFARBackEnd.Mongo.MongoHandler::getAll
+#
+#    package:
+#      artifact: bin/Release/netcoreapp3.1/nearandfarbackend.zip
+#
+#    events:
+#      - http:
+#          path: mongo/getAll/{collection}
+#          method: ANY
+#          cors: true
+#
+#  mongoGet:
+#    handler: NeARandFARBackEnd::NeARandFARBackEnd.Mongo.MongoHandler::get
+#
+#    package:
+#      artifact: bin/Release/netcoreapp3.1/nearandfarbackend.zip
+#
+#    events:
+#      - http:
+#          path: mongo/get/{id}
+#          method: get
+#          cors: true
 
   getEntity:
     handler: NeARandFARBackEnd::NeARandFARBackEnd.Entities.EntityHandler::getEntity
