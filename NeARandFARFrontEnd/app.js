@@ -68,7 +68,10 @@ const app = new Vue({
         </template>
         <template v-else>
             <template v-if="shared.camActive">
-                <sceneview />
+                <frameview>
+                    <sceneview />
+                    
+                </frameview>
             </template>
             <template v-else>
                 <mapview />
