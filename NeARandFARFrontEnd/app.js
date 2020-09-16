@@ -18,51 +18,62 @@ Vue.config.ignoredElements = [
 console.log('initializing app');
 
 const app = new Vue({
-  router: new VueRouter({ routes }),
-  el: '#app',
-  created: function () {
+    router: new VueRouter({ routes }),
+    el: '#app',
+    created: function () {
 
-  },
-  mounted: async function () {
-    // registering events
-    events.clickAction();
-    events.startConversationEvent();
-
-
-    const pos = await gpsService.getLocation();
-    globalState.position = pos.coords;
-    this.loaded = true;
-    console.log('lat when mounted', globalState.position.latitude);
-
-    this.$router.push({ path: '/cam' });
-
-  },
-  methods: {
-    startSession: function () {
-      console.log('Starting session, lat: ', globalState.position.latitude, this.loaded);
-      this.sessionActive = true;
-      this.$router.push({ path: '/cam' });
     },
+    mounted: async function () {
+        // registering events
+        events.clickAction();
+        events.startConversationEvent();
+
+        const pos = await gpsService.getLocation();
+        this.shared.position = pos.coords;
+        this.private.loaded = true;
+        console.log('lat when mounted', globalState.position.latitude);
+
+
+    },
+    methods: {
+        startSession: function () {
+            console.log('Starting session, lat: ', globalState.position.latitude, this.private.loaded);
+            this.private.sessionActive = true;
+            //this.$router.push({ path: '/cam' });
+
+
+        }
+       
   },
   data: function () {
-    return {
-      position: {},
-      loaded: false,
-      sessionActive: true,
+      return {
+            private: {
+                loaded: false,
+                sessionActive: true,
+
+          },
+          shared: globalState
     };
   },
   computed: {
-    
+      view: function () {
+          
+      }
   },
   // TODO: Maybe a nice spinner or smth?
   template: `
       <div>
-        <template v-if="!loaded">
+        <template v-if="!private.loaded">
           <div>loading...</div>
         </template>
         <template v-else>
+            <template v-if="shared.camActive">
+                <sceneview />
+            </template>
+            <template v-else>
+                <mapview />
+            </template>
           <dashview class="dashboard"></dashview>
-          <router-view></router-view>
         </template>
       </div>
     `
