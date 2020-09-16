@@ -22,8 +22,7 @@ const dataService = {
             // ! APIKey isn't needed in the read frontend. This will be needed in the edit GUI later
             //const apiKey = localStorage.getItem('apiKey');
             //request.setRequestHeader('x-api-key', apiKey);
-
-
+            
             request.send([body]);
             
             request.onreadystatechange = () => {

@@ -1,0 +1,115 @@
+<html>
+<head>
+
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="lodash.js"></script>
+
+  
+    <script>
+
+        Vue.component('i-frame', {
+
+            render(h) {
+                return h('iframe', {
+                    on: { load: this.renderChildren }
+                })
+                
+            },
+            beforeUpdate() {
+                //freezing to prevent unnessessary Reactifiation of vNodes
+                this.iApp.children = Object.freeze(this.$slots.default)
+            },
+            methods: {
+                renderChildren() {
+                    const children = this.$slots.default
+                    const body = this.$el.contentDocument.body
+                    const el = document.createElement('DIV') // we will mount or nested app to this element
+                    body.appendChild(el)
+
+                    const iApp = new Vue({
+                        name: 'iApp',
+                        //freezing to prevent unnessessary Reactifiation of vNodes
+                        data: { children: Object.freeze(children) },
+                        render(h) {
+                            return h('div', this.children)
+                        },
+                    })
+
+                    iApp.$mount(el) // mount into iframe
+
+                    this.iApp = iApp // cache instance for later updates
+
+
+                }
+            }
+        });
+
+        Vue.component('test-child', {
+            template: `<div>
+    <h3>{{ title }}</h3>
+    <p>
+      <slot/>
+    </p>
+  </div>`,
+            props: ['title'],
+            methods: {
+                log: _.debounce(function () {
+                    console.log('resize!')
+                }, 200)
+            },
+            mounted() {
+                this.$nextTick(() => {
+                    const doc = this.$el.ownerDocument
+                    const win = doc.defaultView
+                    win.addEventListener('resize', this.log)
+                })
+            },
+            beforeDestroy() {
+                const doc = this.$el.ownerDocument
+                const win = doc.defaultView
+                win.removeEventListener('resize', this.log)
+            }
+        });
+
+
+    </script>
+</head>
+<body>
+    <div id="app">
+        <label for="">
+            Change this to Change IFrame content <br>
+            <input type="text" v-model="dynamicPart">
+        </label>
+
+        <div>
+            <div v-if="showFrame">
+                <i-frame class="my-frame">
+                    <test-child title="This is a Title from a Prop!">
+                        <p>This was rendered in an iframe!</p>
+                        {{dynamicPart}}
+                        <button @click="show = !show">Click me to see events work, too!</button>
+                    </test-child>
+                </i-frame>
+                <div v-if="show">
+                    <p>This paragraph appeared because of the button click in the iframe! </p>
+                </div>
+            </div>
+            <button @click="showFrame = !showFrame">hide frame</button>
+        </div>
+
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                dynamicPart: 'InputContent',
+                show: false,
+                showFrame: true,
+            }
+        })
+    </script>
+
+</body>
+</html>
