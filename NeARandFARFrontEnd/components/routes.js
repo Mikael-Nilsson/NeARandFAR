@@ -16,6 +16,11 @@ const routes = [
         component: camView
     },
     {
+        path: '/scene',
+        name: 'scene',
+        component: sceneView
+    },
+    {
         path: '/map',
         name: 'map',
         component: mapView

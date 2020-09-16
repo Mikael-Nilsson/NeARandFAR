@@ -17,23 +17,28 @@ const dashView = Vue.component('dashview', {
             console.log('updating active conversation with', reply);
             conversationService.updateActiveConversationNode(this.shared.activeNPC, reply.next[0]); // TODO: add reply.relationship if any
             console.log(conversationService.currentNodes[0]);
+        },
+        toggleMap: async function () {
+            this.shared.camActive = !this.shared.camActive;
+            this.private.gotoView = this.private.gotoView == 'cam' ? 'map' : 'cam';
         }
     },
     data: function() {
         return {
             private: {
-                activeConversation: {}
+                activeConversation: {},
+                gotoView: 'cam'
             },
             shared: globalState
         }
         
     },
     watch: {
-        'shared.activeNPC': async function() {
-            const currentNode = await conversationService.getCurrentConversationNode();
-            this.private.activeConversation = conversationService.getConversation(currentNode.id);
-            console.log('changed active NPC', this.private.activeConversation, currentNode);
-        }
+        //'shared.activeNPC': async function() {
+        //    const currentNode = await conversationService.getCurrentConversationNode();
+        //    this.private.activeConversation = conversationService.getConversation(currentNode.id);
+        //    console.log('changed active NPC', this.private.activeConversation, currentNode);
+        //}
     },
     computed: {
         
@@ -46,9 +51,12 @@ const dashView = Vue.component('dashview', {
             </template>
         </template>
 
+        <button id="showmap" v-on:click="toggleMap()">{{private.gotoView}}</button>
         <b>{{shared.activeNPC}}:</b>
         <div>{{shared.position.latitude}}, {{shared.position.longitude}}</div>
         <button id="logout" v-on:click="logout()">logout</button>
         </div>
     `
 });
+
+
