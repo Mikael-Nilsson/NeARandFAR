@@ -1,20 +1,19 @@
 
 const sceneView = Vue.component('sceneview', {
     name: 'sceneview',
-    created: function() {
+    created: async function() {
         console.log('position in scene.view', gpsService.position.coords.latitude);
-        this.getAssets();
+        await this.getAssets();
+        this.buildTemplate();
 
+        // TODO: Check if cursor-listener is registered
         AFRAME.registerComponent('cursor-listener', {
-            init: function() {
-                console.log('test');
-            }
+            init: function() {}
         });
 
     },
     mounted: function() {
-        console.log('mounting scene view');
-        this.buildTemplate();
+        console.log('sceneview mounted');
 
                 // Populate iframe
 //        let frameDocument = `<html>
@@ -124,67 +123,35 @@ const sceneView = Vue.component('sceneview', {
         hide: function () {
             this.private.show = false;
         },
-        // building the a-scene in an iframe as arjs doesn't accept shutting off the camera when leaving the view
-        buildTemplate: function () {
-            let sceneDiv = document.getElementById('scene');
-            const frame = `<iframe id="sceneFrame" style="width:100%; height:100%; position: absolute; top: 0%;"></iframe>`;
+        createEntityHTML: function () {
 
-            let sceneFrame = document.getElementById('sceneFrame');
-
-
-            if (this.shared.camActive) {
-
-
-                const aFrame = `
-    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-    <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js"></script>
-    <script src="https://unpkg.com/aframe-look-at-component@1.0.0/dist/aframe-look-at-component.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
-`;
-
-                const entities = this.private.objectArray.map(obj => {
-                    console.log('mounting', obj.geometry, obj.value, obj.scale, obj.entityPos, obj.conversation);
-                    if (obj.geometry == 'text')
-                        return `<a-text value="${obj.value}" look-at="[gps-camera]" scale="${obj.scale}" gps-entity-place="${obj.entityPos}" start-conversation="${obj.conversation}"></a-text>`;
-                    else if (obj.geometry == 'sphere')
-                        return `<a-sphere gps-entity-place="${obj.entityPos}" start-conversation="${obj.conversation}" scale="${obj.scale}" color="#0ffff0"></a-sphere>`;
-                });
-
-                console.log('entities', entities);
-
-                const scene = `
-                    <a-scene ar vr-mode-ui="enabled: false" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
-                        ${entities}
-                        <a-camera gps-camera rotation-reader>
-                            <a-cursor></a-cursor>
-                        </a-camera>
-                    </a-scene>`;
-
-                let html = `
-<html><head>                                    
-    ${aFrame}
-</head><body>
-    ${scene}
-</body></html>
-`;
-
-                sceneDiv.innerHTML = scene;
-                sceneFrame.contentDocument.write(html);
-
-            } else {
-                sceneFrame.contentDocument.write('');
-                sceneDiv.innerHTML = '';
-                //sceneDiv.style.display = 'none';
-            }
-
+            let entities = '';
             
-            //console.log(scene);
+            this.private.objectArray.slice(1,2).forEach(obj => {
+                let entity = '';
+                if (obj.geometry === 'text') {
+                    entity = `<a-text value="${obj.value}" look-at="[gps-camera]" scale="${obj.scale}" gps-entity-place="${obj.entityPos}"></a-text>`;
 
-    //        let html = `
-    //            <div id = "sceneview">
+                } else if (obj.geometry === 'sphere') {
+                    entity = `<a-sphere gps-entity-place="${obj.entityPos}" start-conversation="${obj.conversation}" scale="${obj.scale}" color="${obj.color}" />`
+                }
 
-    //                    <template v-for="asset in private.objectArray">
+                entities += `\n${entity}`;
+
+            });
+            
+            return entities;
+        },
+        // building the a-scene in an iframe as arjs doesn't accept shutting off the camera when leaving the view
+        buildTemplate: async function () {
+            let frame = document.getElementById('frameview');
+            let sceneDiv = frame.contentDocument.getElementById('sceneview');
+
+            const entities = this.createEntityHTML();
+
+            console.log(entities);
+
+            // <template v-for="asset in private.objectArray">
     //                        <template v-if="asset.geometry == 'text'">
     //                            <a-text v-bind:value="asset.value" look-at="[gps-camera]" v-bind:scale="asset.scale" v-bind:gps-entity-place="asset.entityPos" v-bind:start-conversation="asset.conversation"></a-text>
     //                    </template>
@@ -193,20 +160,30 @@ const sceneView = Vue.component('sceneview', {
     //                    </template>
     //                </template >
 
-    //<a-text v-bind: value="private.objectArray.length" look-at="[gps-camera]" scale="40 40 40" gps-entity-place="latitude: 59.292531; longitude: 18.050466;"></a-text>
 
-    //<a-camera gps-camera rotation-reader>
-    //    <a-cursor></a-cursor>
-    //</a-camera>
-    //            </a - scene >
-    //    </div >
-    //`;
 
-            
+            let html = `
+<div>
+    <a-scene vr-mode-ui="enabled: false" embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+        
+        <a-box position="0 2 -6" color="#848400"></a-box>
+        <a-text position="0 0 -3" value="nu kanske" color="#830439"></a-text>
 
+        <a-text value="This content will always face you." look-at="[gps-camera]" scale="120 120 120" gps-entity-place="latitude: <add-your-latitude>; longitude: <add-your-longitude>;"></a-text>
+
+    <a-camera gps-camera rotation-reader>
+            <a-cursor></a-cursor>
+        </a-camera>
+
+    </a-scene>
+</div>
+`;
+
+            sceneDiv.innerHTML = html;
             
         }
     },
+    
     computed: {
         pos: function() {
             console.log('position in pos', gpsService.position);
@@ -233,24 +210,17 @@ const sceneView = Vue.component('sceneview', {
                 compassPin: {
                     pos: `latitude: shared.position.latitude; longitude: shared.position.latitude;`
                 },
-                show: true,
-                html: '<div>variable</div>'
+                show: true
             },
             shared: globalState
         }
-    },
-    watch: {
-        'shared.camActive': function () {
-            console.log(this.shared.camActive);
-            this.buildTemplate();
-        }
-    },
+    }, 
+    
     //render: function (createElement) {
     //    return createElement('div', {}, 'test');
     //}
-    template: `<div id="scene"></div>`
+    template: `<div id="sceneview"></div>`
 });
 
 
-
-
+§1§

@@ -13,7 +13,7 @@ const routes = [
     {
         path: '/cam',
         name: 'cam',
-        component: camView
+        component: frameView
     },
     {
         path: '/scene',
@@ -34,7 +34,7 @@ const routes = [
         path: '/dashcam',
         name: 'dashcam',
         components: {
-            up: camView,
+            up: frameView,
             down: dashView
         },
         props: true
@@ -52,7 +52,7 @@ const routes = [
         path: '/mapcam',
         name: 'mapcam',
         components: {
-            up: camView,
+            up: frameView,
             down: mapView
         },
         props: true

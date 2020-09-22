@@ -20,6 +20,7 @@ const dashView = Vue.component('dashview', {
         },
         toggleMap: async function () {
             this.shared.camActive = !this.shared.camActive;
+            console.log('camActive in dash', this.shared.camActive);
             this.private.gotoView = this.private.gotoView == 'cam' ? 'map' : 'cam';
         }
     },
@@ -52,9 +53,9 @@ const dashView = Vue.component('dashview', {
         </template>
 
         <button id="showmap" v-on:click="toggleMap()">{{private.gotoView}}</button>
+        <button id="showScene" v-on:click="shared.on = !shared.on">toggle scene</button>
         <b>{{shared.activeNPC}}:</b>
         <div>{{shared.position.latitude}}, {{shared.position.longitude}}</div>
-        <button id="logout" v-on:click="logout()">logout</button>
         </div>
     `
 });
