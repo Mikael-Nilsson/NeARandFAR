@@ -13,7 +13,7 @@ const frameView = Vue.component('frameview', {
             shared: globalState,
             externalLibraries: [
                 'https://aframe.io/releases/1.0.4/aframe.min.js',
-                
+
             ],
             externalLibraryPlugins: [
                 //'https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js',
@@ -27,18 +27,20 @@ const frameView = Vue.component('frameview', {
     render: function (create) {
         return create('iframe', {
             attrs: { id: 'frameview' },
-            on: {load: this.renderChildren}
+            on: { load: this.renderChildren }
         });
     },
     methods: {
-        renderChildren: function () {
+        renderChildren: async function () {
             // ! I guess we will need to get the AFrame-script links here too ?
             const children = this.$slots.default;
             const contentDocument = this.$el.contentDocument;
             const head = contentDocument.head;
             const body = contentDocument.body;
 
+            //for (let i = 0; i < this.externalLibraries.Length; i++) {
             this.externalLibraries.forEach((source) => {
+                //const source = this.externalLibraries[i];
                 const script = contentDocument.createElement('script');
                 script.src = source;
                 head.appendChild(script);
@@ -49,12 +51,15 @@ const frameView = Vue.component('frameview', {
             // ! BAD WAY !
             setTimeout(function () {
 
+                //for (let i = 0; i < this.externalLibraryPlugins.Length; i++) {
                 externalLibraryPlugins.forEach((source) => {
-                    const script = document.createElement('SCRIPT');
+                    //const source = this.externalLibraryPlugins[i];
+                    const script = contentDocument.createElement('SCRIPT');
                     script.src = source;
                     head.appendChild(script);
                 });
-            }, 1000);
+            }, 200);
+
 
             const el = document.createElement('DIV') // we will mount or nested app to this element
             body.appendChild(el)
