@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Text.Json;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using Xunit;
@@ -35,9 +36,9 @@ namespace NeARandFARBackEnd.Tests
             NeARandFARBackEnd.Mongo.MongoClient client = new Mongo.MongoClient();
             NeARandFARBackEnd.Mongo.MongoRequest mongoRequest = new Mongo.MongoRequest(request);
 
-            var result = await client.getDocuments(mongoRequest);
+            JsonDocument result = await client.getDocuments(mongoRequest);
 
-            Assert.True(result.Count > 0);
+            Assert.True(result.RootElement.GetArrayLength() > 0);
         }
 
         [Fact]
@@ -50,9 +51,9 @@ namespace NeARandFARBackEnd.Tests
             NeARandFARBackEnd.Mongo.MongoClient client = new Mongo.MongoClient();
             NeARandFARBackEnd.Mongo.MongoRequest mongoRequest = new Mongo.MongoRequest(request);
 
-            var result = await client.getDocuments(mongoRequest);
+            JsonDocument result = await client.getDocuments(mongoRequest);
 
-            Assert.True(result.Count > 0);
+            Assert.True(result.RootElement.GetArrayLength() > 0);
 
         }
     }       

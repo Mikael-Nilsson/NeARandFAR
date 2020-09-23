@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Text.Json;
 
 using MongoDB.Driver;
 using MongoDB.Bson;
@@ -12,79 +13,71 @@ namespace NeARandFARBackEnd.Mongo
     public class MongoClient
     {
 
-        public BsonArray fakeData = new BsonArray {
-            new BsonDocument {
-                {"geometry", "text"},
-                {"value", ".59.293000; 18.050500"},
-                {"scale", "40 40 40"},
-                {"position", new BsonDocument {
-                        {"lat", "59.293000"},
-                        {"lon", "18.050500"}
+        public BsonArray fakeData = new BsonArray
+        {
+            new BsonDocument
+            {
+                { "geometry", "text" },
+                { "value", ".59.293000; 18.050500" },
+                { "scale", "40 40 40" },
+                {
+                    "position",
+                    new BsonDocument
+                    {
+                        { "lat", "59.293000" },
+                        { "lon", "18.050500" }
                     }
                 }
-            },
-            new BsonDocument {
-                {"geometry", "text"},
-                {"value", "entities work!"},
-                {"scale", "30 30 30"},
-                {"position", new BsonDocument {
-                        {"lat", "59.293010"},
-                        {"lon", "18.050510"}
-                    }
-                }
-            },
-            new BsonDocument {
-                {"geometry", "text"},
-                {"value", "tunnel under åbyvägen"},
-                {"scale", "300 300 300"},
-                {"position", new BsonDocument {
-                        {"lat", "59.292764"},
-                        {"lon", "18.033877"}
-                    }
-                }
-            },
+            }
         };
 
-        public MongoDB.Driver.MongoClient dbClient {get; set;}
+        public MongoDB.Driver.MongoClient dbClient { get; set; }
 
-        public MongoClient() {
+        public MongoClient()
+        {
 
         }
 
         // Connect to Mongo
-        public void connect(MongoRequest request) {
+        public void connect(MongoRequest request)
+        {
             // If any of the parameters are empty, check if the appropriate environment variable is there
 
-            LambdaLogger.Log("Contacting mongo");      
+            LambdaLogger.Log("Contacting mongo");
 
-            if(dbClient == null) {
+            if (dbClient == null)
+            {
                 dbClient = new MongoDB.Driver.MongoClient(request.connectionString);
             }
         }
 
-        public MongoRequest checkRequest(MongoRequest request) {
+        public MongoRequest checkRequest(MongoRequest request)
+        {
 
             LambdaLogger.Log($"dbClient is created: {dbClient != null}");
             LambdaLogger.Log("checking connection settings");
-            LambdaLogger.Log($"database is empty: {string.IsNullOrEmpty(request.database).ToString()}" );
-            
-            if(string.IsNullOrEmpty(request.database)) {
+            LambdaLogger.Log($"database is empty: {string.IsNullOrEmpty(request.database).ToString()}");
+
+            if (string.IsNullOrEmpty(request.database))
+            {
                 request.database = Environment.GetEnvironmentVariable("mongoDB");
                 LambdaLogger.Log($"database: {request.database}");
             }
 
             // If we're already connected, we keep that connection and don't need to check that part of the input
-            if(dbClient == null) {
+            if (dbClient == null)
+            {
                 // if no database is provided, use env var
-                
+
                 LambdaLogger.Log($"and connstring is empty: {string.IsNullOrEmpty(request.connectionString).ToString()}");
 
                 // if no connectionstring is provided, use env var
-                if(string.IsNullOrEmpty(request.connectionString)) {
+                if (string.IsNullOrEmpty(request.connectionString))
+                {
                     request.connectionString = $"{Environment.GetEnvironmentVariable("mongoConnectionString")}/{request.database}";
                     LambdaLogger.Log($"connstring: {request.connectionString}");
                 }
-                
+
             }
 
             // I realised the issue was because of no outbound traffic from lambda.
@@ -94,27 +87,30 @@ namespace NeARandFARBackEnd.Mongo
         }
 
 
-        public async Task<List<BsonDocument>> getDocuments(MongoRequest request) {
+        public async Task<JsonDocument> getDocuments(MongoRequest request)
+        {
 
             request = this.checkRequest(request);
             LambdaLogger.Log(request.ToString());
             connect(request);
             LambdaLogger.Log(dbClient.Cluster.Description.ToString());
-            
+
             IMongoCollection<BsonDocument> collection = dbClient.GetDatabase(request.database).GetCollection<BsonDocument>(request.collection);
 
             // Handle filters
             BsonDocument query = new BsonDocument();
-            if (request.query != null) {
+            if (request.query != null)
+            {
                 query = MongoDB.Bson.Serialization.BsonSerializer.Deserialize<BsonDocument>(request.query);
             }
 
             // TODO: Change to some other format so that calling classes don't need to have "using mongo*"
             List<BsonDocument> docs = await collection.Find(query).Project("{_id: 0}").ToListAsync();
-            return docs;
+            JsonDocument result =  JsonDocument.Parse(docs.ToJson<List<BsonDocument>>());
+            return result;
         }
-    }
 
+    }
 
     // TODO: move these
 

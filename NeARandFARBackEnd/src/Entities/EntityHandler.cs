@@ -1,5 +1,6 @@
 using System;
 using System.Net;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
@@ -85,9 +86,9 @@ namespace NeARandFARBackEnd.Entities
 
             MongoRequest mongoRequest = new MongoRequest(req);
 
-            List<BsonDocument> docs = await client.getDocuments(mongoRequest);
+            JsonDocument docs = await client.getDocuments(mongoRequest);
 
-            string body = docs.ToJson().ToString();
+            string body = docs.ToString();
             LambdaLogger.Log(body);
 
             return new APIGatewayProxyResponse

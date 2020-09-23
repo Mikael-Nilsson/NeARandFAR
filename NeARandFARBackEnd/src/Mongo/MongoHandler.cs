@@ -35,12 +35,12 @@ namespace NeARandFARBackEnd.Mongo
             MongoRequest mongoRequest = new MongoRequest(requestUtil.checkRequest(request, new string[1]{"collection"}));
         
 
-            List<BsonDocument> docs = await client.getDocuments(mongoRequest);
+            JsonDocument docs = await client.getDocuments(mongoRequest);
 
             // return new {context = context};
 
             return new MongoResponse(new BsonDocument {
-                {mongoRequest.collection, new BsonArray(docs)}
+                {mongoRequest.collection, docs.ToString()}
             });
         }
 
