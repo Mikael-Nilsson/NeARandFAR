@@ -1,18 +1,25 @@
 const frameView = Vue.component('frameview', {
     name: 'frameview',
+    created: function () {
+        console.log('frameview created');
+
+    },
+    mounted: function () {
+
+    },
 
     data: function () {
         return {
             shared: globalState,
             externalLibraries: [
                 'https://aframe.io/releases/1.0.4/aframe.min.js',
-                'https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js',
-
+                
             ],
             externalLibraryPlugins: [
+                //'https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js',
                 'https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js',
                 'https://unpkg.com/aframe-look-at-component@1.0.0/dist/aframe-look-at-component.min.js',
-                //'https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js',
+                'https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js',
                 'https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js',
             ]
         }
@@ -20,18 +27,19 @@ const frameView = Vue.component('frameview', {
     render: function (create) {
         return create('iframe', {
             attrs: { id: 'frameview' },
-            on: { load: this.renderChildren }
+            on: {load: this.renderChildren}
         });
     },
     methods: {
         renderChildren: function () {
             // ! I guess we will need to get the AFrame-script links here too ?
             const children = this.$slots.default;
-            const head = this.$el.contentDocument.head;
-            const body = this.$el.contentDocument.body;
+            const contentDocument = this.$el.contentDocument;
+            const head = contentDocument.head;
+            const body = contentDocument.body;
 
             this.externalLibraries.forEach((source) => {
-                const script = document.createElement('script');
+                const script = contentDocument.createElement('script');
                 script.src = source;
                 head.appendChild(script);
             });
@@ -42,11 +50,11 @@ const frameView = Vue.component('frameview', {
             setTimeout(function () {
 
                 externalLibraryPlugins.forEach((source) => {
-                    const script = document.createElement('script');
+                    const script = document.createElement('SCRIPT');
                     script.src = source;
                     head.appendChild(script);
                 });
-            }, 100);
+            }, 1000);
 
             const el = document.createElement('DIV') // we will mount or nested app to this element
             body.appendChild(el)
