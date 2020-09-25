@@ -18,7 +18,7 @@ const frameView = Vue.component('frameview', {
             externalLibraryPlugins: [
                 //'https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js',
                 'https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js',
-                'https://unpkg.com/aframe-look-at-component@1.0.0/dist/aframe-look-at-component.min.js',
+                'https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js',
                 'https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js',
                 'https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js',
             ]
@@ -48,7 +48,7 @@ const frameView = Vue.component('frameview', {
 
             externalLibraryPlugins = this.externalLibraryPlugins;
 
-            // ! BAD WAY !
+            // ! BAD WAY ! HOW DO WE GUARANTEE THAT THESE ARE RUN AFTER AFRAME ?
             setTimeout(function () {
 
                 //for (let i = 0; i < this.externalLibraryPlugins.Length; i++) {
@@ -58,7 +58,7 @@ const frameView = Vue.component('frameview', {
                     script.src = source;
                     head.appendChild(script);
                 });
-            }, 200);
+            }, 800);
 
 
             const el = document.createElement('DIV') // we will mount or nested app to this element

@@ -26,11 +26,11 @@ const sceneView = Vue.component('sceneview', {
         let sceneDiv = frame.contentDocument.getElementById('sceneview');
         console.log(sceneDiv);
 
-        // ! Y DAFU can't I find an event that reliably runs after external scripts ?
+        // ! Y DAFU can't I find an event that reliably runs after external scripts ? THIS WON'T WORK FOR REAL !
         const scene = this.private.scene;
         setTimeout(function () {
             sceneDiv.appendChild(scene);
-        }, 1000);
+        }, 1500);
         
 
         console.log('sceneview mounted');
@@ -156,94 +156,50 @@ const sceneView = Vue.component('sceneview', {
             this.private.scene.setAttribute('embedded', 'true');
             this.private.scene.setAttribute('arjs', 'sourceType: webcam; debugUIEnabled: false');
 
+            // For some wicked reason I can't create the camera by createElement
             let innerHtml = `
     <a-camera gps-camera rotation-reader>
         <a-cursor></a-cursor>
     </a-camera>
 `;
-
             this.private.scene.innerHTML = innerHtml;
-
-            
 
             // dev box -> Remove this later
             console.log('creating box');
             let box = contentDocument.createElement('a-box');
             this.private.scene.appendChild(box);
-            box.setAttribute('position', '1 0.5 -3');
+            //box.setAttribute('position', '1 0.5 -3');
+            box.setAttribute('position', {x: 1,y: 0.5, z: -3});
             box.setAttribute('rotation', '0 45 0');
             box.setAttribute('color', '#4CC300');
 
-            //let sphere = contentDocument.createElement('a-sphere');
-            //sphere.setAttribute('gps-entity-place', `latitude: 59.310202; longitude: 18.060767;`);
-            ////sphere.setAttribute('gps-entity-place', `latitude: ${obj.position.lat}; longitude: ${obj.position.lon}`);
-            //sphere.setAttribute('color', '#400354');
-            //sphere.setAttribute('scale', '1.5 0.5 0.5');
-            //this.private.scene.appendChild(sphere);
-
-
-            let text = contentDocument.createElement('a-text');
-            this.private.scene.appendChild(text);
-            //text.setAttribute('position', {
-            //    x: 1,
-            //    y: 0.5,
-            //    z: -3
-            //});
-            text.setAttribute('value', 'testtext');
-            text.setAttribute('color', '#400354');
-            //text.setAttribute('position', '1 2 -3');
-            text.setAttribute('gps-entity-place', 'latitude: 59.29262; longitude: 18.05058;');
-            text.setAttribute('look-at', '[gps-camera]');
-            text.setAttribute('scale', '100 100 100');
-            //text.setAttribute('');
-
-            //// camera
-            //let camera = contentDocument.createElement('a-camera');
-            //camera.setAttribute('gps-camera', true);
-            //camera.setAttribute('rotation-reader', true);
-            //this.private.scene.appendChild(camera);
-
-            //let cursor = contentDocument.createElement('a-cursor');
-            //camera.appendChild(cursor);
-
-            //[{ lat: '59.290637', lon: '18.050530', color: '#400354' },
-            //    { lat: '59.291637', lon: '18.050430', color: '#400300' },
-            //    { lat: '59.291637', lon: '18.050430', color: '#400300' },
-            //    { lat: '59.289637', lon: '18.050630', color: '#40f354' },
-            //    { lat: '59.289637', lon: '18.050630', color: '#000354' }].forEach(pos => {
-            //        let sphere = contentDocument.createElement('a-sphere');
-            //        sphere.setAttribute('color', pos.color);
-            //        sphere.setAttribute('gps-entity-place', `latitude: ${pos.lat}; longitude: ${pos.lon}`);
-            //        //sphere.setAttribute('scale', '80 80 80');
-            //        this.private.scene.appendChild(sphere);
-            //});
-
+        },
+        renderObjects: async function () {
+            console.log('rendering', this.private.objectArray.length, 'objects');
+            const contentDocument = document.getElementById('frameview').contentDocument;
+            
             // Entities
-            // TODO: DETTA FUNKAR INTE!! VARFÖR !?
-            //console.log('objects', this.private.objectArray.length);
             //if (this.private.objectArray.length > 0) {
-            //    for (let i = 0; i < this.private.objectArray.length; i++) {
-            //        const obj = this.private.objectArray[i];
+            for (let i = 0; i < this.private.objectArray.length; i++) {
+                const obj = this.private.objectArray[i];
+                console.log('adding object', obj.value, obj.position);
 
-            //        console.log(obj.scale);
-            //        let entity = contentDocument.createElement('a-text'); // TODO: Fix for other objects
-            //        entity.setAttribute('look-at', '[gps-camera]');
-            //        entity.setAttribute('value', obj.value);     
-            //        entity.setAttribute('gps-entity-place', `latitude: ${obj.position.lat}; longitude: ${obj.position.lon}`);
-            //        this.private.scene.appendChild(entity);
-            //        //entity.setAttribute('scale', '80 80 80');
-            //        console.log(entity);
+                let entity = contentDocument.createElement('a-text'); // TODO: Fix for other objects
+                this.private.scene.appendChild(entity);
+                entity.setAttribute('look-at', '[gps-camera]');
+                entity.setAttribute('value', obj.value);
+                entity.setAttribute('gps-entity-place', `latitude: ${obj.position.lat}; longitude: ${obj.position.lon}`);
+                entity.setAttribute('scale', '80 80 80');
+                console.log(entity);
 
-            //        //const entityHtml = `<a-text look-at="[gps-camera]" value="${entity.value}" scale="${entity.scale}" position="latitude: ${entity.position.lat}; longitude: ${entity.position.lon}"></a-text>`;
-            //        //entities += entityHtml;
-            //    }
+            }
             //}
-
         }
     },
     watch: {
         'private.objectArray': async function () {
-            this.buildTemplate();
+            //this.buildTemplate();
+            this.renderObjects();
         }
     },
   
