@@ -27,9 +27,9 @@ const sceneView = Vue.component('sceneview', {
         console.log(sceneDiv);
 
         // ! Y DAFU can't I find an event that reliably runs after external scripts ?
-        const html = this.private.html;
+        const scene = this.private.scene;
         setTimeout(function () {
-            sceneDiv.innerHTML = html;
+            sceneDiv.appendChild(scene);
         }, 1000);
         
 
@@ -48,7 +48,8 @@ const sceneView = Vue.component('sceneview', {
                     pos: `latitude: shared.position.latitude; longitude: shared.position.latitude;`
                 },
                 show: true,
-                html: ''
+                html: '',
+                scene: null
             },
             shared: globalState
         }
@@ -94,50 +95,149 @@ const sceneView = Vue.component('sceneview', {
                 this.private.objectArray.push(npcObject);
             }
 
+            this.private.objectArray.concat(this.compass());
+
             console.log('data collected', this.private.objectArray);
         },
 
-        //hide: function () {
-        //    this.private.show = false;
-        //},
+        compass: function () {
+            console.log('adding compass at ', gpsService.position.coords.latitude, gpsService.position.coords.longitude);
+            return [
+                {
+                    geometry: 'text',
+                    scale: '20 20 20',
+                    value: 'north',
+                    position: {
+                        lat: gpsService.position.coords.latitude + 0.001,
+                        lon: gpsService.position.coords.longitude,
+                    }
+                },
+                {
+                    geometry: 'text',
+                    scale: '20 20 20',
+                    value: 'south',
+                    position: {
+                        lat: gpsService.position.coords.latitude - 0.001,
+                        lon: gpsService.position.coords.longitude,
+                    }
+                },
+                {
+                    geometry: 'text',
+                    scale: '20 20 20',
+                    value: 'east',
+                    position: {
+                        lat: gpsService.position.coords.latitude,
+                        lon: gpsService.position.coords.longitude + 0.001,
+                    }
+                },
+                {
+                    geometry: 'text',
+                    scale: '20 20 20',
+                    value: 'west',
+                    position: {
+                        lat: gpsService.position.coords.latitude,
+                        lon: gpsService.position.coords.longitude - 0.001,
+                    }
+                },
+
+            ];
+        },
 
         // building the a-scene in an iframe as arjs doesn't accept shutting off the camera when leaving the view
         buildTemplate: async function () {
 
-            //let entities = '';
-            //if (this.private.objectArray.length > 0) {
-            //    for (let i = 0; i < 5; i++) {
-            //        const entity = this.private.objectArray[i];
-            //        const entityHtml = `<a-text look-at="[gps-camera]" value="${entity.value}" scale="${entity.scale}" position="latitude: ${entity.position.lat}; longitude: ${entity.position.lon}"></a-text>`;
-            //        entities += entityHtml;
-            //    }
-            //    console.log('constructed entities', entities);
-            //} else
-            //    console.log(this.private.objectArray.Length);
-            
+            let frame = document.getElementById('frameview');
+            const contentDocument = frame.contentDocument;
 
-            
-            const text = '<a-text value="This content will always face you." look-at="[gps-camera]" scale="120 120 120" gps-entity-place="latitude: 59.292623; longitude: 18.05056;"></a-text>';
-            
+            // Set up scene
+            this.private.scene = contentDocument.createElement('a-scene');
+            this.private.scene.setAttribute('id', 'scene');
+            this.private.scene.setAttribute('vr-mode-ui', 'enabled');
+            this.private.scene.setAttribute('embedded', 'true');
+            this.private.scene.setAttribute('arjs', 'sourceType: webcam; debugUIEnabled: false');
 
-            this.private.html = `
-<div>
-    <a-scene id="scene" vr-mode-ui="enabled: false" embedded arjs="sourceType: webcam; debugUIEnabled: false;">
-
-        <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-
-        ${text}
-
-        <a-camera gps-camera rotation-reader>
-            <a-cursor></a-cursor>
-        </a-camera>
-
-    </a-scene>
-</div>
+            let innerHtml = `
+    <a-camera gps-camera rotation-reader>
+        <a-cursor></a-cursor>
+    </a-camera>
 `;
 
-            console.log('template built', this.private.html);
+            this.private.scene.innerHTML = innerHtml;
 
+            
+
+            // dev box -> Remove this later
+            console.log('creating box');
+            let box = contentDocument.createElement('a-box');
+            this.private.scene.appendChild(box);
+            box.setAttribute('position', '1 0.5 -3');
+            box.setAttribute('rotation', '0 45 0');
+            box.setAttribute('color', '#4CC300');
+
+            //let sphere = contentDocument.createElement('a-sphere');
+            //sphere.setAttribute('gps-entity-place', `latitude: 59.310202; longitude: 18.060767;`);
+            ////sphere.setAttribute('gps-entity-place', `latitude: ${obj.position.lat}; longitude: ${obj.position.lon}`);
+            //sphere.setAttribute('color', '#400354');
+            //sphere.setAttribute('scale', '1.5 0.5 0.5');
+            //this.private.scene.appendChild(sphere);
+
+
+            let text = contentDocument.createElement('a-text');
+            this.private.scene.appendChild(text);
+            //text.setAttribute('position', {
+            //    x: 1,
+            //    y: 0.5,
+            //    z: -3
+            //});
+            text.setAttribute('value', 'testtext');
+            text.setAttribute('color', '#400354');
+            //text.setAttribute('position', '1 2 -3');
+            text.setAttribute('gps-entity-place', 'latitude: 59.29262; longitude: 18.05058;');
+            text.setAttribute('look-at', '[gps-camera]');
+            text.setAttribute('scale', '100 100 100');
+            //text.setAttribute('');
+
+            //// camera
+            //let camera = contentDocument.createElement('a-camera');
+            //camera.setAttribute('gps-camera', true);
+            //camera.setAttribute('rotation-reader', true);
+            //this.private.scene.appendChild(camera);
+
+            //let cursor = contentDocument.createElement('a-cursor');
+            //camera.appendChild(cursor);
+
+            //[{ lat: '59.290637', lon: '18.050530', color: '#400354' },
+            //    { lat: '59.291637', lon: '18.050430', color: '#400300' },
+            //    { lat: '59.291637', lon: '18.050430', color: '#400300' },
+            //    { lat: '59.289637', lon: '18.050630', color: '#40f354' },
+            //    { lat: '59.289637', lon: '18.050630', color: '#000354' }].forEach(pos => {
+            //        let sphere = contentDocument.createElement('a-sphere');
+            //        sphere.setAttribute('color', pos.color);
+            //        sphere.setAttribute('gps-entity-place', `latitude: ${pos.lat}; longitude: ${pos.lon}`);
+            //        //sphere.setAttribute('scale', '80 80 80');
+            //        this.private.scene.appendChild(sphere);
+            //});
+
+            // Entities
+            // TODO: DETTA FUNKAR INTE!! VARFÖR !?
+            //console.log('objects', this.private.objectArray.length);
+            //if (this.private.objectArray.length > 0) {
+            //    for (let i = 0; i < this.private.objectArray.length; i++) {
+            //        const obj = this.private.objectArray[i];
+
+            //        console.log(obj.scale);
+            //        let entity = contentDocument.createElement('a-text'); // TODO: Fix for other objects
+            //        entity.setAttribute('look-at', '[gps-camera]');
+            //        entity.setAttribute('value', obj.value);     
+            //        entity.setAttribute('gps-entity-place', `latitude: ${obj.position.lat}; longitude: ${obj.position.lon}`);
+            //        this.private.scene.appendChild(entity);
+            //        //entity.setAttribute('scale', '80 80 80');
+            //        console.log(entity);
+
+            //        //const entityHtml = `<a-text look-at="[gps-camera]" value="${entity.value}" scale="${entity.scale}" position="latitude: ${entity.position.lat}; longitude: ${entity.position.lon}"></a-text>`;
+            //        //entities += entityHtml;
+            //    }
+            //}
 
         }
     },
