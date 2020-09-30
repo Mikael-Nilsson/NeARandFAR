@@ -8,7 +8,7 @@ using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
 
 using MongoDB.Bson;
-using NeARandFARBackEnd.Mongo;
+using Nilsson.Mongo;
 using System.Collections.Immutable;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.

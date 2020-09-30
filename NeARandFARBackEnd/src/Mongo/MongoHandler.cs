@@ -14,7 +14,7 @@ namespace NeARandFARBackEnd
 
 }
 
-namespace NeARandFARBackEnd.Mongo
+namespace Nilsson.Mongo
 {
     public class MongoHandler {
 

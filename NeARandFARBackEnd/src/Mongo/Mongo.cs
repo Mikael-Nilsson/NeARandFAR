@@ -8,11 +8,11 @@ using MongoDB.Bson;
 
 using Amazon.Lambda.Core;
 
-namespace NeARandFARBackEnd.Mongo
+namespace Nilsson.Mongo
 {
     public class MongoClient
     {
-
+        
         public BsonArray fakeData = new BsonArray
         {
             new BsonDocument
@@ -33,9 +33,17 @@ namespace NeARandFARBackEnd.Mongo
 
         public MongoDB.Driver.MongoClient dbClient { get; set; }
 
+        string database;
+        string connectionString;
+
         public MongoClient()
         {
 
+        }
+
+        public MongoClient(string connectionString, string database) {
+            this.database = database;
+            this.connectionString = connectionString;
         }
 
         // Connect to Mongo
@@ -56,13 +64,17 @@ namespace NeARandFARBackEnd.Mongo
 
             LambdaLogger.Log($"dbClient is created: {dbClient != null}");
             LambdaLogger.Log("checking connection settings");
-            LambdaLogger.Log($"database is empty: {string.IsNullOrEmpty(request.database).ToString()}");
+            LambdaLogger.Log($"database is empty: {(string.IsNullOrEmpty(request.database) && string.IsNullOrEmpty(this.database)).ToString()}");
 
             if (string.IsNullOrEmpty(request.database))
             {
-                request.database = Environment.GetEnvironmentVariable("mongoDB");
-                LambdaLogger.Log($"database: {request.database}");
+                if(this.database != null) {
+                    request.database = this.database;
+                } else {
+                    request.database = Environment.GetEnvironmentVariable("mongoDB");
+                }
             }
+            LambdaLogger.Log($"database: {request.database}");
 
             // If we're already connected, we keep that connection and don't need to check that part of the input
             if (dbClient == null)
@@ -72,11 +84,16 @@ namespace NeARandFARBackEnd.Mongo
                 LambdaLogger.Log($"and connstring is empty: {string.IsNullOrEmpty(request.connectionString).ToString()}");
 
                 // if no connectionstring is provided, use env var
+                
                 if (string.IsNullOrEmpty(request.connectionString))
                 {
-                    request.connectionString = $"{Environment.GetEnvironmentVariable("mongoConnectionString")}/{request.database}";
-                    LambdaLogger.Log($"connstring: {request.connectionString}");
+                    if(this.connectionString != null) {
+                        request.connectionString = this.connectionString;
+                    } else {
+                        request.connectionString = $"{Environment.GetEnvironmentVariable("mongoConnectionString")}/{request.database}";
+                    }
                 }
+                LambdaLogger.Log($"connstring: {request.connectionString}");
 
             }
 
@@ -90,8 +107,8 @@ namespace NeARandFARBackEnd.Mongo
         public async Task<JsonDocument> getDocuments(MongoRequest request)
         {
 
-            request = this.checkRequest(request);
             LambdaLogger.Log(request.ToString());
+            request = this.checkRequest(request);
             connect(request);
             LambdaLogger.Log(dbClient.Cluster.Description.ToString());
 
@@ -104,11 +121,80 @@ namespace NeARandFARBackEnd.Mongo
                 query = MongoDB.Bson.Serialization.BsonSerializer.Deserialize<BsonDocument>(request.query);
             }
 
-            // TODO: Change to some other format so that calling classes don't need to have "using mongo*"
+            
             List<BsonDocument> docs = await collection.Find(query).Project("{_id: 0}").ToListAsync();
             JsonDocument result =  JsonDocument.Parse(docs.ToJson<List<BsonDocument>>());
             return result;
         }
+
+        enum operation {
+            createDocument,
+            createDocuments,
+            updateDocuments
+        };
+
+        async Task<bool> write(operation op, MongoRequest request) {
+
+            LambdaLogger.Log(request.ToString());
+            request = this.checkRequest(request);
+            connect(request);
+            LambdaLogger.Log(dbClient.Cluster.Description.ToString());
+
+            IMongoCollection<BsonDocument> collection = dbClient.GetDatabase(request.database).GetCollection<BsonDocument>(request.collection);
+
+            BsonDocument document = new BsonDocument();
+            List<BsonDocument> documents = new List<BsonDocument>();
+
+            switch (op) {
+                case operation.createDocument:
+                    document = request.documents[0].ToBsonDocument();
+                    await collection.InsertOneAsync(document);
+                    return true;
+                case operation.createDocuments:
+                    await collection.InsertManyAsync(request.documents);
+                    return true;
+                case operation.updateDocuments:
+                    BsonDocument filter = MongoDB.Bson.Serialization.BsonSerializer.Deserialize<BsonDocument>(request.query);
+                    BsonDocument update = request.documents[0];
+
+                    var result = await collection.UpdateManyAsync(filter, update);
+
+                    if (result.ModifiedCount > 0)
+                        return true;
+                    else return false;
+
+            }
+
+            return false;
+        }
+
+
+        public async Task<bool> createDocument(MongoRequest request)
+        {
+            if (request.documents != null)
+            {
+                return await write(operation.createDocument, request);
+            } else return false;
+        }
+
+        public async Task<bool> createDocuments(MongoRequest request)
+        {
+            if (request.documents != null) {
+                return await write(operation.createDocuments, request);
+            } else return false;
+        }
+
+        public async Task<bool> updateDocuments(MongoRequest request)
+        {
+            if (request.documents != null)
+            {
+                return await write(operation.updateDocuments, request);
+            }
+            else return false;
+        }
+
+
+
 
     }
 
@@ -119,7 +205,7 @@ namespace NeARandFARBackEnd.Mongo
     {
         public string id { get; set; }
 
-        public List<string> documents { get; set; }
+        public List<BsonDocument> documents { get; set; }
         public string query { get; set; }
         public string collection { get; set; }
         public string connectionString { get; set; }
@@ -150,6 +236,13 @@ namespace NeARandFARBackEnd.Mongo
 
             if (request.ContainsKey("password") && request["password"] != null)
                 this.password = request["password"];
+
+            if (request.ContainsKey("documents") && request["documents"] != null) {
+                if (request["documents"].Substring(0, 1) == "[")
+                    this.documents = MongoDB.Bson.Serialization.BsonSerializer.Deserialize<List<BsonDocument>>(request["documents"]);
+                else
+                    this.documents = new List<BsonDocument>() { MongoDB.Bson.Serialization.BsonSerializer.Deserialize<BsonDocument>(request["documents"]) };
+            }
         }
 
         public override string ToString()
