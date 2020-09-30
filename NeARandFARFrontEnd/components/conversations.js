@@ -11,7 +11,7 @@ let conversationService = {
 
   // * This only allows for one active conversation per NPC at a time. If we need more, we will have to change this.
   updateActiveConversationNode: function(NPC, nodeId) {
-    console.log('updateActiveConversationNode', NPC, nodeId);
+    this.shared.log('updateActiveConversationNode', NPC, nodeId);
     return
     let currentNode = this.activeNodes.filter(node => node.npc === NPC);
 
@@ -33,12 +33,12 @@ let conversationService = {
 
   // returns node from currentNodes belonging to active NPC
   getCurrentConversationNode: function() {
-    console.log('getCurrentConversationNode');
+    this.shared.log('getCurrentConversationNode');
 
     // TODO: If no activeNPC, no conversation
     if(NPCservice.getNPCs(globalState.activeNPC)) {
       const currentNodeInfo = this.currentNodes.filter(n => n.NPC === globalState.activeNPC)[0];
-      console.log('found info about nodes', currentNodeInfo, ' for NPC ', globalState.activeNPC);
+      this.shared.log('found info about nodes', currentNodeInfo, ' for NPC ', globalState.activeNPC);
       let currentNode = null;
 
 
@@ -57,7 +57,7 @@ let conversationService = {
       }
 
       // TODO: filtering out the relationship-unrelated answers
-      console.log('returning node from getActiveConversationNode', currentNode);
+      this.shared.log('returning node from getActiveConversationNode', currentNode);
       return currentNode;
     }
   },

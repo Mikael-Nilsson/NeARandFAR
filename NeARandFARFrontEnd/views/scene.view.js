@@ -1,8 +1,8 @@
 
 const sceneView = Vue.component('sceneview', {
     name: 'sceneview',
-    created: async function() {
-        console.log('position in scene.view', gpsService.position.coords.latitude);
+    created: async function () {
+        this.shared.log('position in scene.view', this.shared.position.latitude, this.shared.position.longitude);
 
         if (!AFRAME.components["cursor-listener"]) {
             AFRAME.registerComponent('cursor-listener', {
@@ -11,39 +11,36 @@ const sceneView = Vue.component('sceneview', {
         }
 
         this.buildTemplate();
-        await this.getAssets();
+        this.renderObjects();
 
     },
     mounted: function () {
 
-        console.log('mounting', this.html);
+        this.shared.log('mounting', this.html);
 
-       
-
-        
         let frame = document.getElementById('frameview');
 
         let sceneDiv = frame.contentDocument.getElementById('sceneview');
-        console.log(sceneDiv);
+        this.shared.log(sceneDiv);
 
         // ! Y DAFU can't I find an event that reliably runs after external scripts ? THIS WON'T WORK FOR REAL !
         const scene = this.private.scene;
+        const listenForPosition = this.listenForPosition;
         setTimeout(function () {
             sceneDiv.appendChild(scene);
+            listenForPosition();
         }, 1500);
         
-
-        console.log('sceneview mounted');
+        this.shared.log('sceneview mounted');
         
     },
     update: async function () {
-        console.log('sceneview beforeupdate');
+        this.shared.log('sceneview beforeupdate');
     },
     data: function () {
         return {
             private: {
                 loadingState: true,
-                objectArray: [],
                 compassPin: {
                     pos: `latitude: shared.position.latitude; longitude: shared.position.latitude;`
                 },
@@ -55,92 +52,13 @@ const sceneView = Vue.component('sceneview', {
         }
     },
     methods: {
-        getAssets: async function () {
-            // TODO: Rewrite using Rxjs
-            const assets = await assetService.getData();
-            console.log('assets', assets);
-
-            // Putting assets in object list
-            this.private.objectArray = assets.map(p => {
-                return {
-                    geometry: p.geometry,
-                    value: p.value,
-                    scale: p.scale,
-                    position: p.position,
-                    entityPos: `latitude: ${p.position.lat}; longitude: ${p.position.lon};`,
-                    conversation: `id: ${p.conversationId}`,
-                    speechBubble: `size:2.5 1 0.01; text:${p.value};`
-                };
+        listenForPosition: function () {
+            let frame = document.getElementById('frameview');
+            const contentDocument = frame.contentDocument;
+            let scene = contentDocument.getElementById('camera');
+            scene.addEventListener('gps-camera-update-positon', function (event) {
+                this.shared.log('position in scene', event);
             });
-
-            const NPCs = await NPCservice.getNPCs(null, gpsService.position);
-            console.log('nearby npcs found', NPCs);
-            let objects = [];
-
-            for (let i = 0; i < NPCs.length; i++) {
-                const conversation = await conversationService.getConversation(NPCs[i].conversationStart);
-                console.log('conversation collected', conversation);
-
-                const npcObject = {
-                    geometry: NPCs[i].geometry,
-                    value: conversation.line,
-                    scale: NPCs[i].scale,
-                    position: NPCs[i].position,
-                    entityPos: `latitude: ${NPCs[i].position.lat}; longitude: ${NPCs[i].position.lon}`,
-                    conversation: `id: ${NPCs[i].conversationStart}`,
-                    speechBubble: `size:2.5 1 0.01; text:${conversation.line};`
-                };
-
-                
-                this.private.objectArray.push(npcObject);
-            }
-
-            this.private.objectArray.concat(this.compass());
-
-            console.log('data collected', this.private.objectArray);
-        },
-
-        compass: function () {
-            console.log('adding compass at ', gpsService.position.coords.latitude, gpsService.position.coords.longitude);
-            return [
-                {
-                    geometry: 'text',
-                    scale: '20 20 20',
-                    value: 'north',
-                    position: {
-                        lat: gpsService.position.coords.latitude + 0.001,
-                        lon: gpsService.position.coords.longitude,
-                    }
-                },
-                {
-                    geometry: 'text',
-                    scale: '20 20 20',
-                    value: 'south',
-                    position: {
-                        lat: gpsService.position.coords.latitude - 0.001,
-                        lon: gpsService.position.coords.longitude,
-                    }
-                },
-                {
-                    geometry: 'text',
-                    scale: '20 20 20',
-                    value: 'east',
-                    position: {
-                        lat: gpsService.position.coords.latitude,
-                        lon: gpsService.position.coords.longitude + 0.001,
-                    }
-                },
-                {
-                    geometry: 'text',
-                    scale: '20 20 20',
-                    value: 'west',
-                    position: {
-                        lat: gpsService.position.coords.latitude,
-                        lon: gpsService.position.coords.longitude - 0.001,
-                    }
-                },
-
-            ];
         },
 
         // building the a-scene in an iframe as arjs doesn't accept shutting off the camera when leaving the view
@@ -158,14 +76,15 @@ const sceneView = Vue.component('sceneview', {
 
             // For some wicked reason I can't create the camera by createElement
             let innerHtml = `
-    <a-camera gps-camera rotation-reader>
-        <a-cursor></a-cursor>
+    <a-camera id="camera" gps-camera rotation-reader>
+        <a-cursor>
+        </a-cursor>
     </a-camera>
 `;
             this.private.scene.innerHTML = innerHtml;
 
             // dev box -> Remove this later
-            console.log('creating box');
+            this.shared.log('creating box');
             let box = contentDocument.createElement('a-box');
             this.private.scene.appendChild(box);
             //box.setAttribute('position', '1 0.5 -3');
@@ -175,14 +94,14 @@ const sceneView = Vue.component('sceneview', {
 
         },
         renderObjects: async function () {
-            console.log('rendering', this.private.objectArray.length, 'objects');
+            this.shared.log('rendering', this.shared.objectArray.length, 'objects');
             const contentDocument = document.getElementById('frameview').contentDocument;
             
             // Entities
-            //if (this.private.objectArray.length > 0) {
-            for (let i = 0; i < this.private.objectArray.length; i++) {
-                const obj = this.private.objectArray[i];
-                console.log('adding object', obj.value, obj.position);
+            //if (this.shared.objectArray.length > 0) {
+            for (let i = 0; i < this.shared.objectArray.length; i++) {
+                const obj = this.shared.objectArray[i];
+                this.shared.log('adding object', obj.value, obj.position);
 
                 let entity = contentDocument.createElement('a-text'); // TODO: Fix for other objects
                 this.private.scene.appendChild(entity);
@@ -190,14 +109,15 @@ const sceneView = Vue.component('sceneview', {
                 entity.setAttribute('value', obj.value);
                 entity.setAttribute('gps-entity-place', `latitude: ${obj.position.lat}; longitude: ${obj.position.lon}`);
                 entity.setAttribute('scale', '80 80 80');
-                console.log(entity);
+                entity.setAttribute('class', 'conversation');
+                this.shared.log(entity);
 
             }
             //}
         }
     },
     watch: {
-        'private.objectArray': async function () {
+        'shared.objectArray': async function () {
             //this.buildTemplate();
             this.renderObjects();
         }

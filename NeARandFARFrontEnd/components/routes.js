@@ -6,6 +6,16 @@ const routes = [
       name: 'home'
     },
     {
+        path: '/app',
+        name: 'app',
+        component: appView
+    },
+    {
+        path: '/log',
+        name: 'log',
+        component: logView
+    },
+    {
         path: '/dash',
         name: 'dash',
         component: dashView

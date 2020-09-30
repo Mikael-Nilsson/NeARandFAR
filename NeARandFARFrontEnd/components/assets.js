@@ -10,7 +10,7 @@ const assetService = {
 };
 
 //const getData = async (id, connection) => {
-//    console.log('in getData');
+//    this.shared.log('in getData');
 //    // assetService.assets = [
        
 

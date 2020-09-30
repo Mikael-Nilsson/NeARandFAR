@@ -1,12 +1,12 @@
 const NPCservice = {
-    position: {},
+    position: null,
     activeConversationNode: 0,
     visibleDistanceLat: 0.0001,
     visibleDistanceLon: 0.0003,
     
     getNPCs: function (id, position) {
         if(id != null && id != undefined) {
-            console.log('returning', this.NPCs[id]);
+            this.shared.log('returning', this.NPCs[id]);
             return this.NPCs[id];
         } else if(position) {
             return this.NPCs.filter(npc => {

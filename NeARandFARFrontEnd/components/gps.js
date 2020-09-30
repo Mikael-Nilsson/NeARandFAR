@@ -5,11 +5,11 @@ const gpsService = {
 
     getLocation: function() {
         if (navigator.geolocation) {
-            console.log('searching gps');
+            this.shared.log('searching gps');
             return new Promise((resolve, reject) => {
                 navigator.geolocation.getCurrentPosition((pos) => {
                     this.position = pos;
-                    console.log('3. i showPosition', this.position);
+                    this.shared.log('3. i showPosition', this.position);
                     resolve(pos);
                 }, (err) => {
                     console.error('an error occurred', JSON.stringify(err));

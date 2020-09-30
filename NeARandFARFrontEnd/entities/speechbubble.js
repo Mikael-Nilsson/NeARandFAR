@@ -18,7 +18,7 @@ AFRAME.registerComponent('speech-bubble', {
         }
     },
     update: function (oldData) {
-        console.log('creating speech bubble');
+        this.shared.log('creating speech bubble');
         const speechBubbleImgPath = 'assets/images/Speech_bubble.svg'; // TODO: parameter?
         // const fontPath = 'assets/a_dripping_marker_Regular.json'; // TODO: config?
         const bitmapLoader = new THREE.ImageBitmapLoader();
@@ -28,7 +28,7 @@ AFRAME.registerComponent('speech-bubble', {
             group.position.set(this.data.position.x, this.data.position.y, this.data.position.z);
         } catch(e) {
             console.error(e);
-            console.log(this.data);
+            this.shared.log(this.data);
         }
 
         this.el.setObject3D('speechbubble', group);
@@ -115,7 +115,7 @@ const formatText = function (text) {
 const calculateFontSize = function(textArray, signSize, context, fontName) {
     
     const longestLine = textArray.reduce((largest, current)=> {
-        console.log(current, current.length, largest.length)
+        this.shared.log(current, current.length, largest.length)
         if(current.length > largest.length) return current;
         else return largest;
     });
@@ -162,7 +162,7 @@ const calculateFontSize = function(textArray, signSize, context, fontName) {
     } while(!done); // TODO: MAGIC NUMBER! config?
 
     formattedWidth = Math.ceil(width) + "px";
-    console.log('total length:', formattedWidth, 'fontSize', fontSize);
+    this.shared.log('total length:', formattedWidth, 'fontSize', fontSize);
     
     return fontSize;
 };

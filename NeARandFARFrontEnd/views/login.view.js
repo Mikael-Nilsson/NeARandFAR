@@ -5,12 +5,12 @@ const loginView = Vue.component('loginview', {
         login: async function() {
             const data = await userService.login(this.username, this.password);
 
-            console.log(data);
+            this.shared.log(data);
             if(data) {
-                console.log('username checks out');
+                this.shared.log('username checks out');
                 this.$emit('start');
             } else {
-                console.log('bad password');
+                this.shared.log('bad password');
             }
              
         }

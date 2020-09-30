@@ -1,26 +1,26 @@
 const dashView = Vue.component('dashview', {
     mounted: function() {
-        console.log('mounting dashboard');
+        this.shared.log('mounting dashboard');
     },
     methods: {
         logout: function() {
-            console.log('logging out');
+            this.shared.log('logging out');
             localStorage.removeItem('sessionActive');
             localStorage.removeItem('apiKey');
             this.$router.push({path: '/'});
         },
         checkActive: function() {
-            console.log(this.shared.activeNPC);
+            this.shared.log(this.shared.activeNPC);
         },
         updateConversation: async function(reply) {
             
-            console.log('updating active conversation with', reply);
+            this.shared.log('updating active conversation with', reply);
             conversationService.updateActiveConversationNode(this.shared.activeNPC, reply.next[0]); // TODO: add reply.relationship if any
-            console.log(conversationService.currentNodes[0]);
+            this.shared.log(conversationService.currentNodes[0]);
         },
         toggleMap: async function () {
             this.shared.camActive = !this.shared.camActive;
-            console.log('camActive in dash', this.shared.camActive);
+            this.shared.log('camActive in dash', this.shared.camActive);
             this.private.gotoView = this.private.gotoView == 'cam' ? 'map' : 'cam';
         }
     },
@@ -38,7 +38,7 @@ const dashView = Vue.component('dashview', {
         //'shared.activeNPC': async function() {
         //    const currentNode = await conversationService.getCurrentConversationNode();
         //    this.private.activeConversation = conversationService.getConversation(currentNode.id);
-        //    console.log('changed active NPC', this.private.activeConversation, currentNode);
+        //    this.shared.log('changed active NPC', this.private.activeConversation, currentNode);
         //}
     },
     computed: {
@@ -53,7 +53,7 @@ const dashView = Vue.component('dashview', {
         </template>
 
         <button id="showmap" v-on:click="toggleMap()">{{private.gotoView}}</button>
-        <button id="showScene" v-on:click="shared.on = !shared.on">toggle scene</button>
+        <button id="showScene" v-on:click="shared.follow = !shared.follow">toggle position</button>
         <b>{{shared.activeNPC}}:</b>
         <div>{{shared.position.latitude}}, {{shared.position.longitude}}</div>
         </div>

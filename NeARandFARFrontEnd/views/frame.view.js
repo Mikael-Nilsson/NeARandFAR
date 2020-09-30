@@ -1,7 +1,7 @@
 const frameView = Vue.component('frameview', {
     name: 'frameview',
     created: function () {
-        console.log('frameview created');
+        this.shared.log('frameview created');
 
     },
     mounted: function () {
