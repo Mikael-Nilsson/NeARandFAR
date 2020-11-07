@@ -249,3 +249,6 @@ NeARandFARFrontEnd/certs/cert.pem
 NeARandFARBackEnd/keys.google/nearandfar.deploy.key.json
 NeARandFARBackEnd/keys.google/nearandfar.functionsrunner.key.json
 NeARandFARBackEnd/env.yml
+/NeARandFARBackEnd/test/Auth.Tests/config.json
+/NeARandFARBackEnd/test/Mongo.Tests/config.json
+/NeARandFARBackEnd/config.json

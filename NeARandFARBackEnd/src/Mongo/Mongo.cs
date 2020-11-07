@@ -90,7 +90,7 @@ namespace Nilsson.Mongo
                     if(this.connectionString != null) {
                         request.connectionString = this.connectionString;
                     } else {
-                        request.connectionString = $"{Environment.GetEnvironmentVariable("mongoConnectionString")}/{request.database}";
+                        request.connectionString = $"{Environment.GetEnvironmentVariable("mongoConnectionString")}";
                     }
                 }
                 LambdaLogger.Log($"connstring: {request.connectionString}");
@@ -130,7 +130,8 @@ namespace Nilsson.Mongo
         enum operation {
             createDocument,
             createDocuments,
-            updateDocuments
+            updateDocuments,
+            deleteDocuments
         };
 
         async Task<bool> write(operation op, MongoRequest request) {
@@ -144,6 +145,7 @@ namespace Nilsson.Mongo
 
             BsonDocument document = new BsonDocument();
             List<BsonDocument> documents = new List<BsonDocument>();
+            BsonDocument filter = new BsonDocument();
 
             switch (op) {
                 case operation.createDocument:
@@ -154,7 +156,7 @@ namespace Nilsson.Mongo
                     await collection.InsertManyAsync(request.documents);
                     return true;
                 case operation.updateDocuments:
-                    BsonDocument filter = MongoDB.Bson.Serialization.BsonSerializer.Deserialize<BsonDocument>(request.query);
+                    filter = MongoDB.Bson.Serialization.BsonSerializer.Deserialize<BsonDocument>(request.query);
                     BsonDocument update = request.documents[0];
 
                     var result = await collection.UpdateManyAsync(filter, update);
@@ -162,6 +164,14 @@ namespace Nilsson.Mongo
                     if (result.ModifiedCount > 0)
                         return true;
                     else return false;
+                // case operation.deleteDocuments:
+                //     filter = MongoDB.Bson.Serialization.BsonSerializer.Deserialize<BsonDocument>(request.query);
+                //     DeleteResult deleteResult = await collection.DeleteManyAsync(filter);
+
+                //     if(deleteResult != null) {
+                        
+                //     }
+                    
 
             }
 
@@ -192,6 +202,19 @@ namespace Nilsson.Mongo
             }
             else return false;
         }
+
+        // public async Task<bool> deleteDocuments(MongoRequest request) {
+        //     // Make a get to see that the documents exist
+        //     if(request.query != null) {
+        //         var docs = await this.getDocuments(request);
+        //         if(docs != null) {
+        //             return await write(operation.deleteDocuments, request);
+        //         }
+
+        //     }
+
+        //     // delete the documents
+        // }
 
 
 
