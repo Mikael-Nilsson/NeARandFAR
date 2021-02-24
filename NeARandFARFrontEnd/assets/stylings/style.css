@@ -30,5 +30,17 @@ iframe {
 }
 
 .map {
-    height: 600px;
+    height: 90%;
 }
+
+.dot {
+    height: 10px;
+    width: 10px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1000;
+}
+
