@@ -252,3 +252,14 @@ NeARandFARBackEnd/env.yml
 /NeARandFARBackEnd/test/Auth.Tests/config.json
 /NeARandFARBackEnd/test/Mongo.Tests/config.json
 /NeARandFARBackEnd/config.json
+
+# examples
+NeARandFARFrontEnd/examples/*
+NeARandFARBackEnd/examples/*
+
+# less used assets
+NeARandFARFrontEnd/assets/aframe-boilerplate-master/*
+NeARandFARFrontEnd/assets/scripts/aframe-ar-nft.js
+NeARandFARFrontEnd/assets/scripts/aframe-ar.js
+NeARandFARFrontEnd/assets/scripts/aframe-look-at-component.min.js
+NeARandFARFrontEnd/assets/scripts/aframe.min.js
