@@ -43,7 +43,7 @@ const app = new Vue({
         events.startConversationEvent();
 
         //const pos = await gpsService.getLocation();
-        await this.getAssets();
+        await this.getObjects();
         //this.shared.position = pos.coords;
         this.private.loaded = true;
         //this.shared.log('lat when mounted', globalState.position.latitude);
@@ -58,13 +58,14 @@ const app = new Vue({
 
 
         },
-        getAssets: async function () {
+        getObjects: async function () {
             // TODO: Rewrite using Rxjs
-            const assets = await assetService.getData();
-            this.shared.log('assets', assets);
+            const objects = await assetService.getData();
+            // this.shared.log('objects', objects);
+            console.log('objects', objects);
 
-            // Putting assets in object list
-            this.shared.objectArray = assets.map(p => {
+            // Putting objects in object list
+            this.shared.objectArray = objects.map(p => {
                 return {
                     geometry: p.geometry,
                     value: p.value,
@@ -78,7 +79,7 @@ const app = new Vue({
 
             //const NPCs = await NPCservice.getNPCs(null, gpsService.position);
             //this.shared.log('nearby npcs found', NPCs);
-            let objects = [];
+            // let objects = [];
 
             //for (let i = 0; i < NPCs.length; i++) {
             //    const conversation = await conversationService.getConversation(NPCs[i].conversationStart);
