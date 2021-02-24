@@ -48,7 +48,7 @@ namespace NeARandFARBackEnd.Tests
         {
             Dictionary<string, string> request = new Dictionary<string, string>() {
                 { "collection", "entities"},
-                { "query", "{'position.lat': { $gt: 59.29}}" }
+                { "query", "{'position.lat': { $gt: 59.2}}" }
             };
 
             Nilsson.Mongo.MongoClient client = new Nilsson.Mongo.MongoClient();
@@ -65,8 +65,7 @@ namespace NeARandFARBackEnd.Tests
         {
             Dictionary<string, string> request = new Dictionary<string, string>() {
                 { "collection", "entities" },
-                //{ "query", "[{ 'type': 'account', 'id':20002, 'balance': 10000 },{ 'type': 'account', 'id':20003, 'balance': 10000 }]"}
-                { "documents", "{ 'type': 'account', 'id':20001, 'balance': 10000 }"}
+                {"documents", "{ 'geometry': 'text', 'value': 'test', 'scale': '30 30 30', 'position': { 'lat': '59.30', 'lon': '18.1' }}"}
             };
 
 
@@ -84,7 +83,7 @@ namespace NeARandFARBackEnd.Tests
         {
             Dictionary<string, string> request = new Dictionary<string, string>() {
                 { "collection", "entities" },
-                { "documents", "[{ 'type': 'account', 'id':20002, 'balance': 10000 },{ 'type': 'account', 'id':20003, 'balance': 10000 }]"}
+                {"documents", "[{ 'geometry': 'text', 'value': 'test1', 'scale': '30 30 30', 'position': { 'lat': '59.2929', 'lon': '18.1' }},{ 'geometry': 'text', 'value': 'test2', 'scale': '30 30 30', 'position': { 'lat': '59.31', 'lon': '18.1' }}]"}
                 //{ "query", "{ 'type': 'account', 'id':20001, 'balance': 10000 }"}
             };
 
@@ -102,8 +101,8 @@ namespace NeARandFARBackEnd.Tests
         {
             Dictionary<string, string> request = new Dictionary<string, string>() {
                 { "collection", "entities" },
-                { "query", "{'type': 'account', 'id': 20002}" },
-                { "documents", "{$set: {'balance': 10001}}" }
+                { "query", "{'geometry': 'text', 'value': 'test2'}" },
+                { "documents", "{$set: {'value': 'test3'}}" }
             };
 
             Nilsson.Mongo.MongoClient client = new Nilsson.Mongo.MongoClient();
@@ -118,8 +117,8 @@ namespace NeARandFARBackEnd.Tests
         {
             Dictionary<string, string> request = new Dictionary<string, string>() {
                 { "collection", "entities" },
-                { "query", "{'type': 'account'}" },
-                { "documents", "{$set: {'balance': 10010}}" }
+                { "query", "{'geometry': 'text'}" },
+                { "documents", "{$set: {'scale': '50 50 50'}}" }
             };
 
             Nilsson.Mongo.MongoClient client = new Nilsson.Mongo.MongoClient();
