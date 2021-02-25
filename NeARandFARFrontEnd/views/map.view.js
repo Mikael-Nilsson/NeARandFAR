@@ -44,7 +44,7 @@ const mapView = Vue.component('mapview', {
       //const mapDiv = document.getElementById('map');
 
       if (this.shared.follow) {
-        this.private.map.locate({ setView: true });
+        this.private.map.locate({ setView: true, watch: true });
         this.private.map.addEventListener('locationfound', (locationEvent) => {
           this.shared.position = { latitude: locationEvent.latitude, longitude: locationEvent.longitude };
 
