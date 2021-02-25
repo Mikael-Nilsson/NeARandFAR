@@ -2,39 +2,39 @@
 // TODO: Support the other methods
 
 const dataService = {
-    shared: globalState,
-    get: function(url) {
-        return this.send(url, 'GET',null, null);
-    },
+  shared: globalState,
+  get: function (url) {
+    return this.send(url, 'GET', null, null);
+  },
 
-    post: function(url, body) {
-        return this.send(url, 'POST', body, null);
-    },
+  post: function (url, body) {
+    return this.send(url, 'POST', body, null);
+  },
 
-    send: function(url, method, body, options) {
-        return new Promise((resolve) => {
+  send: function (url, method, body, options) {
+    return new Promise((resolve) => {
 
-            this.shared.log(`${method}:ing ${body} to ${url}`);
-            
-            let request = new XMLHttpRequest();
+      console.log(`${method}:ing ${body} to ${url}`);
 
-            request.open(method, url);
+      let request = new XMLHttpRequest();
 
-            // ! APIKey isn't needed in the read frontend. This will be needed in the edit GUI later
-            //const apiKey = localStorage.getItem('apiKey');
-            //request.setRequestHeader('x-api-key', apiKey);
-            
-            request.send([body]);
-            
-            request.onreadystatechange = () => {
-                if(request.readyState == 4 && request.status == 200) {
-                    this.shared.log('success!');
-                    resolve(request.response);   
-                }
-            };
-            
-        });
-    }
+      request.open(method, url);
+
+      // ! APIKey isn't needed in the read frontend. This will be needed in the edit GUI later
+      //const apiKey = localStorage.getItem('apiKey');
+      //request.setRequestHeader('x-api-key', apiKey);
+
+      request.send([body]);
+
+      request.onreadystatechange = () => {
+        if (request.readyState == 4 && request.status == 200) {
+          console.log('success!');
+          resolve(request.response);
+        }
+      };
+
+    });
+  }
 }
 
 

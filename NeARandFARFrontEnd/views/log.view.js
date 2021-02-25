@@ -1,22 +1,22 @@
 const logView = Vue.component('logView', {
-    created: function () {
-        const channel = new BroadcastChannel('log-channel');
+  created: function () {
+    const channel = new BroadcastChannel('log-channel');
 
-        channel.onmessage = function (event) {
-            console.log('log:', event.data);
-            let logDiv = document.getElementById('logDiv');
+    channel.onmessage = function (event) {
+      console.log('log:', event.data);
+      let logDiv = document.getElementById('logDiv');
 
-            let log = document.createElement('p');
-            log.innerHTML = event.data;
-            logDiv.appendChild(log);
-
-
-        };
+      let log = document.createElement('p');
+      log.innerHTML = event.data;
+      logDiv.appendChild(log);
 
 
-    },
+    };
 
-    template: `
+
+  },
+
+  template: `
     <div id="logDiv">
         test
     </div>
