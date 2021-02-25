@@ -46,17 +46,17 @@ const dashView = Vue.component('dashview', {
   },
   template: `
     <div>
-        <template v-if="private.activeConversation">
-            <template v-for="reply in private.activeConversation.replies">
-                <button v-on:click="updateConversation(reply)">{{reply.line}}</button>
-            </template>
+      <template v-if="private.activeConversation">
+        <template v-for="reply in private.activeConversation.replies">
+          <button v-on:click="updateConversation(reply)">{{reply.line}}</button>
         </template>
+      </template>
 
-        <button id="showmap" v-on:click="toggleMap()">{{private.gotoView}}</button>
-        <button id="showScene" v-on:click="shared.follow = !shared.follow">toggle position</button>
-        <b>{{shared.activeNPC}}:</b>
-        <div>{{shared.position.latitude}}, {{shared.position.longitude}}</div>
-        </div>
+      <button id="showmap" v-on:click="toggleMap()">{{private.gotoView}}</button>
+      <button id="showScene" v-on:click="shared.follow = !shared.follow">position: {{shared.follow ? 'on' : 'off'}}</button>
+      <b>{{shared.activeNPC}}:</b>
+      <div>{{shared.position.latitude}}, {{shared.position.longitude}}</div>
+      </div>
     `
 });
 

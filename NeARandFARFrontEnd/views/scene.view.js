@@ -16,8 +16,6 @@ const sceneView = Vue.component('sceneview', {
   },
   mounted: function () {
 
-    console.log('mounting', this.html);
-
     let frame = document.getElementById('frameview');
 
     let sceneDiv = frame.contentDocument.getElementById('sceneview');
@@ -76,11 +74,11 @@ const sceneView = Vue.component('sceneview', {
 
       // For some wicked reason I can't create the camera by createElement
       let innerHtml = `
-    <a-camera id="camera" gps-camera rotation-reader>
-        <a-cursor>
-        </a-cursor>
-    </a-camera>
-`;
+        <a-camera id="camera" gps-camera rotation-reader>
+          <a-cursor>
+          </a-cursor>
+        </a-camera>
+      `;
       this.private.scene.innerHTML = innerHtml;
 
       // dev box -> Remove this later
