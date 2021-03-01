@@ -13,7 +13,9 @@ const mapView = Vue.component('mapview', {
       private: {
         map: null,
         tileLayer: null,
-        layers: []
+        layers: [],
+        currentPositionPointer: null,
+        currentAccuracy: null
       },
       shared: globalState
     };
@@ -34,9 +36,11 @@ const mapView = Vue.component('mapview', {
     },
     initLayers() {
       console.log('initializing map layers');
+
+      // Objects in map
       this.shared.objectArray.forEach(obj => {
         console.log('showing entity', obj.value, 'on map');
-        obj.leafletObject = L.marker([obj.position.lat, obj.position.lon]).bindPopup(obj.type); // TODO: maybe fix another name-ish thingy?
+        obj.leafletObject = L.marker([obj.position.lat, obj.position.lon]).bindPopup(obj.type);
         obj.leafletObject.addTo(this.private.map);
       });
     },
@@ -47,7 +51,17 @@ const mapView = Vue.component('mapview', {
         this.private.map.locate({ setView: true, watch: true });
         this.private.map.addEventListener('locationfound', (locationEvent) => {
           this.shared.position = { latitude: locationEvent.latitude, longitude: locationEvent.longitude };
+          console.log('location located', locationEvent);
 
+          // player
+          if(this.private.currentPositionPointer) {
+            this.private.map.removeLayer(this.private.currentPositionPointer)
+
+          }
+
+          this.private.currentAccuracy = locationEvent.accuracy;
+          const radius = locationEvent.accuracy/2;
+          this.private.currentPositionPointer = L.circle(locationEvent.latlng, radius).addTo(this.private.map);
         });
 
         //    const dot = document.createElement('span');

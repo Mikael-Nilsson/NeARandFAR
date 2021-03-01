@@ -82,13 +82,13 @@ const sceneView = Vue.component('sceneview', {
       this.private.scene.innerHTML = innerHtml;
 
       // dev box -> Remove this later
-      console.log('creating box');
-      let box = contentDocument.createElement('a-box');
-      this.private.scene.appendChild(box);
-      //box.setAttribute('position', '1 0.5 -3');
-      box.setAttribute('position', { x: 1, y: 0.5, z: -3 });
-      box.setAttribute('rotation', '0 45 0');
-      box.setAttribute('color', '#4CC300');
+      // console.log('creating box');
+      // let box = contentDocument.createElement('a-box');
+      // this.private.scene.appendChild(box);
+      // //box.setAttribute('position', '1 0.5 -3');
+      // box.setAttribute('position', { x: 1, y: 0.5, z: -3 });
+      // box.setAttribute('rotation', '0 45 0');
+      // box.setAttribute('color', '#4CC300');
 
     },
     renderObjects: async function () {
