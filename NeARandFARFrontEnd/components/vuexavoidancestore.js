@@ -7,7 +7,7 @@ let globalState = {
   camActive: false,
   on: false,
   follow: true,
-  // ! No more developing on phone, so this is outa door!
+  // ! No more developing on phone, so this is out the door!
   // log: (msg) => {
   //     console.log(msg);
   //     if (!this.channel)
