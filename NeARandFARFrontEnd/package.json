@@ -4,7 +4,7 @@
   "description": "Trying out AR with A-Frame",
   "main": "index.js",
   "scripts": {
-    "s": "node index.js",
+    "s": "npx vue serve",
     "start": "npm run s"
   },
   "repository": {
@@ -19,5 +19,10 @@
   "homepage": "https://github.com/grisner/NeARandFAR#readme",
   "dependencies": {
     "express": "4.17.1"
+  },
+  "devDependencies": {
+    "@vue/cli": "^4.5.13",
+    "@vue/cli-service-global": "^4.5.13",
+    "typescript": "^4.3.5"
   }
 }
