@@ -48,9 +48,6 @@ export default {
     };
   },
   computed: {
-    iconUrl() {
-      return `https://placekitten.com/${this.iconWidth}/${this.iconHeight}`;
-    },
     iconSize() {
       return [this.iconWidth, this.iconHeight];
     },
